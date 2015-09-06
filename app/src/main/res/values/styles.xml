@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MyTheme_ActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="icon">@drawable/icon_settings</item>
+    </style>
+
+</resources>
