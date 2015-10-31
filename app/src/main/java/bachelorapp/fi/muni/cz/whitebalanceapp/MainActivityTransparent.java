@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Created by Vladkaa on 22. 10. 2015.
+ * Created by Vladimira Hezelova on 22. 10. 2015.
  */
 public class MainActivityTransparent extends Activity {
 

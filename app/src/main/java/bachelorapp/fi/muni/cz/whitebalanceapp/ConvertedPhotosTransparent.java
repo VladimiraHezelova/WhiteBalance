@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 /**
- * Created by Vladkaa on 22. 10. 2015.
+ * Created by Vladimira Hezelova on 22. 10. 2015.
  */
 public class ConvertedPhotosTransparent extends ActionBarActivity {
 

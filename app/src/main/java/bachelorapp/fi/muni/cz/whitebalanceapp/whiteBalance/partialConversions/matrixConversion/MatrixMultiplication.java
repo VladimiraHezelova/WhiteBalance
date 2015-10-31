@@ -1,4 +1,4 @@
-package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.matrixConversion;
+package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.matrixConversion;
 
 /**
  * Created by Vladimira Hezelova on 16. 3. 2015.

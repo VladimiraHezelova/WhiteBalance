@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 /**
- * Created by Vladkaa on 6. 10. 2015.
+ * Created by Vladimira Hezelova on 6. 10. 2015.
  */
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     private int inSampleSize = 0;

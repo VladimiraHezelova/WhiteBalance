@@ -2,9 +2,9 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld
 
 import android.graphics.Bitmap;
 
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.linearization.BackOfLinearization;
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.linearization.Linearization;
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.matrixConversion.MatrixMultiplication;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.linearization.BackOfLinearization;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.linearization.Linearization;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.matrixConversion.MatrixMultiplication;
 
 /**
  * Created by Vladimira Hezelova on 25. 4. 2015.
@@ -24,7 +24,7 @@ public class ConversionGW {
         MatrixMultiplication matrixMultiplication = new MatrixMultiplication(0,0, pixelData.length, scalingMatrix, pixelData);
         matrixMultiplication.start();
         while (matrixMultiplication.isAlive()) {
-            System.out.println("vlakna su zive");
+           // System.out.println("vlakna su zive");
         }
         pixelData = matrixMultiplication.getPixelData();
       //  pixelData = XYZtoRGB.fromXYZtoRGB(pixelData);

@@ -1,4 +1,4 @@
-package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.matrixConversion;
+package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.matrixConversion;
 
 /**
  * Created by Vladimira Hezelova on 21. 3. 2015.
@@ -22,7 +22,7 @@ public class LMStoXYZ {
         MatrixMultiplication thread3 = new MatrixMultiplication(3, end*3, lms.length, MATRIX_LMStoXYZ, lms);
         thread3.start();
         while(thread0.isAlive() || thread1.isAlive() || thread2.isAlive() || thread3.isAlive()) {
-              System.out.println("vlakna su zive");
+            //  System.out.println("vlakna su zive");
         }
         return thread0.getPixelData();
     }

@@ -1,4 +1,4 @@
-package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.linearization;
+package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.linearization;
 
 /**
  * Created by Vladimira Hezelova on 15. 3. 2015.
@@ -18,7 +18,7 @@ public class Linearization {
         LinearizationThread thread2 = new LinearizationThread(2, pixelData);
         thread2.start();
         while(thread0.isAlive() || thread1.isAlive() || thread2.isAlive()) {
-              System.out.println("vlakna su zive");
+            //  System.out.println("vlakna su zive");
         }
         pixelData = thread0.getPixelData();
         return pixelData;
@@ -35,9 +35,17 @@ public class Linearization {
         NormalizationThread thread2 = new NormalizationThread(2, pixelData);
         thread2.start();
         while(thread0.isAlive() || thread1.isAlive() || thread2.isAlive()) {
-              System.out.println("vlakna su zive");
+            //  System.out.println("vlakna su zive");
         }
         pixelData = thread0.getPixelData();
+        // hodnoty
+        /*
+        for(int i = 0; i < 100; i++) {
+            Log.e("normalization", Double.toString(pixelData[i][0]));
+            Log.e("normalization", Double.toString(pixelData[i][1]));
+            Log.e("normalization", Double.toString(pixelData[i][2]));
+        }
+        */
         return pixelData;
     }
 }

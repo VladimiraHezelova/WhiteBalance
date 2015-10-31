@@ -17,44 +17,27 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: bachelorapp.fi.muni.cz.whitebalanceapp" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6a6fac-b343-4c4e-9caa-8fc0055c2321" name="Default" comment="transparent layout, android icons, names of algorithms, algorithms: subsampled WP, histogram stretching, gray world (zakomentovane); zmenseny nahlad obrazku">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/LMStoXYZ.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/MatrixMultiplication.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/RGBtoXYZ.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoLMS.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoRGB.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_activity_layout_transparent.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/progress.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/waiting_layout.xml" />
-      <change type="DELETED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\.idea\libraries\support_v4_22_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\res\layout\fragment_converted_photos.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\.idea\libraries\appcompat_v7_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_1_1.xml" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\.idea\libraries\support_annotations_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_1_1.xml" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\ConvertedPhotosFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\linearization\BackOfLinearization.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/BackOfLinearization.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\linearization\Linearization.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/Linearization.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\linearization\LinearizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/LinearizationThread.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\linearization\NonLinearizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/NonLinearizationThread.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\linearization\NonNormalizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/NonNormalizationThread.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\linearization\NormalizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/NormalizationThread.java" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\res\layout\activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_activity_layout.xml" />
-      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\res\layout\fragment_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_converted_photos.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_converted_photos.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+    <list default="true" id="0d6a6fac-b343-4c4e-9caa-8fc0055c2321" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\linearization\BackOfLinearization.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/BackOfLinearization.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\linearization\Linearization.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/Linearization.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\linearization\LinearizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/LinearizationThread.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\linearization\NonLinearizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NonLinearizationThread.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\linearization\NonNormalizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NonNormalizationThread.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\linearization\NormalizationThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NormalizationThread.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\matrixConversion\LMStoXYZ.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/LMStoXYZ.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\matrixConversion\MatrixMultiplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/MatrixMultiplication.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\matrixConversion\RGBtoXYZ.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/RGBtoXYZ.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\matrixConversion\XYZtoLMS.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/XYZtoLMS.java" />
+      <change type="MOVED" beforePath="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld\matrixConversion\XYZtoRGB.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/XYZtoRGB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/SubsamplingWB.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/SubsamplingWB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WhiteBalanceApp.iws" />
@@ -86,18 +69,8 @@
       <file leaf-file-name="ConvertedPhotos.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3978">
-              <caret line="124" column="9" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConversionGW.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-              <caret line="23" column="79" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4849" max-vertical-offset="5406">
+              <caret line="312" column="73" selection-start-line="312" selection-start-column="73" selection-end-line="312" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,81 +78,105 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RGBtoXYZ.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/RGBtoXYZ.java">
+      <file leaf-file-name="NormalizationThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NormalizationThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9775" vertical-offset="0" max-vertical-offset="595">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="561">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="e#777#778#0" expanded="true" />
+                <element signature="e#809#810#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="converted_photos_layout.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.333333" vertical-offset="0" max-vertical-offset="2363">
+              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConversionToRGB.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/ConversionToRGB.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8538813" vertical-offset="0" max-vertical-offset="476">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConversionGW.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1275">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="45" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Conversion.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/Conversion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1377">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackOfLinearization.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/BackOfLinearization.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="716" max-vertical-offset="1156">
+              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="LMStoXYZ.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/LMStoXYZ.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/LMStoXYZ.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="595">
-              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatrixMultiplication.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/MatrixMultiplication.java">
+      <file leaf-file-name="ConversionToLMS.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/ConversionToLMS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.2142857" vertical-offset="119" max-vertical-offset="1207">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="23" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="697">
+              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImagesCache.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java">
+      <file leaf-file-name="Linearization.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/Linearization.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="1496">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackOfLinearization.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/BackOfLinearization.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="723" max-vertical-offset="1156">
-              <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1907" max-vertical-offset="2839">
-              <caret line="139" column="84" selection-start-line="139" selection-start-column="84" selection-end-line="139" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DownloadImageTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="910" max-vertical-offset="2652">
-              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConvertedPhotosTransparent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
-              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="473" max-vertical-offset="969">
+              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -985,28 +982,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$USER_HOME$/AppData/Local/Android/sdk/sources/android-21/android/app/ActivityThread.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/subsamplingWB/Main.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/subsamplingWB/linearization/Linearization.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/subsamplingWB/Main.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/linearization/BackOfLinearization.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/SubsamplingWB.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/ImagesCache.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/DownloadImageTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_converted_photos.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_fragment_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main_activity_layout_transparent.xml" />
         <option value="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
@@ -1016,23 +997,42 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/progress.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MyQuickSort.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/HistogramStretching.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/pixelData/PixelDataForRealImg.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConversionGW.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/ConversionGW.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/pixelData/histogramStretching/ConversionGW.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/MatrixMultiplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/BackOfLinearization.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/Linearization.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoRGB.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/LMStoXYZ.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/RGBtoXYZ.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoLMS.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/BackOfLinearization.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/LMStoXYZ.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/MatrixMultiplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoRGB.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/SubsamplingWB.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/WhitePatch/ConversionToRGB.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/linearization/Linearization.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/WhitePatch/Conversion.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/linearization/WhitePatch/ConversionToLMS.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/WhitePatch/ConversionToLMS.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/ConversionToRGB.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/pixelData/PixelDataForRealImg.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/pixelData/PixelDataForRealWhite.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/pixelData/PixelData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NormalizationThread.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/Linearization.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/BackOfLinearization.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/Conversion.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/ConversionToLMS.java" />
       </list>
     </option>
   </component>
@@ -1071,8 +1071,148 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1219,66 +1359,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1305,66 +1385,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-mdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1400,6 +1420,182 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteBalance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partialConversions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="matrixConversion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteBalance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partialConversions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linearization" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteBalance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitePatch" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteBalance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitePatch" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pixelData" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteBalance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1441,41 +1637,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="algorithms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="grayWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whitebalanceapp" />
+              <option name="myItemId" value="whiteBalance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1484,52 +1646,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="grayWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="matrixConversion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whitebalanceapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="algorithms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="grayWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linearization" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1553,148 +1669,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whitebalanceapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whitebalanceapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whitebalanceapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WhiteBalanceApp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1738,6 +1714,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\whitePatch" />
+      <recent name="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\WhitePatch" />
       <recent name="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp" />
       <recent name="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\algorithms\grayWorld" />
       <recent name="C:\Users\Vladkaa\Desktop\bakalarka\projekty\Android\WhiteBalanceApp\app\src\main\java\bachelorapp\fi\muni\cz\whitebalanceapp\whiteBalance\subsamplingWB" />
@@ -1919,28 +1897,34 @@
       <created>1440533084634</created>
       <updated>1440533084634</updated>
     </task>
+    <task id="LOCAL-00001" summary="transparent layout, android icons, names of algorithms, algorithms: subsampled WP, histogram stretching, gray world (zakomentovane); zmenseny nahlad obrazku">
+      <created>1446299441856</created>
+      <updated>1446299441856</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="842" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31988043" sideWeight="0.49953917" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31970802" sideWeight="0.49953917" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30072993" sideWeight="0.708445" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6729927" sideWeight="0.708445" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.288874" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0919708" sideWeight="0.20978552" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270073" sideWeight="0.79088473" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24061662" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265625" sideWeight="0.79088473" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3388306" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27503738" sideWeight="0.5593692" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37518248" sideWeight="0.7902145" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4160584" sideWeight="0.7902145" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32763976" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28284183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20576407" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1951,7 +1935,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24061662" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884902" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2001,7 +1984,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="transparent layout, android icons, names of algorithms, algorithms: subsampled WP, histogram stretching, gray world (zakomentovane); zmenseny nahlad obrazku" />
-    <option name="LAST_COMMIT_MESSAGE" value="transparent layout, android icons, names of algorithms, algorithms: subsampled WP, histogram stretching, gray world (zakomentovane); zmenseny nahlad obrazku" />
+    <MESSAGE value="White Patch (when you click on white patch in image on view, it changes colors of second image in progress bar)" />
+    <option name="LAST_COMMIT_MESSAGE" value="White Patch (when you click on white patch in image on view, it changes colors of second image in progress bar)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2056,7 +2040,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java</url>
-          <line>231</line>
+          <line>233</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
@@ -2065,53 +2049,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-21/com/android/internal/os/ZygoteInit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="10412" max-vertical-offset="14790">
-          <caret line="669" column="0" selection-start-line="669" selection-start-column="0" selection-end-line="669" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/res/values/values.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.08" vertical-offset="22390" max-vertical-offset="24395">
-          <caret line="1326" column="14" selection-start-line="1326" selection-start-column="14" selection-end-line="1326" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/icon_settings.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43098593" vertical-offset="0" max-vertical-offset="355">
-          <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="355">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71267605" vertical-offset="36" max-vertical-offset="391">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
@@ -2231,24 +2168,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="2312">
-          <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="60" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3613963" vertical-offset="85" max-vertical-offset="1088">
-          <caret line="55" column="71" selection-start-line="55" selection-start-column="71" selection-end-line="55" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_converted_photos.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27926078" vertical-offset="0" max-vertical-offset="487">
@@ -2324,106 +2243,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/SubsamplingWB.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1844" max-vertical-offset="2958">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="3128">
-          <caret line="136" column="10" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1241">
-          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/NormalizationThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/Linearization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="833">
-          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/LinearizationThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="561">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoRGB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="212" max-vertical-offset="595">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/XYZtoLMS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="578">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="1496">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/DownloadImageTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="910" max-vertical-offset="2652">
-          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="2788">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ImagesCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/linearization/BackOfLinearization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="723" max-vertical-offset="1156">
-          <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3978">
-          <caret line="124" column="9" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1496">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -2436,37 +2275,205 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/LMStoXYZ.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="595">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/MatrixMultiplication.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/SubsamplingWB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2142857" vertical-offset="119" max-vertical-offset="1207">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2907">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-22/android.jar!/android/widget/ImageView.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2431">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3060">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NonNormalizationThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/MatrixMultiplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/RGBtoXYZ.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <caret line="23" column="79" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="595">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/XYZtoLMS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="578">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/XYZtoRGB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="595">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/LinearizationThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="561">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NonLinearizationThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="663">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/pixelData/PixelData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="1292">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/matrixConversion/RGBtoXYZ.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/matrixConversion/LMStoXYZ.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9775" vertical-offset="0" max-vertical-offset="595">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="595">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/NormalizationThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="561">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/Linearization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="969">
+          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/linearization/BackOfLinearization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="716" max-vertical-offset="1156">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4856" max-vertical-offset="5406">
+          <caret line="312" column="73" selection-start-line="312" selection-start-column="73" selection-end-line="312" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1275">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="45" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/Conversion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1377">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/ConversionToLMS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="697">
+          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.333333" vertical-offset="0" max-vertical-offset="2363">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/ConversionToRGB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8538813" vertical-offset="0" max-vertical-offset="476">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.Random;
 
 /**
-* Created by Vladkaa on 20. 8. 2015.
+* Created by Vladimira Hezelova on 20. 8. 2015.
         */
 public class SubsamplingWB {
 

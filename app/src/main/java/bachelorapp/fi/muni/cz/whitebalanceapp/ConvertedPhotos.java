@@ -17,9 +17,9 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,12 +30,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.ConversionGW;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.whitePatch.Conversion;
 
 import static android.graphics.Bitmap.createScaledBitmap;
 
 /**
- * Created by Vladkaa on 25. 8. 2015.
+ * Created by Vladimira Hezelova on 25. 8. 2015.
  */
 public class ConvertedPhotos extends ActionBarActivity {
 
@@ -45,7 +45,7 @@ public class ConvertedPhotos extends ActionBarActivity {
     private static ImageButton convertedImage3;
     private static ImageButton convertedImage4;
     private static ImageButton convertedImage5;
-    private static ImageView selectedImage;
+    private static ImageButton selectedImage;
     private static Bitmap selectedBitmap;
     private static Context instance;
 
@@ -95,7 +95,7 @@ public class ConvertedPhotos extends ActionBarActivity {
         Intent intent = getIntent();
        // final String picturePath = intent.getStringExtra("picturePath");
         picturePath = intent.getStringExtra("picturePath");
-        selectedImage = (ImageView) findViewById(R.id.selected_image);
+        selectedImage = (ImageButton) findViewById(R.id.selected_image);
         originalBitmapTMP = BitmapFactory.decodeFile(picturePath);
         // rozmery displayu
         Display display = getWindowManager().getDefaultDisplay();
@@ -134,6 +134,8 @@ public class ConvertedPhotos extends ActionBarActivity {
 
         convertedImage2 = (ImageButton) findViewById(R.id.converted_image2);
         convertedImage2.setImageBitmap(BitmapFactory.decodeFile("/storage/sdcard1/DCIM/MobileCamera/DSC_0006.JPEG"));
+
+
 /*
         convertedImage3 = (ImageButton) findViewById(R.id.converted_image3);
         convertedImage3.setImageBitmap(BitmapFactory.decodeFile(picturePath));
@@ -228,9 +230,9 @@ public class ConvertedPhotos extends ActionBarActivity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-        //    convertedBitmap1 = SubsamplingWB.conversion(bitmap);
+            convertedBitmap1 = SubsamplingWB.conversion(bitmap);
          //   convertedBitmap1 = HistogramStretching.conversion(bitmap);
-            convertedBitmap1 = ConversionGW.convert(bitmap);
+          //  convertedBitmap1 = ConversionGW.convert(bitmap);
 
             return null;
         }
@@ -251,6 +253,7 @@ public class ConvertedPhotos extends ActionBarActivity {
                     selectedImage.setImageBitmap(originalBitmap);
                 }
             });
+
             convertedImage1 = (ImageButton) findViewById(R.id.converted_image1);
             convertedImage1.setImageBitmap(convertedBitmap1);
 
@@ -263,6 +266,59 @@ public class ConvertedPhotos extends ActionBarActivity {
                     //  writeImage(convertedBitmap1);
                 }
             });
+
+            selectedImage.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        float Xpos = event.getRawX();
+                        float Ypos = event.getRawY();
+                        /*
+                        Log.e("Xpos ",Float.toString(Xpos));
+                        Log.e("Ypos ",Float.toString(Ypos));
+                        Log.e("width of bitmap", Integer.toString(bitmap.getWidth()));
+                        Log.e("height of bitmap", Integer.toString(bitmap.getHeight()));
+                        Log.e("position of image X", Float.toString(event.getX()));
+                        Log.e("position of image Y", Float.toString(event.getY()));
+                        */
+                        // selected pixel of White
+                        int selectedPixelX = (int) event.getX();
+                        int selectedPixelY = (int) event.getY();
+
+                        // enlarge of chosen pixel because of noise
+                        int shiftedX;
+                        int shiftedY;
+                        int size = 9;
+                        // kontrola zvacsenia vyberu bielych pixelov na okrajoch
+                        if(selectedPixelX > 4) {
+                            shiftedX = selectedPixelX - 4;
+                        } else {
+                            shiftedX = 1;
+                        }
+                        if(selectedPixelX > bitmap.getWidth() - 5) {
+                            shiftedX = bitmap.getWidth() - 10;
+                        }
+
+                        if(selectedPixelY > 4) {
+                            shiftedY = selectedPixelY - 4;
+                        } else {
+                            shiftedY = 1;
+                        }
+                        if(selectedPixelY > bitmap.getHeight() - 5) {
+                            shiftedY = bitmap.getHeight() - 10;
+                        }
+
+                        Bitmap selectedWhite = Bitmap.createBitmap(bitmap, shiftedX, shiftedY, size, size);
+                        convertedBitmap1 = Conversion.convert(bitmap, selectedWhite);
+                        convertedImage1.setImageBitmap(convertedBitmap1);
+
+                        return true;
+
+                    } else
+                        return false;
+                }
+            });
+
         }
     }
 }
