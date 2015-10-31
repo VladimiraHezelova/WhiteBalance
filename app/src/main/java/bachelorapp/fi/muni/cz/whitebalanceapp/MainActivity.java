@@ -2,6 +2,7 @@ package bachelorapp.fi.muni.cz.whitebalanceapp;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,15 +26,43 @@ public class MainActivity extends ActionBarActivity {
     private Button buttonGallery;
     private String picturePath;
 
+
+    final String PREFS_NAME = "MyPrefsFile";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity_layout);
+
+        // zistuje ci je aplikacia spustena prvykrat
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        if(settings.getBoolean("my_first_time", true)) {
+            Log.e("message", "first time start of app");
+        } else {
+            Log.e("message", "this is not first time start of app");
+        }
+        if(settings.getBoolean("my_first_time", true)) {
+            //the app is being launched for first time, do something
+            Log.d("Comments", "First time");
+
+            // first time task
+
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("my_first_time", false).commit();
+        }
+
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        Intent intent = getIntent();
+        // final String picturePath = intent.getStringExtra("picturePath");
+        picturePath = intent.getStringExtra("picturePath");
 
         buttonGallery = (Button) findViewById(R.id.button_gallery);
 
@@ -60,11 +89,16 @@ public class MainActivity extends ActionBarActivity {
 
 */
 
+
+                Intent intentTransparent = new Intent(getApplicationContext(), MainActivityTransparent.class);
+                startActivity(intentTransparent);
+/*
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+                */
             }
         });
     }
@@ -103,8 +137,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_main_layout, container, false);
         }
     }
 
@@ -126,23 +159,10 @@ public class MainActivity extends ActionBarActivity {
 
             Log.e("path of sourceUri", selectedImage.getPath());
 
-            Intent intent = new Intent(getApplicationContext(), ConvertedPhotosFragment.class);
+            Intent intent = new Intent(getApplicationContext(), ConvertedPhotos.class);
             intent.putExtra("picturePath", picturePath);
             startActivity(intent);
-            /*
-            FragmentManager fragmentManager = getSupportFragmentManager();
-
-            String fragmentTag = getString(R.string.converted_photos_fragment);
-            Fragment selectedFragment = fragmentManager.findFragmentByTag(fragmentTag);
-
-            if (selectedFragment == null) {
-                selectedFragment = ConvertedPhotosFragment.newInstance(picturePath);
-                fragmentManager.beginTransaction().addToBackStack(fragmentTag)
-                        .replace(R.id.container, selectedFragment, fragmentTag)
-                        .commit();
-            }
-            */
-
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         }
 
     }

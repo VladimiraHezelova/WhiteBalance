@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:indeterminateDrawable="@drawable/progress" >
+    </ProgressBar>
+
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="5dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/original_image_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/original_image_text"/>
+
+            <ImageButton
+                android:id="@+id/original_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/original_image"
+                android:layout_alignBottom="@id/original_image_text"/>
+
+            <TextView
+                android:id="@+id/converted_image1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/original_image"
+                android:layout_toRightOf="@id/original_image"
+                android:layout_alignParentBottom="true"
+                android:text="@string/converted_image1_text"/>
+
+            <ImageButton
+                android:id="@+id/converted_image1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@id/original_image"
+                android:layout_toEndOf="@id/original_image"
+                android:contentDescription="@string/converted_image1"
+                android:layout_alignBottom="@id/converted_image1_text"/>
+
+            <TextView
+                android:id="@+id/converted_image2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/converted_image1"
+                android:layout_toRightOf="@id/converted_image1"
+                android:layout_alignParentBottom="true"
+                android:text="@string/converted_image2_text"/>
+
+            <ImageButton
+                android:id="@+id/converted_image2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@id/converted_image1"
+                android:layout_toEndOf="@id/converted_image1"
+                android:contentDescription="@string/converted_image2"
+                android:layout_alignBottom="@id/converted_image2_text"/>
+
+            <TextView
+                android:id="@+id/converted_image3_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/converted_image2"
+                android:layout_toRightOf="@id/converted_image2"
+                android:layout_alignParentBottom="true"
+                android:text="@string/converted_image3_text"/>
+
+            <ImageButton
+                android:id="@+id/converted_image3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@id/converted_image2"
+                android:layout_toEndOf="@id/converted_image2"
+                android:contentDescription="@string/converted_image3"
+                android:layout_alignBottom="@id/converted_image3_text"/>
+
+            <TextView
+                android:id="@+id/converted_image4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/converted_image3"
+                android:layout_toRightOf="@id/converted_image3"
+                android:layout_alignParentBottom="true"
+                android:text="@string/converted_image4_text"/>
+
+            <ImageButton
+                android:id="@+id/converted_image4"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@id/converted_image3"
+                android:layout_toEndOf="@id/converted_image3"
+                android:contentDescription="@string/converted_image4"
+                android:layout_alignBottom="@id/converted_image4_text"/>
+
+            </RelativeLayout>
+        </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/selected_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/selected_image"/>
+
+</RelativeLayout>

@@ -7,11 +7,18 @@
 
     <string name="converted_photos_fragment">converted photos fragment</string>
     <string name="white_balance">White balance</string>
-    <string name="save">sa</string>
+    <string name="save">save</string>
     <string name="selected_image">selected image</string>
     <string name="original_image">original image</string>
     <string name="converted_image1">converted image 1</string>
     <string name="converted_image2">converted image 2</string>
     <string name="converted_image3">converted image 3</string>
+    <string name="converted_image4">converted image 4</string>
+
+    <string name="original_image_text">Original</string>
+    <string name="converted_image1_text">Subsample</string>
+    <string name="converted_image2_text">Stretching</string>
+    <string name="converted_image3_text">Gray World</string>
+    <string name="converted_image4_text">White Patch</string>
 
 </resources>

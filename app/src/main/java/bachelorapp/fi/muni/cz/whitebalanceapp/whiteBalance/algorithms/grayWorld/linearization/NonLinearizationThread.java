@@ -1,4 +1,4 @@
-package bachelorapp.fi.muni.cz.whitebalanceapp.linearization;
+package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.linearization;
 
 /**
  * Created by Vladimira Hezelova on 26. 4. 2015.
