@@ -16,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -69,7 +68,6 @@ public class MainActivity extends ActionBarActivity {
         buttonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "gallery", Toast.LENGTH_SHORT).show();
 
 
                 //vymaz

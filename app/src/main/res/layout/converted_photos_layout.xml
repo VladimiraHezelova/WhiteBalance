@@ -19,7 +19,7 @@
         android:id="@+id/scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="5dp">
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -31,13 +31,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
                 android:text="@string/original_image_text"/>
 
             <ImageButton
                 android:id="@+id/original_image"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="20dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginBottom="25dp"
                 android:contentDescription="@string/original_image"
                 android:layout_alignBottom="@id/original_image_text"/>
 
@@ -48,12 +49,14 @@
                 android:layout_toEndOf="@id/original_image"
                 android:layout_toRightOf="@id/original_image"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/converted_image1_text"/>
 
             <ImageButton
                 android:id="@+id/converted_image1"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/original_image"
                 android:layout_toEndOf="@id/original_image"
@@ -71,8 +74,8 @@
 
             <ImageButton
                 android:id="@+id/converted_image2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/converted_image1"
                 android:layout_toEndOf="@id/converted_image1"
@@ -90,8 +93,8 @@
 
             <ImageButton
                 android:id="@+id/converted_image3"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/converted_image2"
                 android:layout_toEndOf="@id/converted_image2"
@@ -109,8 +112,8 @@
 
             <ImageButton
                 android:id="@+id/converted_image4"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/converted_image3"
                 android:layout_toEndOf="@id/converted_image3"

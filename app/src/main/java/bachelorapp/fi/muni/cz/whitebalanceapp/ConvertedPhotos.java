@@ -1,6 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp;
 
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,6 +31,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.ConversionGW;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching.HistogramStretching;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.whitePatch.Conversion;
 
 import static android.graphics.Bitmap.createScaledBitmap;
@@ -54,6 +57,9 @@ public class ConvertedPhotos extends ActionBarActivity {
     private ProgressBar bar;
 
     private Bitmap convertedBitmap1;
+    private Bitmap convertedBitmap2;
+    private Bitmap convertedBitmap3;
+    private Bitmap convertedBitmap4;
     private Bitmap bitmap;
     private Bitmap originalBitmap;
     private Bitmap originalBitmapTMP;
@@ -96,6 +102,11 @@ public class ConvertedPhotos extends ActionBarActivity {
        // final String picturePath = intent.getStringExtra("picturePath");
         picturePath = intent.getStringExtra("picturePath");
         selectedImage = (ImageButton) findViewById(R.id.selected_image);
+
+        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        int memoryClass = am.getMemoryClass();
+        Log.e("free memory", Integer.toString(memoryClass));
+
         originalBitmapTMP = BitmapFactory.decodeFile(picturePath);
         // rozmery displayu
         Display display = getWindowManager().getDefaultDisplay();
@@ -127,19 +138,14 @@ public class ConvertedPhotos extends ActionBarActivity {
         bitmap = createScaledBitmap(originalBitmapTMP, width, height, false);
 
        // histogramStretchedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+
         new ProgressTask().execute();
 
 
 
 
-        convertedImage2 = (ImageButton) findViewById(R.id.converted_image2);
-        convertedImage2.setImageBitmap(BitmapFactory.decodeFile("/storage/sdcard1/DCIM/MobileCamera/DSC_0006.JPEG"));
 
-
-/*
-        convertedImage3 = (ImageButton) findViewById(R.id.converted_image3);
-        convertedImage3.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-*/
 /*
         //prekrytie layoutu navodom
         Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent.class);
@@ -164,6 +170,8 @@ public class ConvertedPhotos extends ActionBarActivity {
                 writeImage(selectedBitmap);
                 return true;
             case android.R.id.home:
+                originalBitmapTMP = null;
+                finish();
                 Intent upIntent = NavUtils.getParentActivityIntent(this);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
                     // This activity is NOT part of this app's task, so create a new task
@@ -230,9 +238,11 @@ public class ConvertedPhotos extends ActionBarActivity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            convertedBitmap1 = SubsamplingWB.conversion(bitmap);
-         //   convertedBitmap1 = HistogramStretching.conversion(bitmap);
-          //  convertedBitmap1 = ConversionGW.convert(bitmap);
+
+            convertedBitmap1 = HistogramStretching.conversion(bitmap);
+            convertedBitmap2 = ConversionGW.convert(bitmap);
+            convertedBitmap4 = SubsamplingWB.conversion(bitmap);
+
 
             return null;
         }
@@ -260,10 +270,28 @@ public class ConvertedPhotos extends ActionBarActivity {
             convertedImage1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "convertedImage1", Toast.LENGTH_SHORT).show();
-                    Log.e("convertedImage1", picturePath);
                     selectedImage.setImageBitmap(convertedBitmap1);
-                    //  writeImage(convertedBitmap1);
+                }
+            });
+
+            convertedImage2 = (ImageButton) findViewById(R.id.converted_image2);
+            convertedImage2.setImageBitmap(convertedBitmap2);
+
+            convertedImage2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectedImage.setImageBitmap(convertedBitmap2);
+
+                }
+            });
+
+            convertedImage4 = (ImageButton) findViewById(R.id.converted_image4);
+            convertedImage4.setImageBitmap(convertedBitmap4);
+
+            convertedImage4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectedImage.setImageBitmap(convertedBitmap4);
                 }
             });
 
@@ -271,16 +299,6 @@ public class ConvertedPhotos extends ActionBarActivity {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_UP) {
-                        float Xpos = event.getRawX();
-                        float Ypos = event.getRawY();
-                        /*
-                        Log.e("Xpos ",Float.toString(Xpos));
-                        Log.e("Ypos ",Float.toString(Ypos));
-                        Log.e("width of bitmap", Integer.toString(bitmap.getWidth()));
-                        Log.e("height of bitmap", Integer.toString(bitmap.getHeight()));
-                        Log.e("position of image X", Float.toString(event.getX()));
-                        Log.e("position of image Y", Float.toString(event.getY()));
-                        */
                         // selected pixel of White
                         int selectedPixelX = (int) event.getX();
                         int selectedPixelY = (int) event.getY();
@@ -309,8 +327,16 @@ public class ConvertedPhotos extends ActionBarActivity {
                         }
 
                         Bitmap selectedWhite = Bitmap.createBitmap(bitmap, shiftedX, shiftedY, size, size);
-                        convertedBitmap1 = Conversion.convert(bitmap, selectedWhite);
-                        convertedImage1.setImageBitmap(convertedBitmap1);
+                        convertedBitmap3 = Conversion.convert(bitmap, selectedWhite);
+                        convertedImage3 = (ImageButton) findViewById(R.id.converted_image3);
+                        convertedImage3.setImageBitmap(convertedBitmap3);
+
+                        convertedImage3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                selectedImage.setImageBitmap(convertedBitmap3);
+                            }
+                        });
 
                         return true;
 

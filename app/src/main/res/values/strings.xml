@@ -16,9 +16,9 @@
     <string name="converted_image4">converted image 4</string>
 
     <string name="original_image_text">Original</string>
-    <string name="converted_image1_text">Subsample</string>
-    <string name="converted_image2_text">Stretching</string>
-    <string name="converted_image3_text">Gray World</string>
-    <string name="converted_image4_text">White Patch</string>
+    <string name="converted_image1_text">Histogram\nStretching</string>
+    <string name="converted_image2_text">Gray World</string>
+    <string name="converted_image3_text">White Patch</string>
+    <string name="converted_image4_text">Improved WP</string>
 
 </resources>

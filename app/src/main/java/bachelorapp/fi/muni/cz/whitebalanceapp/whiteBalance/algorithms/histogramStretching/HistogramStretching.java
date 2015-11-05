@@ -1,7 +1,6 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,13 +101,15 @@ public class HistogramStretching {
 
 
 
-        Collections.sort(array, new Comparator<Integer>() {
+            Collections.sort(array, new Comparator<Integer>() {
 
-            @Override
-            public int compare(Integer entry1, Integer entry2) {
-                return entry1.compareTo(entry2);
-            }
-        });
+                @Override
+                public int compare(Integer entry1, Integer entry2) {
+                    return entry1.compareTo(entry2);
+                }
+            });
+
+
 
         return array;
     }
@@ -147,21 +148,10 @@ public class HistogramStretching {
                 int G = (int) pixelData[i * width + j][1];
                 int B = (int) pixelData[i * width + j][2];
                 int value = ((R & 0xFF) << 16) | ((G & 0xFF) << 8)  | ((B & 0xFF) << 0);
-                // dobree
-/*
-                if (i > height - 100 && j > width - 100) {
-                    Log.e("value ", Integer.toString(value));
-                }
-*/
-                if (i > height - 100 && j > width - 100) {
-                    Log.e("value ", Integer.toString(value));
-                }
 
 
                 histogramStretchedBitmap.setPixel(j, i, value);
-                if (i > height - 100 && j > width - 100) {
-                    Log.e("streched ", Integer.toString(histogramStretchedBitmap.getPixel(j,i)));
-                }
+
             }
         }
         //nuly

@@ -16,21 +16,23 @@ public class BackOfLinearization {
 
     public static double[][] backOfLinearization(double[][] pixelData) {
 
-        long start = System.currentTimeMillis();
+        double smallRGB;
+        double largeRGB;
+        for(int i = 0; i < pixelData.length; i++) {
+            //   System.out.println(j + ". vlakno " + pixelData[i][j]);
+            for (int j = 0; j < 3; j++) {
+                smallRGB = pixelData[i][j] * 12.92;
+                if(smallRGB <= 0.04045) {
+                    pixelData[i][j] = smallRGB;
+                } else {
+                    largeRGB = Math.pow(pixelData[i][j],1/2.4);
+                    largeRGB *= 1.055;
+                    largeRGB -= 0.055;
+                    pixelData[i][j] = largeRGB;
+                }
+            }
 
-        NonLinearizationThread thread0 = new NonLinearizationThread(0, pixelData);
-        thread0.start();
-        NonLinearizationThread thread1 = new NonLinearizationThread(1, pixelData);
-        thread1.start();
-        NonLinearizationThread thread2 = new NonLinearizationThread(2, pixelData);
-        thread2.start();
-        while(thread0.isAlive() || thread1.isAlive() || thread2.isAlive()) {
-          //  System.out.println("vlakna su zive");
         }
-        pixelData = thread0.getPixelData();
-        long end = System.currentTimeMillis();
-        double time = (double) (end - start) / 1000;
-        System.out.println("backOfLinearization " + time + "sekund");
         return pixelData;
     }
 
@@ -41,22 +43,19 @@ public class BackOfLinearization {
      * @return nenoramalizovane pole RGB hodnot
      */
     public static double[][] backOfNormalization(double[][] pixelData) {
-        long start = System.currentTimeMillis();
+        for(int i = 0; i < pixelData.length; i++) {
+            for (int j = 0; j < 3; j++) {
+                pixelData[i][j] = pixelData[i][j] * 255;
+                //lebo su hodnoty cervenej zaporne
+                if(pixelData[i][j] < 0) {
+                    pixelData[i][j] *= -1.0;
+                }
+                if(pixelData[i][j] > 255) {
+                    pixelData[i][j] = 255;
+                }
+            }
 
-        NonNormalizationThread thread0 = new NonNormalizationThread(0, pixelData);
-        thread0.start();
-        NonNormalizationThread thread1 = new NonNormalizationThread(1, pixelData);
-        thread1.start();
-        NonNormalizationThread thread2 = new NonNormalizationThread(2, pixelData);
-        thread2.start();
-        while(thread0.isAlive() || thread1.isAlive() || thread2.isAlive()) {
-          //  System.out.println("vlakna su zive");
         }
-        pixelData = thread0.getPixelData();
-
-        long end = System.currentTimeMillis();
-        double time = (double) (end - start) / 1000;
-        System.out.println("backOfNormalization " + time + "sekund");
         return pixelData;
     }
 }

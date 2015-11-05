@@ -18,7 +18,6 @@ public class Average {
     }
 
     public double[][] getScalingMatrix(double[][] pixelData, double[][] scalingMatrix) {
-        System.out.println("getScalingMatrix " + pixelData[0][0] + " " + pixelData[0][1] + " " + pixelData[0][2]);
         getAverages(pixelData);
         getAvgGray();
         getScalingCoefficients();
@@ -31,7 +30,6 @@ public class Average {
     }
 
     private void getAverages(double[][] pixelData) {
-        System.out.println(pixelData[0][0] + " " + pixelData[0][1] + " " + pixelData[0][2]);
         double sumR = 0;
         double sumG = 0;
         double sumB = 0;
