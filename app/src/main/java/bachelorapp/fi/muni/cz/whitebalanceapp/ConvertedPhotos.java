@@ -33,7 +33,6 @@ import java.util.Date;
 
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.ConversionGW;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching.HistogramStretching;
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.whitePatch.Conversion;
 
 import static android.graphics.Bitmap.createScaledBitmap;
 
@@ -299,13 +298,39 @@ public class ConvertedPhotos extends ActionBarActivity {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_UP) {
+                        // pozicia View (image) vzhladom na Activity (bez menu)
+                      /*  int selectedImageX = (int) selectedImage.getX();
+                        int selectedImageY = (int) selectedImage.getY();
+                        Log.e("selectedImageX", Integer.toString(selectedImageX));
+                        Log.e("selectedImageY", Integer.toString(selectedImageY));*/
+                        // rozmery View (image)
+                        int selectedImageWidth = (int) selectedImage.getWidth();
+                        int selectedImageHeight = (int) selectedImage.getHeight();
+                        Log.e("selectedImageWidth" , Integer.toString(selectedImageWidth));
+                        Log.e("selectedImageHeight", Integer.toString(selectedImageHeight));
                         // selected pixel of White
-                        int selectedPixelX = (int) event.getX();
-                        int selectedPixelY = (int) event.getY();
+                        int selectedPixelXInWindow = (int) event.getRawX();
+                        int selectedPixelYInWindow = (int) event.getRawY();
+
+                        // pozicia vybraneho pixelu vzhladom na celu obrazovku (aj s menu)
+                        Log.e("selectedPixelX raw" , Integer.toString(selectedPixelXInWindow));
+                        Log.e("selectedPixelY raw", Integer.toString(selectedPixelYInWindow));
+
+                        int loacationViewInWindow[] = new int[2];
+                        selectedImage.getLocationInWindow(loacationViewInWindow);
+                        Log.e("test1[0]", Integer.toString(loacationViewInWindow[0]));
+                        Log.e("test1[1]", Integer.toString(loacationViewInWindow[1]));
+
+                        int selectedPixelX = selectedPixelXInWindow - loacationViewInWindow[0];
+                        int selectedPixelY = selectedPixelYInWindow - loacationViewInWindow[1];
+                        Log.e("selectedPixelX in View", Integer.toString(selectedPixelX));
+                        Log.e("selectedPixelY in View", Integer.toString(selectedPixelY));
+
 
                         // enlarge of chosen pixel because of noise
                         int shiftedX;
                         int shiftedY;
+                       // int size = 9;
                         int size = 9;
                         // kontrola zvacsenia vyberu bielych pixelov na okrajoch
                         if(selectedPixelX > 4) {
@@ -326,8 +351,21 @@ public class ConvertedPhotos extends ActionBarActivity {
                             shiftedY = bitmap.getHeight() - 10;
                         }
 
-                        Bitmap selectedWhite = Bitmap.createBitmap(bitmap, shiftedX, shiftedY, size, size);
-                        convertedBitmap3 = Conversion.convert(bitmap, selectedWhite);
+                      //  shiftedX = 363;
+                      //  shiftedY = 74;
+                        try{
+                            Bitmap selectedWhite = Bitmap.createBitmap(bitmap, shiftedX, shiftedY, size, size);
+
+                            Log.e("selectedPixelX", Integer.toString(selectedPixelX));
+                            Log.e("selectedPixelY", Integer.toString(selectedPixelY));
+                            Log.e("shiftedX", Integer.toString(shiftedX));
+                            Log.e("shiftedY", Integer.toString(shiftedY));
+                            writeImage(selectedWhite);
+                        } catch(IllegalArgumentException e) {
+                            e.printStackTrace();
+                        }
+
+                   /*     convertedBitmap3 = Conversion.convert(bitmap, selectedWhite);
                         convertedImage3 = (ImageButton) findViewById(R.id.converted_image3);
                         convertedImage3.setImageBitmap(convertedBitmap3);
 
@@ -337,7 +375,7 @@ public class ConvertedPhotos extends ActionBarActivity {
                                 selectedImage.setImageBitmap(convertedBitmap3);
                             }
                         });
-
+*/
                         return true;
 
                     } else
