@@ -13,7 +13,6 @@ public class Average {
     private double kG;
     private double kB;
 
-
     public Average() {
     }
 

@@ -109,6 +109,8 @@ public class ConvertedPhotos extends AppCompatActivity {
 
         changeDimensions();
         scaledBitmap = createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, false);
+        originalBitmap = null;
+        System.gc();
 
         new ProgressTask().execute();
         /*
@@ -193,30 +195,33 @@ public class ConvertedPhotos extends AppCompatActivity {
             long start = System.currentTimeMillis();
 
             pixelDataOriginal = new double[scaledWidth*scaledHeight][3];
+            /*
             pixelDataOriginal = PixelData.getPixelData(scaledBitmap, pixelDataOriginal);
             pixelDataClone = new double[scaledWidth*scaledHeight][3];
             deepCopyPixelData();
-
+*/
+            /*
             Bitmap convertedBitmap1 = HistogramStretching.conversion(scaledWidth, scaledHeight, pixelDataClone);
             deepCopyPixelData();
             Bitmap convertedBitmap2 = ConversionGW.convert(scaledBitmap, pixelDataClone);
             deepCopyPixelData();
             Bitmap convertedBitmap4 = SubsamplingWB.conversion(scaledWidth, scaledHeight, pixelDataClone);
             deepCopyPixelData();
+            */
             convertedBitmaps = new Bitmap[] {
                     null,
-                    convertedBitmap1,
-                    convertedBitmap2,
+                    HistogramStretching.conversion(scaledWidth, scaledHeight, PixelData.getPixelData(scaledBitmap, pixelDataOriginal)),
+                    ConversionGW.convert(scaledBitmap, PixelData.getPixelData(scaledBitmap, pixelDataOriginal)),
                     null,
-                    convertedBitmap4
+                    SubsamplingWB.conversion(scaledWidth, scaledHeight, PixelData.getPixelData(scaledBitmap, pixelDataOriginal))
             };
 
             long end = System.currentTimeMillis();
             double time = (double) (end - start) / 1000;
             Log.i(TAG, "time of conversions = " + time + "seconds");
-            //56.162 sec,56.188, 47.875, 45.121, 45.746, 45.529
+            //56.162 sec,56.188, 47.875, 45.121, 45.746, 45.529 .. 13.5
             // 35.594, 35.697
-            //35 MB, 28MB, 35 MB
+            //35 MB, 28MB, 35 MB .. 23 MB
             // 50,60 max 80%
 
             return null;
@@ -261,8 +266,8 @@ public class ConvertedPhotos extends AppCompatActivity {
         Log.i(TAG, "scaled width: " + Integer.toString(scaledWidth));
         Log.i(TAG, "scaled height: " + Integer.toString(scaledWidth));
         //pre mensie obrazky
-        scaledHeight = heightImage;
-        scaledWidth = widthImage;
+       // scaledHeight = heightImage;
+        //scaledWidth = widthImage;
 
     }
 
@@ -317,7 +322,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                     }
 
                     Bitmap selectedWhite = Bitmap.createBitmap(scaledBitmap, shiftedX, shiftedY, size, size);
-                    convertedBitmaps[3] = Conversion.convert(scaledBitmap, selectedWhite, pixelDataClone);
+                    convertedBitmaps[3] = Conversion.convert(scaledWidth, scaledHeight, selectedWhite, PixelData.getPixelData(scaledBitmap, pixelDataOriginal));
 
                     selectedImage.setImageBitmap(convertedBitmaps[3]);
                     setBitmapInButton(3);

@@ -2,8 +2,7 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogram
 
 import android.graphics.Bitmap;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
 
@@ -13,19 +12,20 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Pi
 public class HistogramStretching {
     public static Bitmap conversion(int width, int height, double[][] pixelData) {
 
-        pixelData = canalStretching(pixelData,0); //red
-        pixelData = canalStretching(pixelData,1); //green
-        pixelData = canalStretching(pixelData,2); //blue
+        double[] sortedPixels = new double[pixelData.length];
+        pixelData = canalStretching(pixelData,0, sortedPixels); //red
+        pixelData = canalStretching(pixelData,1, sortedPixels); //green
+        pixelData = canalStretching(pixelData,2, sortedPixels); //blue
 
         return PixelData.setBitmap(width, height, pixelData);
     }
 
-    public static double[][] canalStretching(double[][] pixelData, int canal) {
+    public static double[][] canalStretching(double[][] pixelData, int canal, double[] sortedPixels) {
         int percentil = (int) (pixelData.length * 0.005);
-        ArrayList sortedPixels = getSortedPixels(pixelData, canal);
+        sortedPixels = getSortedPixels(pixelData, canal, sortedPixels);
 
-        double low = (Integer)(sortedPixels.get(percentil));
-        double high = (Integer)(sortedPixels.get(pixelData.length - percentil));
+        double low = sortedPixels[percentil];
+        double high = sortedPixels[pixelData.length - percentil];
         double min = 0.0;
         double max = 255;
         for(int i = 0; i < pixelData.length; i++) {
@@ -40,15 +40,22 @@ public class HistogramStretching {
         return pixelData;
     }
 
-    public static ArrayList<Integer> getSortedPixels(double[][] pixelData, int canal) {
+    public static double[] getSortedPixels(double[][] pixelData, int canal, double[] sortedPixels) {
+        /*
         ArrayList array = new ArrayList<>();
         Integer integer;
-        for (double[] aPixelData : pixelData) {
-            integer = (int) aPixelData[canal];
+        for(int i = 0; i < pixelData.length; i++) {
+            integer = (int) pixelData[i][canal];
             array.add(integer);
         }
         Collections.sort(array);
+*/
 
-        return array;
+        for(int i = 0; i < pixelData.length; i++) {
+            sortedPixels[i] = pixelData[i][canal];
+        }
+        Arrays.sort(sortedPixels);
+
+        return sortedPixels;
     }
 }

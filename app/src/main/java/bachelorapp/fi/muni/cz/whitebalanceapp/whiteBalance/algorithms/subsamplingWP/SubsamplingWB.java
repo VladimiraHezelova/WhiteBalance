@@ -1,6 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.subsamplingWP;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -28,7 +29,8 @@ public class SubsamplingWB {
         double start = 0.0;
         double end = 1.0;
 
-        double random;
+        double random = new Random().nextDouble();
+        double resultRandom;
 
         int row;
         int col;
@@ -37,25 +39,26 @@ public class SubsamplingWB {
         double p2;
 
         Random randD = new Random();
+        double randomDouble1;
+        double randomDouble2;
+
         for(int i = 0; i < m; i++) {
             max[0] = 0.0;
             max[1] = 0.0;
             max[2] = 0.0;
             for(int j = 0; j < n; j++) {
-                //double randomDouble1 = 1.0 * randD.nextDouble();
-                //double randomDouble2 = 1.0 * randD.nextDouble();
-                random = new Random().nextDouble();
-                double resultRandom = start + (random * (end - start));
+                randomDouble1 = 1.0 * randD.nextDouble();
+                resultRandom = start + (randomDouble1 * (end - start));
+                p1 = resultRandom;
 
-              //  double p1 = resultRandom;
+                randomDouble2 = 1.0 * randD.nextDouble();
+                resultRandom = start + (randomDouble2 * (end - start));
+                p2 = resultRandom;
 
-                random = new Random().nextDouble();
-                resultRandom = start + (random * (end - start));
-
-              //  double p2 = resultRandom;
-
-                p1 = 0.030282793263732271;
-                p2 = 0.90105944297145701;
+             //   p1 = 0.030282793263732271;
+             //   p2 = 0.90105944297145701;
+                Log.e("p1",Double.toString(p1));
+                Log.e("p2",Double.toString(p2));
 
                 row=(int)((height-1)*p1);
                 col=(int)((width-1)*p2);

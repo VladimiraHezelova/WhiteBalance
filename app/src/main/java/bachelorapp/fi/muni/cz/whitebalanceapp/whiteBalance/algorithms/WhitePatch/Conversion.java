@@ -14,10 +14,7 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Pi
  * Image Chromatic Adapatation - White Patch (WP) Method
  */
 public class Conversion {
-
-
-    public static Bitmap convert(Bitmap originalImg, Bitmap realWhiteImg , double[][] pixelData){
-
+    public static Bitmap convert(int width, int height, Bitmap realWhiteImg, double[][] pixelData){
 
         // konverzia povodneho obrazu do LMS
 
@@ -48,7 +45,7 @@ public class Conversion {
         pixelData = Linearization.nonNormalize(pixelData);
 
 
-        return PixelData.setBitmap(originalImg.getWidth(), originalImg.getHeight(), pixelData);
+        return PixelData.setBitmap(width, height, pixelData);
     }
 
     public static double[][] conversionsToLMS(double[][] pixelData) {
