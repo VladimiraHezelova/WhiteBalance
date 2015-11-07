@@ -17,7 +17,7 @@ public class MainActivityTransparent extends Activity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
-    private String picturePath;
+    private String imagePath;
     private Button buttonGallery;
 
     @Override
@@ -26,7 +26,7 @@ public class MainActivityTransparent extends Activity {
         setContentView(R.layout.main_activity_layout_transparent);
 
         Intent intent = getIntent();
-        picturePath = intent.getStringExtra("picturePath");
+        imagePath = intent.getStringExtra("imagePath");
         buttonGallery = (Button) findViewById(R.id.button_gallery);
         buttonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,13 +54,13 @@ public class MainActivityTransparent extends Activity {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
+            imagePath = cursor.getString(columnIndex);
             cursor.close();
 
             Log.e("path of sourceUri", selectedImage.getPath());
 
             Intent intent = new Intent(getApplicationContext(), ConvertedPhotos.class);
-            intent.putExtra("picturePath", picturePath);
+            intent.putExtra("imagePath", imagePath);
             startActivity(intent);
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         }

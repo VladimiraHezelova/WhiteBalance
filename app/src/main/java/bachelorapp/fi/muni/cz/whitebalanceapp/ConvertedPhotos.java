@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -29,53 +29,47 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.ConversionGW;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching.HistogramStretching;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.subsamplingWP.SubsamplingWB;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.whitePatch.Conversion;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
 
 import static android.graphics.Bitmap.createScaledBitmap;
 
 /**
  * Created by Vladimira Hezelova on 25. 8. 2015.
  */
-public class ConvertedPhotos extends ActionBarActivity {
+public class ConvertedPhotos extends AppCompatActivity {
 
-    private static ImageButton originalImage;
-    private static ImageButton convertedImage1;
-    private static ImageButton convertedImage2;
-    private static ImageButton convertedImage3;
-    private static ImageButton convertedImage4;
-    private static ImageButton convertedImage5;
-    private static ImageButton selectedImage;
-    private static Bitmap selectedBitmap;
     private static Context instance;
-
-    private static String picturePath;
-
+    private static final String TAG = "ConvertedPhotos";
     private ProgressBar bar;
 
-    private Bitmap convertedBitmap1;
-    private Bitmap convertedBitmap2;
-    private Bitmap convertedBitmap3;
-    private Bitmap convertedBitmap4;
-    private Bitmap bitmap;
-    private Bitmap originalBitmap;
-    private Bitmap originalBitmapTMP;
+    private static ImageButton[] imageButtons;
+    private static ImageButton selectedImage;
 
-    private int height;
-    private int width;
+    private static String imagePath;
 
-    private Bitmap histogramStretchedBitmap;
+    private static Bitmap originalBitmap;
+    private static int scaledHeight = 0;
+    private static int scaledWidth = 0;
+    private static Bitmap scaledBitmap;
+    private static Bitmap[] convertedBitmaps;
+    // index pre ukladanie obrazku
+    private static int indexOfSelectedBitmap;
 
+    private double[][] pixelDataOriginal;
+    private double[][] pixelDataClone;
 
-    // private String picturePath;
 
 
     public ConvertedPhotos() {
         instance = this;
-       // convertedPhoto = (ImageView) findViewById(R.id.converted_photo);
-        Log.e("log","ConvertedPhotosFragment");
+        Log.i(TAG,"constructor");
     }
 
     @Override
@@ -84,74 +78,47 @@ public class ConvertedPhotos extends ActionBarActivity {
         setContentView(R.layout.converted_photos_layout);
 
 
-        bar = (ProgressBar) findViewById(R.id.progressBar);
-        Log.e("log","create2");
-
-        ActionBar actionBar = getSupportActionBar();
-        /*
-        actionBar.setLogo(R.drawable.icon_settings);
-*/
-        if (actionBar != null) {
-            actionBar.setDisplayUseLogoEnabled(true);
-        }
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        Intent intent = getIntent();
-       // final String picturePath = intent.getStringExtra("picturePath");
-        picturePath = intent.getStringExtra("picturePath");
+        imageButtons = new ImageButton[]{
+                (ImageButton) findViewById(R.id.original_image),
+                (ImageButton) findViewById(R.id.converted_image1),
+                (ImageButton) findViewById(R.id.converted_image2),
+                (ImageButton) findViewById(R.id.converted_image3),
+                (ImageButton) findViewById(R.id.converted_image4)
+        };
         selectedImage = (ImageButton) findViewById(R.id.selected_image);
 
+        //  bar = (ProgressBar) findViewById(R.id.progressBar);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        Intent intent = getIntent();
+        imagePath = intent.getStringExtra("imagePath");
+
+        // free memory
         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         int memoryClass = am.getMemoryClass();
-        Log.e("free memory", Integer.toString(memoryClass));
+        Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
 
-        originalBitmapTMP = BitmapFactory.decodeFile(picturePath);
-        // rozmery displayu
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int widthDisplay = size.x;
-        int heightDisplay = size.y;
+        originalBitmap = BitmapFactory.decodeFile(imagePath);
 
-        Log.e("display width: ", Integer.toString(widthDisplay));
-        Log.e("display height: ", Integer.toString(heightDisplay));
-
-        int widthImage = originalBitmapTMP.getWidth();
-        int heightImage = originalBitmapTMP.getHeight();
-        Log.e("bitmap width: ", Integer.toString(widthImage));
-        Log.e("bitmap height: ", Integer.toString(heightImage));
-
-
-        height = heightDisplay - 380;
-        Log.e("heightDisplay - 380", Double.toString(height));
-        double ratio = (double)height / (double)heightImage;
-        Log.e("ratio", Double.toString(ratio));
-        width = (int)((double)widthImage * ratio);
-        Log.e("width", Integer.toString(width));
-
-
-
-       // BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-     //   Bitmap bitmapTMP = BitmapFactory.decodeFile(picturePath, bmOptions);
-        bitmap = createScaledBitmap(originalBitmapTMP, width, height, false);
-
-       // histogramStretchedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-
+        changeDimensions();
+        scaledBitmap = createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, false);
 
         new ProgressTask().execute();
-
-
-
-
-
-/*
+        /*
         //prekrytie layoutu navodom
         Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent.class);
         intentTransparent.putExtra("convertedBitmap1", convertedBitmap1);
         startActivity(intentTransparent);
         */
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -166,23 +133,17 @@ public class ConvertedPhotos extends ActionBarActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_download:
-                writeImage(selectedBitmap);
+                // dopis..........................
+                // writeImage(selectedBitmap);
                 return true;
             case android.R.id.home:
-                originalBitmapTMP = null;
                 finish();
                 Intent upIntent = NavUtils.getParentActivityIntent(this);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                    // This activity is NOT part of this app's task, so create a new task
-                    // when navigating up, with a synthesized back stack.
                     TaskStackBuilder.create(this)
-                            // Add all of this activity's parents to the back stack
                             .addNextIntentWithParentStack(upIntent)
-                                    // Navigate up to the closest parent
                             .startActivities();
                 } else {
-                    // This activity is part of this app's task, so simply
-                    // navigate up to the logical parent activity.
                     NavUtils.navigateUpTo(this, upIntent);
                 }
                 return true;
@@ -190,16 +151,8 @@ public class ConvertedPhotos extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-/*
-    public void openSettings() {
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("picturePath", picturePath);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-    }
-*/
-
+    // dopis.....................
     public static void writeImage(Bitmap image) {
         Date date = new Date();
         String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
@@ -232,157 +185,156 @@ public class ConvertedPhotos extends ActionBarActivity {
     private class ProgressTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute(){
-            bar.setVisibility(View.VISIBLE);
+         //   bar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
+            long start = System.currentTimeMillis();
 
-            convertedBitmap1 = HistogramStretching.conversion(bitmap);
-            convertedBitmap2 = ConversionGW.convert(bitmap);
-            convertedBitmap4 = SubsamplingWB.conversion(bitmap);
+            pixelDataOriginal = new double[scaledWidth*scaledHeight][3];
+            pixelDataOriginal = PixelData.getPixelData(scaledBitmap, pixelDataOriginal);
+            pixelDataClone = new double[scaledWidth*scaledHeight][3];
+            deepCopyPixelData();
 
+            Bitmap convertedBitmap1 = HistogramStretching.conversion(scaledWidth, scaledHeight, pixelDataClone);
+            deepCopyPixelData();
+            Bitmap convertedBitmap2 = ConversionGW.convert(scaledBitmap, pixelDataClone);
+            deepCopyPixelData();
+            Bitmap convertedBitmap4 = SubsamplingWB.conversion(scaledWidth, scaledHeight, pixelDataClone);
+            deepCopyPixelData();
+            convertedBitmaps = new Bitmap[] {
+                    null,
+                    convertedBitmap1,
+                    convertedBitmap2,
+                    null,
+                    convertedBitmap4
+            };
+
+            long end = System.currentTimeMillis();
+            double time = (double) (end - start) / 1000;
+            Log.i(TAG, "time of conversions = " + time + "seconds");
+            //56.162 sec,56.188, 47.875, 45.121, 45.746, 45.529
+            // 35.594, 35.697
+            //35 MB, 28MB, 35 MB
+            // 50,60 max 80%
 
             return null;
         }
 
+
         @Override
         protected void onPostExecute(Void result) {
 
-            bar.setVisibility(View.GONE);
+            //    bar.setVisibility(View.GONE);
 
-            originalBitmap = bitmap;
-            originalImage = (ImageButton) findViewById(R.id.original_image);
-            originalImage.setImageBitmap(originalBitmap);
+            setBitmapInButton(0, scaledBitmap);
+            setBitmapInButton(1);
+            setBitmapInButton(2);
+            setBitmapInButton(3, scaledBitmap);
+            setBitmapInButton(4);
 
-            selectedImage.setImageBitmap(originalBitmap);
-            originalImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedImage.setImageBitmap(originalBitmap);
+            selectedImage.setImageBitmap(scaledBitmap);
+        }
+    }
+
+    public void changeDimensions() {
+        // dimensions of display
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int widthDisplay = size.x;
+        int heightDisplay = size.y;
+
+        Log.i(TAG, "display width: " + Integer.toString(widthDisplay));
+        Log.i(TAG, "display height: " + Integer.toString(heightDisplay));
+
+        int widthImage = originalBitmap.getWidth();
+        int heightImage = originalBitmap.getHeight();
+
+        Log.i(TAG, "bitmap width: " + Integer.toString(widthImage));
+        Log.i(TAG, "bitmap height: " + Integer.toString(heightImage));
+
+        scaledHeight = heightDisplay - 380;
+        double ratio = (double)scaledHeight / (double)heightImage;
+        scaledWidth = (int)((double)widthImage * ratio);
+        Log.i(TAG, "scaled width: " + Integer.toString(scaledWidth));
+        Log.i(TAG, "scaled height: " + Integer.toString(scaledWidth));
+        //pre mensie obrazky
+        scaledHeight = heightImage;
+        scaledWidth = widthImage;
+
+    }
+
+    public void setBitmapInButton(int index) {
+        setBitmapInButton(index, convertedBitmaps[index]);
+    }
+
+    public void setBitmapInButton(final int index, final Bitmap bitmap) {
+        imageButtons[index].setImageBitmap(bitmap);
+
+        imageButtons[index].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedImage.setImageBitmap(bitmap);
+                if (index == 3) {
+                    whitePatch();
                 }
-            });
+            }
+        });
+    }
 
-            convertedImage1 = (ImageButton) findViewById(R.id.converted_image1);
-            convertedImage1.setImageBitmap(convertedBitmap1);
+    public void whitePatch() {
+        selectedImage.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // selected pixel of White
+                    int selectedPixelX = (int) event.getX();
+                    int selectedPixelY = (int) event.getY();
 
-            convertedImage1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedImage.setImageBitmap(convertedBitmap1);
-                }
-            });
+                    // enlarge of chosen pixel because of noise
+                    int shiftedX;
+                    int shiftedY;
+                    int size = 9;
+                    // kontrola zvacsenia vyberu bielych pixelov na okrajoch
+                    if (selectedPixelX > 4) {
+                        shiftedX = selectedPixelX - 4;
+                    } else {
+                        shiftedX = 1;
+                    }
+                    if (selectedPixelX > scaledBitmap.getWidth() - 5) {
+                        shiftedX = scaledBitmap.getWidth() - 10;
+                    }
 
-            convertedImage2 = (ImageButton) findViewById(R.id.converted_image2);
-            convertedImage2.setImageBitmap(convertedBitmap2);
+                    if (selectedPixelY > 4) {
+                        shiftedY = selectedPixelY - 4;
+                    } else {
+                        shiftedY = 1;
+                    }
+                    if (selectedPixelY > scaledBitmap.getHeight() - 5) {
+                        shiftedY = scaledBitmap.getHeight() - 10;
+                    }
 
-            convertedImage2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedImage.setImageBitmap(convertedBitmap2);
+                    Bitmap selectedWhite = Bitmap.createBitmap(scaledBitmap, shiftedX, shiftedY, size, size);
+                    convertedBitmaps[3] = Conversion.convert(scaledBitmap, selectedWhite, pixelDataClone);
 
-                }
-            });
+                    selectedImage.setImageBitmap(convertedBitmaps[3]);
+                    setBitmapInButton(3);
 
-            convertedImage4 = (ImageButton) findViewById(R.id.converted_image4);
-            convertedImage4.setImageBitmap(convertedBitmap4);
+                    // selectedImage.setOnTouchListener(null);
+                    return true;
+                } else
+                    return false;
+            }
+        });
+    }
 
-            convertedImage4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedImage.setImageBitmap(convertedBitmap4);
-                }
-            });
-
-            selectedImage.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
-                        // pozicia View (image) vzhladom na Activity (bez menu)
-                      /*  int selectedImageX = (int) selectedImage.getX();
-                        int selectedImageY = (int) selectedImage.getY();
-                        Log.e("selectedImageX", Integer.toString(selectedImageX));
-                        Log.e("selectedImageY", Integer.toString(selectedImageY));*/
-                        // rozmery View (image)
-                        int selectedImageWidth = (int) selectedImage.getWidth();
-                        int selectedImageHeight = (int) selectedImage.getHeight();
-                        Log.e("selectedImageWidth" , Integer.toString(selectedImageWidth));
-                        Log.e("selectedImageHeight", Integer.toString(selectedImageHeight));
-                        // selected pixel of White
-                        int selectedPixelXInWindow = (int) event.getRawX();
-                        int selectedPixelYInWindow = (int) event.getRawY();
-
-                        // pozicia vybraneho pixelu vzhladom na celu obrazovku (aj s menu)
-                        Log.e("selectedPixelX raw" , Integer.toString(selectedPixelXInWindow));
-                        Log.e("selectedPixelY raw", Integer.toString(selectedPixelYInWindow));
-
-                        int loacationViewInWindow[] = new int[2];
-                        selectedImage.getLocationInWindow(loacationViewInWindow);
-                        Log.e("test1[0]", Integer.toString(loacationViewInWindow[0]));
-                        Log.e("test1[1]", Integer.toString(loacationViewInWindow[1]));
-
-                        int selectedPixelX = selectedPixelXInWindow - loacationViewInWindow[0];
-                        int selectedPixelY = selectedPixelYInWindow - loacationViewInWindow[1];
-                        Log.e("selectedPixelX in View", Integer.toString(selectedPixelX));
-                        Log.e("selectedPixelY in View", Integer.toString(selectedPixelY));
-
-
-                        // enlarge of chosen pixel because of noise
-                        int shiftedX;
-                        int shiftedY;
-                       // int size = 9;
-                        int size = 9;
-                        // kontrola zvacsenia vyberu bielych pixelov na okrajoch
-                        if(selectedPixelX > 4) {
-                            shiftedX = selectedPixelX - 4;
-                        } else {
-                            shiftedX = 1;
-                        }
-                        if(selectedPixelX > bitmap.getWidth() - 5) {
-                            shiftedX = bitmap.getWidth() - 10;
-                        }
-
-                        if(selectedPixelY > 4) {
-                            shiftedY = selectedPixelY - 4;
-                        } else {
-                            shiftedY = 1;
-                        }
-                        if(selectedPixelY > bitmap.getHeight() - 5) {
-                            shiftedY = bitmap.getHeight() - 10;
-                        }
-
-                      //  shiftedX = 363;
-                      //  shiftedY = 74;
-                        try{
-                            Bitmap selectedWhite = Bitmap.createBitmap(bitmap, shiftedX, shiftedY, size, size);
-
-                            Log.e("selectedPixelX", Integer.toString(selectedPixelX));
-                            Log.e("selectedPixelY", Integer.toString(selectedPixelY));
-                            Log.e("shiftedX", Integer.toString(shiftedX));
-                            Log.e("shiftedY", Integer.toString(shiftedY));
-                            writeImage(selectedWhite);
-                        } catch(IllegalArgumentException e) {
-                            e.printStackTrace();
-                        }
-
-                   /*     convertedBitmap3 = Conversion.convert(bitmap, selectedWhite);
-                        convertedImage3 = (ImageButton) findViewById(R.id.converted_image3);
-                        convertedImage3.setImageBitmap(convertedBitmap3);
-
-                        convertedImage3.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                selectedImage.setImageBitmap(convertedBitmap3);
-                            }
-                        });
-*/
-                        return true;
-
-                    } else
-                        return false;
-                }
-            });
-
+    public void deepCopyPixelData() {
+        for (int i = 0; i < pixelDataOriginal.length; i++) {
+            pixelDataClone[i] = Arrays.copyOf(pixelDataOriginal[i], pixelDataOriginal[i].length);
         }
     }
 }
+
+

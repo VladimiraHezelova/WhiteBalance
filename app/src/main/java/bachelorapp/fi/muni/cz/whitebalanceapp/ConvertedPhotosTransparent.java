@@ -26,15 +26,13 @@ public class ConvertedPhotosTransparent extends ActionBarActivity {
     private static Bitmap selectedBitmap;
     private static Context instance;
 
-    private static String picturePath;
+    private static String imagePath;
 
     private ProgressBar bar;
 
     private Bitmap convertedBitmap1;
     private Bitmap bitmap;
 
-
-    // private String picturePath;
 
 
     public ConvertedPhotosTransparent() {

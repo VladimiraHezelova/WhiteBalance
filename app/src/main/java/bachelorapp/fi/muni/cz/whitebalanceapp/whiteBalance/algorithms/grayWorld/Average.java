@@ -49,7 +49,6 @@ public class Average {
         avgR = sumR / numberOfPixels;
         avgG = sumG / numberOfPixels;
         avgB = sumB / numberOfPixels;
-        System.out.println(avgR + " " + avgG + " " + avgB);
     }
 
     private void getAvgGray() {

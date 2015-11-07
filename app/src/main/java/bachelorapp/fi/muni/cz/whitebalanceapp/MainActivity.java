@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
     private static int RESULT_LOAD_IMAGE = 1;
 
     private Button buttonGallery;
-    private String picturePath;
+    private String imagePath;
 
 
     final String PREFS_NAME = "MyPrefsFile";
@@ -61,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         // final String picturePath = intent.getStringExtra("picturePath");
-        picturePath = intent.getStringExtra("picturePath");
+        imagePath = intent.getStringExtra("imagePath");
 
         buttonGallery = (Button) findViewById(R.id.button_gallery);
 
@@ -152,13 +152,13 @@ public class MainActivity extends ActionBarActivity {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
+            imagePath = cursor.getString(columnIndex);
             cursor.close();
 
             Log.e("path of sourceUri", selectedImage.getPath());
 
             Intent intent = new Intent(getApplicationContext(), ConvertedPhotos.class);
-            intent.putExtra("picturePath", picturePath);
+            intent.putExtra("imagePath", imagePath);
             startActivity(intent);
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         }
