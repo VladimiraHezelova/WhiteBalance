@@ -45,7 +45,7 @@ public class MatrixMultiplication {
      * pre informaciu pozicie pixelu v obraze(prvy rozmer) a zlozku RGB(druhy rozmer)
      *
      */
-    public static double[][] multiply(double[][] matrix, double[][] uvw) {
+    public double[][] multiply(double[][] matrix, double[][] uvw) {
         double x = 0;
         double y = 0;
         double z = 0;
@@ -72,12 +72,12 @@ public class MatrixMultiplication {
         return uvw;
     }
 
-    public static double[][] fromRGBtoLMS(double[][] pixelData) {
+    public double[][] fromRGBtoLMS(double[][] pixelData) {
         pixelData = multiply(MATRIX_RGBtoXYZ, pixelData);
         return multiply(MATRIX_XYZtoLMS, pixelData);
     }
 
-    public static double[][] fromLMStoRGB(double[][] pixelData) {
+    public double[][] fromLMStoRGB(double[][] pixelData) {
         pixelData = multiply(MATRIX_LMStoXYZ, pixelData);
         return multiply(MATRIX_XYZtoRGB, pixelData);
     }

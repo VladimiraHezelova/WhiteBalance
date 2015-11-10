@@ -1,36 +1,36 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.subsamplingWP;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import java.util.Random;
 
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Linearization;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.MatrixMultiplication;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
 
 /**
 * Created by Vladimira Hezelova on 20. 8. 2015.
         */
 public class SubsamplingWB {
-    public static Bitmap conversion(int width, int height, double[][] pixelData) {
+    public Bitmap conversion(int width, int height, double[][] pixelData) {
+
+        PixelData pixelDataInstance = new PixelData();
 
         int n = 50;
         int m = 10;
 
         double[] illuminationEstimation = performIlluminationEstimation(width, height, pixelData, n, m);
         pixelData = removeColorCast(width, height, pixelData, illuminationEstimation);
-        return PixelData.setBitmap(width, height, pixelData);
+        return pixelDataInstance.setBitmap(width, height, pixelData);
     }
 
-    public  static double[] performIlluminationEstimation(int width, int height, double[][] pixelData, int n, int m) {
+    public double[] performIlluminationEstimation(int width, int height, double[][] pixelData, int n, int m) {
 
         double[] result = new double[]{0.0,0.0,0.0,0.0};
         double[] max = new double[]{0.0,0.0,0.0,0.0};
 
         double start = 0.0;
         double end = 1.0;
-
-        double random = new Random().nextDouble();
-        double resultRandom;
 
         int row;
         int col;
@@ -48,17 +48,15 @@ public class SubsamplingWB {
             max[2] = 0.0;
             for(int j = 0; j < n; j++) {
                 randomDouble1 = 1.0 * randD.nextDouble();
-                resultRandom = start + (randomDouble1 * (end - start));
-                p1 = resultRandom;
+                p1 = start + (randomDouble1 * (end - start));
 
                 randomDouble2 = 1.0 * randD.nextDouble();
-                resultRandom = start + (randomDouble2 * (end - start));
-                p2 = resultRandom;
+                p2 = start + (randomDouble2 * (end - start));
 
              //   p1 = 0.030282793263732271;
              //   p2 = 0.90105944297145701;
-                Log.e("p1",Double.toString(p1));
-                Log.e("p2",Double.toString(p2));
+             //   Log.e("p1",Double.toString(p1));
+             //   Log.e("p2",Double.toString(p2));
 
                 row=(int)((height-1)*p1);
                 col=(int)((width-1)*p2);
@@ -86,7 +84,7 @@ public class SubsamplingWB {
         return result;
     }
 
-    public static double[][] removeColorCast(int width, int height, double[][] pixelData, double[] illuminationEstimation) {
+    public double[][] removeColorCast(int width, int height, double[][] pixelData, double[] illuminationEstimation) {
 
         for (int i=0;i<height;++i){
             for (int j=0;j<width;++j){

@@ -1,5 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld;
 
+import android.util.Log;
+
 /**
  * Created by Vladimira Hezelova on 25. 4. 2015.
  */
@@ -33,17 +35,14 @@ public class Average {
         double sumG = 0;
         double sumB = 0;
         for(int i = 0; i < pixelData.length; i++) {
-            for(int j = 0; j < 3; j++) {
-                switch(j) {
-                    case 0 : sumR += pixelData[i][0];
-                        break;
-                    case 1 : sumG += pixelData[i][1];
-                        break;
-                    case 2 : sumB += pixelData[i][2];
-                        break;
-                }
-            }
+            sumR += pixelData[i][0];
+            sumG += pixelData[i][1];
+            sumB += pixelData[i][2];
         }
+        Log.e("sumR", Double.toString(sumR));
+        Log.e("sumG", Double.toString(sumG));
+        Log.e("sumB", Double.toString(sumB));
+        Log.e("max double", Double.toString(Double.MAX_VALUE));
         double numberOfPixels = pixelData.length;
         avgR = sumR / numberOfPixels;
         avgG = sumG / numberOfPixels;

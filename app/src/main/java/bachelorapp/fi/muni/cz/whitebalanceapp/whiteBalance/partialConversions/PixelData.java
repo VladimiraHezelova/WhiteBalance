@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class PixelData {
 
-    public static double[][] getPixelData(Bitmap bitmap, double[][] pixelData) {
+    public double[][] getPixelData(Bitmap bitmap, double[][] pixelData) {
         int value;
         for(int i = 0; i < bitmap.getHeight(); i++) {
             for (int j = 0; j < bitmap.getWidth(); j++) {
@@ -22,7 +22,7 @@ public class PixelData {
         return pixelData;
     }
 
-    public static int median(Bitmap img) {
+    public int median(Bitmap img) {
         int height = img.getHeight();
         int width = img.getWidth();
 
@@ -43,21 +43,25 @@ public class PixelData {
         }
     }
 
-    public static double[] getPixelDataFromValue(int value, double rgb[]) {
+    public double[] getPixelDataFromValue(int value, double rgb[]) {
         rgb[0] = (value >> 16) & 0xff; //red
         rgb[1] = (value >>  8) & 0xff; //green
         rgb[2] = (value      ) & 0xff;  //blue
         return rgb;
     }
 
-    public static Bitmap setBitmap(int width, int height, double[][] pixelData) {
+    public Bitmap setBitmap(int width, int height, double[][] pixelData) {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        int R;
+        int G;
+        int B;
+        int value;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                int R = (int) pixelData[i * width + j][0];
-                int G = (int) pixelData[i * width + j][1];
-                int B = (int) pixelData[i * width + j][2];
-                int value = ((R & 0xFF) << 16) | ((G & 0xFF) << 8)  | ((B & 0xFF));
+                R = (int) pixelData[i * width + j][0];
+                G = (int) pixelData[i * width + j][1];
+                B = (int) pixelData[i * width + j][2];
+                value = ((R & 0xFF) << 16) | ((G & 0xFF) << 8)  | ((B & 0xFF));
                 bitmap.setPixel(j, i, value);
             }
         }

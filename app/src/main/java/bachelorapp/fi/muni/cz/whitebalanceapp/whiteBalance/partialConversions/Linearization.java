@@ -5,7 +5,7 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions;
  */
 public class Linearization {
 
-    public static double[][] linearize(double[][] pixelData) {
+    public double[][] linearize(double[][] pixelData) {
         for(int i = 0; i < pixelData.length; i++) {
             for (int j = 0; j < 3; j++) {
                 if (pixelData[i][j] <= 0.04045) {
@@ -18,7 +18,7 @@ public class Linearization {
         return pixelData;
     }
 
-    public static double[][] normalize(double[][] pixelData) {
+    public double[][] normalize(double[][] pixelData) {
         for (int i = 0; i < pixelData.length; i++) {
             for (int j = 0; j < 3; j++) {
                 pixelData[i][j] = pixelData[i][j] / 255;
@@ -27,7 +27,7 @@ public class Linearization {
         return pixelData;
     }
 
-    public static double[][] nonLinearize(double[][] pixelData) {
+    public double[][] nonLinearize(double[][] pixelData) {
         double smallRGB;
         double largeRGB;
         for(int i = 0; i < pixelData.length; i++) {
@@ -46,7 +46,7 @@ public class Linearization {
         return pixelData;
     }
 
-    public static double[][] nonNormalize(double[][] pixelData) {
+    public double[][] nonNormalize(double[][] pixelData) {
         for(int i = 0; i < pixelData.length; i++) {
             for (int j = 0; j < 3; j++) {
                 pixelData[i][j] = pixelData[i][j] * 255;

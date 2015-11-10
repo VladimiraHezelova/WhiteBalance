@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="gone"
-        android:indeterminateDrawable="@drawable/progress" >
+        android:indeterminate="true">
     </ProgressBar>
 
     <HorizontalScrollView
@@ -38,6 +38,8 @@
                 android:id="@+id/original_image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:layout_marginBottom="25dp"
                 android:contentDescription="@string/original_image"
                 android:layout_alignBottom="@id/original_image_text"/>
@@ -57,6 +59,8 @@
                 android:id="@+id/converted_image1"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/original_image"
                 android:layout_toEndOf="@id/original_image"
@@ -76,6 +80,8 @@
                 android:id="@+id/converted_image2"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/converted_image1"
                 android:layout_toEndOf="@id/converted_image1"
@@ -95,6 +101,8 @@
                 android:id="@+id/converted_image3"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/converted_image2"
                 android:layout_toEndOf="@id/converted_image2"
@@ -114,6 +122,8 @@
                 android:id="@+id/converted_image4"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/converted_image3"
                 android:layout_toEndOf="@id/converted_image3"
