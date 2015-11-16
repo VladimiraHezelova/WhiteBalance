@@ -4,11 +4,19 @@ package bachelorapp.fi.muni.cz.whitebalanceapp;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
@@ -24,10 +32,15 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -84,6 +97,8 @@ public class ConvertedPhotos extends AppCompatActivity {
     private int size = 9;
     private Bitmap selectedWhite;
 
+    private ImageButton iconWP;
+
 
 
     public ConvertedPhotos() {
@@ -95,6 +110,10 @@ public class ConvertedPhotos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.converted_photos_layout);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+
+        indexOfSelectedBitmap = -1;
 
 
         imageButtons = new ImageButton[]{
@@ -105,6 +124,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                 (ImageButton) findViewById(R.id.converted_image4)
         };
         selectedImage = (ImageButton) findViewById(R.id.selected_image);
+        iconWP = (ImageButton) findViewById(R.id.icon_wp);
 
         bar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -158,8 +178,14 @@ public class ConvertedPhotos extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_download:
-                // dopis..........................
-                // writeImage(selectedBitmap);
+                if(indexOfSelectedBitmap == -1) {
+                    Toast.makeText(instance.getApplicationContext(), "You don't have converted image to save", Toast.LENGTH_SHORT).show();
+                } else {
+                    // kvoli uvolneniu pamete
+                    pixelDataOriginal = null;
+                    System.gc();
+                    writeImage(indexOfSelectedBitmap);
+                }
                 return true;
             case android.R.id.home:
                 if(!originalBitmap.isRecycled()) {
@@ -174,8 +200,11 @@ public class ConvertedPhotos extends AppCompatActivity {
                             convertedBitmaps[i].recycle();
                         }
                     }
-
                 }
+                if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
+                    selectedWhite.recycle();
+                }
+
                 finish();
                 Intent upIntent = NavUtils.getParentActivityIntent(this);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
@@ -191,34 +220,81 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
-    // dopis.....................
-    public void writeImage(Bitmap image) {
-        Date date = new Date();
-        String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
-
-        Log.e("time", sDate);
-        String destinationFilename = android.os.Environment.getExternalStorageDirectory().getPath()+ File.separatorChar +
-                "DCIM" + File.separatorChar + "resources" + File.separatorChar + sDate + ".jpeg";
-
-        Log.e("destinationFilename", destinationFilename);
-
-        BufferedOutputStream bos = null;
-
+    public void writeImage(int indexOfSelectedBitmap) {
+        /*
+        String f = compressImage(imagePath);
+        Log.e("ffffffffffff ", f);
+        sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
+                + Environment.getExternalStorageDirectory())));
+                */
+        Bitmap bitmapSaving = null;
         try {
-            bos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
-            image.compress(Bitmap.CompressFormat.PNG, 100, bos);
-            Toast.makeText(instance.getApplicationContext(), "Saved succesfully", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+            File file = new File(imagePath);
+            InputStream in = null;
+            in = new BufferedInputStream(new FileInputStream(file));
+            Bitmap original = BitmapFactory.decodeStream(in);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            Log.e("original before", Integer.toString(original.getRowBytes() * original.getHeight()));
+            original.compress(Bitmap.CompressFormat.JPEG, 50, out);
+            Log.e("original after", Integer.toString(original.getRowBytes() * original.getHeight()));
+            bitmapSaving = original;
+            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            int memoryClass = am.getMemoryClass();
+            Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
+        } catch(IOException e) {
+
+        }
+
+
+
+        PixelData pixelDataSavingInstance = new PixelData();
+        double[][] pixelDataSaving = new double[bitmapSaving.getWidth()*bitmapSaving.getHeight()][3];
+        if(indexOfSelectedBitmap == 1) {
+
+          bitmapSaving = histogramStretching.conversion(bitmapSaving.getWidth(), bitmapSaving.getHeight(), pixelDataSavingInstance.getPixelData(bitmapSaving, pixelDataSaving));
+         //   Bitmap bitmapSaving = originalBitmap;
+
+            Date date = new Date();
+            String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
+
+            String path = new File(imagePath).getParent();
+
+            String fileNameWithExtension = new File(imagePath).getName();
+            String fileName = sDate;
+            String extension = "jpeg";
+            int pos = fileNameWithExtension.lastIndexOf(".");
+            if (pos > 0) {
+                fileName = fileNameWithExtension.substring(0, pos);
+                extension = fileNameWithExtension.substring(pos);
+            }
+            String destinationFilename = path + File.separatorChar + fileName + sDate + extension;
+            Log.i("destinationFilename", destinationFilename);
+
+            BufferedOutputStream bos = null;
             try {
-                if (bos != null) {
-                    bos.close();
-                }
+                bos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
+
+                Log.e("out before", Integer.toString(bitmapSaving.getRowBytes() * bitmapSaving.getHeight()));
+                bitmapSaving.compress(Bitmap.CompressFormat.JPEG, 50, bos);
+                Log.e("out after", Integer.toString(bitmapSaving.getRowBytes() * bitmapSaving.getHeight()));
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
+                        + Environment.getExternalStorageDirectory())));
+                Toast.makeText(instance.getApplicationContext(), "Saved succesfully", Toast.LENGTH_SHORT).show();
+                bitmapSaving.recycle();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    if (bos != null) {
+                        bos.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
+
     }
 
     private class ProgressTask extends AsyncTask<Void, Void, Void> {
@@ -301,11 +377,11 @@ public class ConvertedPhotos extends AppCompatActivity {
         Log.i(TAG, "bitmap width: " + Integer.toString(widthImage));
         Log.i(TAG, "bitmap height: " + Integer.toString(heightImage));
 
-        if(heightDisplay - 380 >= heightImage && widthDisplay >= widthImage) {
+        if(heightDisplay - 350 >= heightImage && widthDisplay >= widthImage) {
             scaledHeight = heightImage;
             scaledWidth = widthImage;
         } else {
-            scaledHeight = heightDisplay - 380;
+            scaledHeight = heightDisplay - 350;
             double ratio = (double)scaledHeight / (double)heightImage;
             scaledWidth = (int)((double)widthImage * ratio);
         }
@@ -319,12 +395,19 @@ public class ConvertedPhotos extends AppCompatActivity {
 
     public void setBitmapInButton(final int index, final Bitmap bitmap) {
         imageButtons[index].setImageBitmap(bitmap);
+        if(index == 3) {
+            Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_get_app_black_24dp);
+            iconWP.setImageBitmap(icon);
+        }
 
         imageButtons[index].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                indexOfSelectedBitmap = index;
                 selectedImage.setImageBitmap(bitmap);
+                selectedImage.setOnTouchListener(null);
                 if (index == 3) {
+                    iconWP.setImageBitmap(null);
                     selectWhite();
                 }
             }
@@ -359,9 +442,8 @@ public class ConvertedPhotos extends AppCompatActivity {
                         shiftedY = scaledBitmap.getHeight() - 10;
                     }
                     selectedWhite = Bitmap.createBitmap(scaledBitmap, shiftedX, shiftedY, size, size);
+                    selectedImage.setOnTouchListener(null);
                     new ProgressTask2().execute();
-
-                     selectedImage.setOnTouchListener(null);
                     return true;
                 } else
                     return false;
@@ -399,6 +481,175 @@ public class ConvertedPhotos extends AppCompatActivity {
             selectedImage.setImageBitmap(convertedBitmaps[3]);
             setBitmapInButton(3);
         }
+    }
+
+    public String compressImage(String filePath) {
+
+        Bitmap scaledBitmap = null;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+//      by setting this field as true, the actual bitmap pixels are not loaded in the memory. Just the bounds are loaded. If
+//      you try the use the bitmap here, you will get null.
+        options.inJustDecodeBounds = true;
+        Bitmap bmp = BitmapFactory.decodeFile(filePath, options);
+
+        int actualHeight = options.outHeight;
+        int actualWidth = options.outWidth;
+
+//      max Height and width values of the compressed image is taken as 816x612
+
+        float maxHeight = 816.0f;
+        float maxWidth = 612.0f;
+        float imgRatio = actualWidth / actualHeight;
+        float maxRatio = maxWidth / maxHeight;
+
+//      width and height values are set maintaining the aspect ratio of the image
+
+        if (actualHeight > maxHeight || actualWidth > maxWidth) {
+            if (imgRatio < maxRatio) {
+                imgRatio = maxHeight / actualHeight;
+                actualWidth = (int) (imgRatio * actualWidth);
+                actualHeight = (int) maxHeight;
+            } else if (imgRatio > maxRatio) {
+                imgRatio = maxWidth / actualWidth;
+                actualHeight = (int) (imgRatio * actualHeight);
+                actualWidth = (int) maxWidth;
+            } else {
+                actualHeight = (int) maxHeight;
+                actualWidth = (int) maxWidth;
+
+            }
+        }
+
+//      setting inSampleSize value allows to load a scaled down version of the original image
+
+        options.inSampleSize = calculateInSampleSize(options, actualWidth, actualHeight);
+
+//      inJustDecodeBounds set to false to load the actual bitmap
+        options.inJustDecodeBounds = false;
+
+//      this options allow android to claim the bitmap memory if it runs low on memory
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inTempStorage = new byte[16 * 1024];
+
+        try {
+//          load the bitmap from its path
+            bmp = BitmapFactory.decodeFile(filePath, options);
+        } catch (OutOfMemoryError exception) {
+            exception.printStackTrace();
+
+        }
+        try {
+            scaledBitmap = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
+        } catch (OutOfMemoryError exception) {
+            exception.printStackTrace();
+        }
+
+        float ratioX = actualWidth / (float) options.outWidth;
+        float ratioY = actualHeight / (float) options.outHeight;
+        float middleX = actualWidth / 2.0f;
+        float middleY = actualHeight / 2.0f;
+
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
+
+        Canvas canvas = new Canvas(scaledBitmap);
+        canvas.setMatrix(scaleMatrix);
+        canvas.drawBitmap(bmp, middleX - bmp.getWidth() / 2, middleY - bmp.getHeight() / 2, new Paint(Paint.FILTER_BITMAP_FLAG));
+
+//      check the rotation of the image and display it properly
+        ExifInterface exif;
+        try {
+            exif = new ExifInterface(filePath);
+
+            int orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, 0);
+            Log.d("EXIF", "Exif: " + orientation);
+            Matrix matrix = new Matrix();
+            if (orientation == 6) {
+                matrix.postRotate(90);
+                Log.d("EXIF", "Exif: " + orientation);
+            } else if (orientation == 3) {
+                matrix.postRotate(180);
+                Log.d("EXIF", "Exif: " + orientation);
+            } else if (orientation == 8) {
+                matrix.postRotate(270);
+                Log.d("EXIF", "Exif: " + orientation);
+            }
+            scaledBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0,
+                    scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix,
+                    true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileOutputStream out = null;
+        String filename = getFilename();
+        try {
+            out = new FileOutputStream(filename);
+
+//          write the compressed bitmap at the destination specified by filename.
+            scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return filename;
+
+    }
+
+    public String getFilename() {
+        Date date = new Date();
+        String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
+
+        String path = new File(imagePath).getParent();
+
+        String fileNameWithExtension = new File(imagePath).getName();
+        String fileName = sDate;
+        String extension = "jpeg";
+        int pos = fileNameWithExtension.lastIndexOf(".");
+        if (pos > 0) {
+            fileName = fileNameWithExtension.substring(0, pos);
+            extension = fileNameWithExtension.substring(pos);
+        }
+        String destinationFilename = path + File.separatorChar + fileName + sDate + extension;
+        Log.i("destinationFilename", destinationFilename);
+        return destinationFilename;
+
+    }
+
+    private String getRealPathFromURI(String contentURI) {
+        Uri contentUri = Uri.parse(contentURI);
+        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+        if (cursor == null) {
+            return contentUri.getPath();
+        } else {
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(index);
+        }
+    }
+
+    public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        final float totalPixels = width * height;
+        final float totalReqPixelsCap = reqWidth * reqHeight * 2;
+        while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
+            inSampleSize++;
+        }
+
+        return inSampleSize;
     }
 
 }

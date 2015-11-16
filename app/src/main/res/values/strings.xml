@@ -6,7 +6,7 @@
     <string name="gallery">Gallery</string>
 
     <string name="converted_photos_fragment">converted photos fragment</string>
-    <string name="white_balance">White balance</string>
+    <string name="white_balance">White Balance</string>
     <string name="save">save</string>
     <string name="selected_image">selected image</string>
     <string name="original_image">original image</string>
@@ -15,10 +15,12 @@
     <string name="converted_image3">converted image 3</string>
     <string name="converted_image4">converted image 4</string>
 
-    <string name="original_image_text">Original</string>
+    <string name="original_image_text">Original\n image</string>
     <string name="converted_image1_text">Histogram\nStretching</string>
-    <string name="converted_image2_text">Gray World</string>
-    <string name="converted_image3_text">White Patch</string>
-    <string name="converted_image4_text">Improved WP</string>
+    <string name="converted_image2_text">Gray\nWorld</string>
+    <string name="converted_image3_text">White\nPatch</string>
+    <string name="converted_image4_text">Improved\nWP</string>
+
+    <string name="icon_wp">icon_wp</string>
 
 </resources>

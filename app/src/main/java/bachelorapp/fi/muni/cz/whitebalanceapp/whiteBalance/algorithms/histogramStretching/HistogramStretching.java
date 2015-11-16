@@ -32,7 +32,7 @@ public class HistogramStretching {
     }
 
     public double[][] canalStretching(double[][] pixelData, int canal, short[] sortedPixels, int[] count) {
-        int percentil = (int) (pixelData.length * 0.005);
+        int percentil = (int) (pixelData.length * 0.05);
         sortedPixels = getSortedPixels(pixelData, canal, sortedPixels, count);
 
         double low = sortedPixels[percentil];

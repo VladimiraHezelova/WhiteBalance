@@ -19,118 +19,146 @@
         android:id="@+id/scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="5dp">
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentBottom="true">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true">
+            <RelativeLayout
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/original_image"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/original_image"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/icon_on_wp"/>
 
-            <TextView
-                android:id="@+id/original_image_text"
+                <TextView
+                    android:id="@+id/original_image_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/original_image_text"
+                    android:layout_below="@id/original_image"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="15dp"
-                android:text="@string/original_image_text"/>
+                android:layout_toRightOf="@id/button1"
+                android:layout_toEndOf="@id/button1"
+                android:layout_alignBottom="@id/button1">
+                <ImageButton
+                    android:id="@+id/converted_image1"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/converted_image1"
+                    style="?android:attr/borderlessButtonStyle"/>
 
-            <ImageButton
-                android:id="@+id/original_image"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:layout_marginBottom="25dp"
-                android:contentDescription="@string/original_image"
-                android:layout_alignBottom="@id/original_image_text"/>
-
-            <TextView
-                android:id="@+id/converted_image1_text"
+                <TextView
+                    android:id="@+id/converted_image1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/converted_image1_text"
+                    android:layout_below="@id/converted_image1"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/original_image"
-                android:layout_toRightOf="@id/original_image"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/converted_image1_text"/>
+                android:layout_toRightOf="@id/button2"
+                android:layout_toEndOf="@id/button2"
+                android:layout_alignBottom="@id/button2">
+                <ImageButton
+                    android:id="@+id/converted_image2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/converted_image2"
+                    style="?android:attr/borderlessButtonStyle"/>
+                <TextView
+                    android:id="@+id/converted_image2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/converted_image2_text"
+                    android:layout_below="@id/converted_image2"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal" />
 
-            <ImageButton
-                android:id="@+id/converted_image1"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:layout_marginBottom="20dp"
-                android:layout_toRightOf="@id/original_image"
-                android:layout_toEndOf="@id/original_image"
-                android:contentDescription="@string/converted_image1"
-                android:layout_alignBottom="@id/converted_image1_text"/>
-
-            <TextView
-                android:id="@+id/converted_image2_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/converted_image1"
-                android:layout_toRightOf="@id/converted_image1"
-                android:layout_alignParentBottom="true"
-                android:text="@string/converted_image2_text"/>
-
-            <ImageButton
-                android:id="@+id/converted_image2"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:layout_marginBottom="20dp"
-                android:layout_toRightOf="@id/converted_image1"
-                android:layout_toEndOf="@id/converted_image1"
-                android:contentDescription="@string/converted_image2"
-                android:layout_alignBottom="@id/converted_image2_text"/>
-
-            <TextView
-                android:id="@+id/converted_image3_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/converted_image2"
-                android:layout_toRightOf="@id/converted_image2"
-                android:layout_alignParentBottom="true"
-                android:text="@string/converted_image3_text"/>
-
+            </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/button3"
+            android:layout_toEndOf="@id/button3"
+            android:layout_alignBottom="@id/button3">
             <ImageButton
                 android:id="@+id/converted_image3"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
-                android:layout_marginBottom="20dp"
-                android:layout_toRightOf="@id/converted_image2"
-                android:layout_toEndOf="@id/converted_image2"
                 android:contentDescription="@string/converted_image3"
-                android:layout_alignBottom="@id/converted_image3_text"/>
-
+                style="?android:attr/borderlessButtonStyle"/>
+            <ImageButton
+                android:id="@+id/icon_wp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/icon_wp"
+                style="?android:attr/borderlessButtonStyle"/>
             <TextView
-                android:id="@+id/converted_image4_text"
+                android:id="@+id/converted_image3_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/converted_image3"
-                android:layout_toRightOf="@id/converted_image3"
-                android:layout_alignParentBottom="true"
-                android:text="@string/converted_image4_text"/>
+                android:text="@string/converted_image3_text"
+                android:layout_below="@id/converted_image3"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"/>
 
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/button4"
+            android:layout_toEndOf="@id/button4"
+            android:layout_alignBottom="@id/button4">
             <ImageButton
                 android:id="@+id/converted_image4"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
-                android:layout_marginBottom="20dp"
-                android:layout_toRightOf="@id/converted_image3"
-                android:layout_toEndOf="@id/converted_image3"
                 android:contentDescription="@string/converted_image4"
-                android:layout_alignBottom="@id/converted_image4_text"/>
-
-            </RelativeLayout>
+                style="?android:attr/borderlessButtonStyle"/>
+            <TextView
+                android:id="@+id/converted_image4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/converted_image4_text"
+                android:layout_below="@id/converted_image4"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"  />
+        </RelativeLayout>
+        </RelativeLayout>
         </HorizontalScrollView>
 
     <ImageButton
