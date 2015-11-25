@@ -108,28 +108,36 @@
             android:layout_toRightOf="@id/button3"
             android:layout_toEndOf="@id/button3"
             android:layout_alignBottom="@id/button3">
-            <ImageButton
-                android:id="@+id/converted_image3"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:contentDescription="@string/converted_image3"
-                style="?android:attr/borderlessButtonStyle"/>
-            <ImageButton
-                android:id="@+id/icon_wp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:contentDescription="@string/icon_wp"
-                style="?android:attr/borderlessButtonStyle"/>
+            <RelativeLayout
+                android:id="@+id/button4_with_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/converted_image3"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/converted_image3"
+                    style="?android:attr/borderlessButtonStyle"/>
+                <ImageButton
+                    android:id="@+id/icon_wp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/icon_wp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/round_icon"
+                    style="?android:attr/borderlessButtonStyle"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/converted_image3_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/converted_image3_text"
-                android:layout_below="@id/converted_image3"
+                android:layout_below="@id/button4_with_icon"
                 android:layout_centerInParent="true"
                 android:gravity="center_horizontal"/>
 
@@ -171,5 +179,13 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"/>
+    <TextView
+        android:id="@+id/text_wp"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="@string/text_wp"
+        android:layout_below="@id/selected_image"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal" />
 
 </RelativeLayout>

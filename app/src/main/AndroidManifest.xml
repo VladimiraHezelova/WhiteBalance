@@ -22,10 +22,20 @@
         </activity>
 
         <activity
-            android:name=".MainActivityTransparent"
-            android:theme="@style/Theme.AppCompat.Light.Translucent">
+            android:name=".MainActivityTransparent1"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAINA" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivityTransparent"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAINB" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
@@ -42,13 +52,44 @@
 
         <activity
             android:name=".ConvertedPhotosTransparent"
-            android:theme="@style/Theme.AppCompat.Light.Translucent">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN2" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ConvertedPhotosTransparent2"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN3" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ConvertedPhotosTransparent3"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN4" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ConvertedPhotosTransparent4"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN5" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 
