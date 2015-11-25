@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     final String PREFS_NAME = "MyPrefsFile";
+    private boolean firstStart = true;
 
 
     @Override
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             // first time task
 
             // record the fact that the app has been started at least once
-            settings.edit().putBoolean("my_first_time", false).commit();
+         //   settings.edit().putBoolean("my_first_time", false).commit();
         }
 
 
@@ -69,38 +70,18 @@ public class MainActivity extends AppCompatActivity {
 
         buttonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+                public void onClick(View view) {
+                    Intent i = new Intent(
+                            Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-
-                //vymaz
-/*
-                FragmentManager fragmentManager = getSupportFragmentManager();
-
-                String fragmentTag = getString(R.string.converted_photos_fragment);
-                Fragment selectedFragment = fragmentManager.findFragmentByTag(fragmentTag);
-
-                if (selectedFragment == null) {
-                    selectedFragment = ConvertedPhotosFragment.newInstance(picturePath);
-                    fragmentManager.beginTransaction().addToBackStack(fragmentTag)
-                            .replace(R.id.container, selectedFragment, fragmentTag)
-                            .commit();
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
                 }
-
-
-*/
-
-
-                Intent intentTransparent = new Intent(getApplicationContext(), MainActivityTransparent.class);
-                startActivity(intentTransparent);
-/*
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
-                */
-            }
         });
+        if(settings.getBoolean("my_first_time", true)) {
+            Intent intentTransparentA = new Intent(getApplicationContext(), MainActivityTransparent1.class);
+            startActivity(intentTransparentA);
+        }
     }
 
 /*

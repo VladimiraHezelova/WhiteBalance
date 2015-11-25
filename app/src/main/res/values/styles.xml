@@ -9,7 +9,7 @@
         <item name="icon">@drawable/icon_settings</item>
     </style>
 
-    <style name="Theme.AppCompat.Light.Translucent">
+    <style name="Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -4,6 +4,7 @@ package bachelorapp.fi.muni.cz.whitebalanceapp;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -30,6 +32,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -98,6 +101,10 @@ public class ConvertedPhotos extends AppCompatActivity {
     private Bitmap selectedWhite;
 
     private ImageButton iconWP;
+    private boolean setIconWP;
+    private TextView textWP;
+
+    final String PREFS_NAME = "MyPrefsFile";
 
 
 
@@ -113,8 +120,17 @@ public class ConvertedPhotos extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
 
+        boolean writableExternalStorage = isExternalStorageWritable();
+        Log.e("writableExternalStorage", Boolean.toString(writableExternalStorage));
         indexOfSelectedBitmap = -1;
 
+        setIconWP = true;
+        iconWP = (ImageButton) findViewById(R.id.icon_wp);
+        Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.finger_icon);
+        iconWP.setImageBitmap(icon);
+        iconWP.setVisibility(View.GONE);
+        textWP = (TextView) findViewById(R.id.text_wp);
+        textWP.setVisibility(View.GONE);
 
         imageButtons = new ImageButton[]{
                 (ImageButton) findViewById(R.id.original_image),
@@ -124,7 +140,6 @@ public class ConvertedPhotos extends AppCompatActivity {
                 (ImageButton) findViewById(R.id.converted_image4)
         };
         selectedImage = (ImageButton) findViewById(R.id.selected_image);
-        iconWP = (ImageButton) findViewById(R.id.icon_wp);
 
         bar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -144,7 +159,7 @@ public class ConvertedPhotos extends AppCompatActivity {
         int memoryClass = am.getMemoryClass();
         Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
 
-       // BitmapFactory.Options opts=new BitmapFactory.Options();
+        // BitmapFactory.Options opts=new BitmapFactory.Options();
 
         originalBitmap = BitmapFactory.decodeFile(imagePath);
 
@@ -227,7 +242,6 @@ public class ConvertedPhotos extends AppCompatActivity {
         sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
                 + Environment.getExternalStorageDirectory())));
                 */
-        Bitmap bitmapSaving = null;
         try {
             File file = new File(imagePath);
             InputStream in = null;
@@ -237,22 +251,12 @@ public class ConvertedPhotos extends AppCompatActivity {
             Log.e("original before", Integer.toString(original.getRowBytes() * original.getHeight()));
             original.compress(Bitmap.CompressFormat.JPEG, 50, out);
             Log.e("original after", Integer.toString(original.getRowBytes() * original.getHeight()));
-            bitmapSaving = original;
             ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
             int memoryClass = am.getMemoryClass();
             Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
         } catch(IOException e) {
 
         }
-
-
-
-        PixelData pixelDataSavingInstance = new PixelData();
-        double[][] pixelDataSaving = new double[bitmapSaving.getWidth()*bitmapSaving.getHeight()][3];
-        if(indexOfSelectedBitmap == 1) {
-
-          bitmapSaving = histogramStretching.conversion(bitmapSaving.getWidth(), bitmapSaving.getHeight(), pixelDataSavingInstance.getPixelData(bitmapSaving, pixelDataSaving));
-         //   Bitmap bitmapSaving = originalBitmap;
 
             Date date = new Date();
             String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
@@ -274,13 +278,13 @@ public class ConvertedPhotos extends AppCompatActivity {
             try {
                 bos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
 
-                Log.e("out before", Integer.toString(bitmapSaving.getRowBytes() * bitmapSaving.getHeight()));
-                bitmapSaving.compress(Bitmap.CompressFormat.JPEG, 50, bos);
-                Log.e("out after", Integer.toString(bitmapSaving.getRowBytes() * bitmapSaving.getHeight()));
+                Log.e("out before", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
+                convertedBitmaps[indexOfSelectedBitmap].compress(Bitmap.CompressFormat.JPEG, 50, bos);
+                Log.e("out after", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
                 sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
                         + Environment.getExternalStorageDirectory())));
                 Toast.makeText(instance.getApplicationContext(), "Saved succesfully", Toast.LENGTH_SHORT).show();
-                bitmapSaving.recycle();
+                convertedBitmaps[indexOfSelectedBitmap].recycle();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -292,7 +296,6 @@ public class ConvertedPhotos extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }
 
 
     }
@@ -333,6 +336,7 @@ public class ConvertedPhotos extends AppCompatActivity {
             };
 
 
+
             end = System.currentTimeMillis();
             double time = (double) (end - start) / 1000;
             Log.i(TAG, "time of conversions = " + time + "seconds");
@@ -357,6 +361,18 @@ public class ConvertedPhotos extends AppCompatActivity {
             setBitmapInButton(4);
 
             selectedImage.setImageBitmap(scaledBitmap);
+
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            if(settings.getBoolean("my_first_time", true)) {
+                //the app is being launched for first time, do something
+                Log.d("Comments", "First time");
+
+                Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent.class);
+                startActivity(intentTransparent);
+
+                // record the fact that the app has been started at least once
+                   settings.edit().putBoolean("my_first_time", false).commit();
+            }
         }
     }
 
@@ -377,16 +393,24 @@ public class ConvertedPhotos extends AppCompatActivity {
         Log.i(TAG, "bitmap width: " + Integer.toString(widthImage));
         Log.i(TAG, "bitmap height: " + Integer.toString(heightImage));
 
-        if(heightDisplay - 350 >= heightImage && widthDisplay >= widthImage) {
+        int px = dpToPx(400);
+
+        if(heightDisplay - px >= heightImage && widthDisplay >= widthImage) {
             scaledHeight = heightImage;
             scaledWidth = widthImage;
         } else {
-            scaledHeight = heightDisplay - 350;
+            scaledHeight = heightDisplay - px;
             double ratio = (double)scaledHeight / (double)heightImage;
             scaledWidth = (int)((double)widthImage * ratio);
         }
         Log.i(TAG, "scaled width: " + Integer.toString(scaledWidth));
         Log.i(TAG, "scaled height: " + Integer.toString(scaledWidth));
+    }
+
+    public int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
     }
 
     public void setBitmapInButton(int index) {
@@ -395,23 +419,45 @@ public class ConvertedPhotos extends AppCompatActivity {
 
     public void setBitmapInButton(final int index, final Bitmap bitmap) {
         imageButtons[index].setImageBitmap(bitmap);
-        if(index == 3) {
-            Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_get_app_black_24dp);
-            iconWP.setImageBitmap(icon);
-        }
 
-        imageButtons[index].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                indexOfSelectedBitmap = index;
-                selectedImage.setImageBitmap(bitmap);
-                selectedImage.setOnTouchListener(null);
-                if (index == 3) {
-                    iconWP.setImageBitmap(null);
-                    selectWhite();
+
+        if(setIconWP == true && index == 3) {
+            iconWP.setVisibility(View.VISIBLE);
+            iconWP.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    indexOfSelectedBitmap = index;
+                    selectedImage.setImageBitmap(bitmap);
+                    if(setIconWP == true) {
+                        textWP.setVisibility(View.VISIBLE);
+                        if (index == 3) {
+                            selectWhite();
+                        }
+                    }
+
                 }
-            }
-        });
+            });
+        }
+        imageButtons[index].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    indexOfSelectedBitmap = index;
+                    selectedImage.setImageBitmap(bitmap);
+                    if (index == 3) {
+                        indexOfSelectedBitmap = index;
+                        selectedImage.setImageBitmap(bitmap);
+                        if (setIconWP == true) {
+                            textWP.setVisibility(View.VISIBLE);
+                            selectWhite();
+                        }
+                    } else {
+                        selectedImage.setOnTouchListener(null);
+                        textWP.setVisibility(View.GONE);
+                    }
+                }
+            });
+
+
     }
 
     public void selectWhite() {
@@ -419,6 +465,10 @@ public class ConvertedPhotos extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
+                    iconWP.setVisibility(View.GONE);
+                    textWP.setVisibility(View.GONE);
+                    setIconWP = false;
+
                     // selected pixel of White
                     int selectedPixelX = (int) event.getX();
                     int selectedPixelY = (int) event.getY();
@@ -652,6 +702,24 @@ public class ConvertedPhotos extends AppCompatActivity {
         return inSampleSize;
     }
 
-}
+    /* Checks if external storage is available for read and write */
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+/*
+    public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+        if (getBitmapFromMemCache(key) == null) {
+            mMemoryCache.put(key, bitmap);
+        }
+    }
 
+    public Bitmap getBitmapFromMemCache(String key) {
+        return mMemoryCache.get(key);
+    }
+*/
+}
 

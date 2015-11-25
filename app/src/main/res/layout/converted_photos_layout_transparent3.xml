@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    tools:context=".ConvertedPhotos">
+
+    <ImageView
+        android:id="@+id/arrow5"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:rotation="10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-150dp"
+        android:layout_marginLeft="-150dp"
+        android:layout_marginRight="-20dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/guide5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guide5"
+        android:layout_marginTop="70dp"
+        android:layout_toLeftOf="@id/arrow5"
+        android:layout_toStartOf="@id/arrow5"
+        android:background="@drawable/round_background"
+        android:gravity="center_horizontal"/>
+
+
+    <ImageView
+        android:id="@+id/arrow6"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:rotation="-60"
+        android:layout_marginStart="-60dp"
+        android:layout_marginLeft="-60dp"
+        android:layout_marginRight="-130dp"
+        android:layout_marginEnd="-130dp"
+        android:layout_marginTop="50dp"/>
+
+    <RelativeLayout
+        android:id="@+id/guide6_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_toRightOf="@id/arrow6"
+        android:layout_toEndOf="@id/arrow6">
+        <TextView
+            android:id="@+id/guide6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/guide6"
+            android:background="@drawable/round_background"
+            android:gravity="center_horizontal"/>
+        <ImageButton
+            android:id="@+id/next6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/guide6"
+            android:layout_toEndOf="@id/guide6"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

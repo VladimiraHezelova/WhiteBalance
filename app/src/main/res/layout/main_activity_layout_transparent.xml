@@ -7,12 +7,30 @@
     android:background="#80000000"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button_gallery"
+    <TextView
+        android:id="@+id/guideB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:text="@string/guideB"
+        android:textColor="@android:color/black"
+        android:background="@drawable/round_background"
+        android:gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/button_galleryB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/gallery"
-        android:layout_centerInParent="true"/>
+        android:textColor="@android:color/white"
+        android:typeface="normal"
+        android:textStyle="bold"
+        android:drawableTop="@drawable/ic_photo_library_white_48dp"
+        android:background="@android:color/transparent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"/>
+
 
 </RelativeLayout>

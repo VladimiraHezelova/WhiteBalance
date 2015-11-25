@@ -18,7 +18,7 @@ public class MainActivityTransparent extends Activity {
     private static int RESULT_LOAD_IMAGE = 1;
 
     private String imagePath;
-    private Button buttonGallery;
+    private Button buttonGalleryB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +27,8 @@ public class MainActivityTransparent extends Activity {
 
         Intent intent = getIntent();
         imagePath = intent.getStringExtra("imagePath");
-        buttonGallery = (Button) findViewById(R.id.button_gallery);
-        buttonGallery.setOnClickListener(new View.OnClickListener() {
+        buttonGalleryB = (Button) findViewById(R.id.button_galleryB);
+        buttonGalleryB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(
