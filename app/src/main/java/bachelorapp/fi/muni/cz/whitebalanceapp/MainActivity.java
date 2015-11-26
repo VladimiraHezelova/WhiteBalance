@@ -1,6 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -30,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
     final String PREFS_NAME = "MyPrefsFile";
     private boolean firstStart = true;
 
+    public static Activity mainActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+
+        mainActivity = this;
 
         // zistuje ci je aplikacia spustena prvykrat
 

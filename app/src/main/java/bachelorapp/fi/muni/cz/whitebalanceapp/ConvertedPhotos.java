@@ -18,8 +18,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.NavUtils;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -35,15 +33,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -120,9 +114,11 @@ public class ConvertedPhotos extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
 
+        MainActivity.mainActivity.finish();
+
         boolean writableExternalStorage = isExternalStorageWritable();
         Log.e("writableExternalStorage", Boolean.toString(writableExternalStorage));
-        indexOfSelectedBitmap = -1;
+        indexOfSelectedBitmap = 0;
 
         setIconWP = true;
         iconWP = (ImageButton) findViewById(R.id.icon_wp);
@@ -193,11 +189,9 @@ public class ConvertedPhotos extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_download:
-                if(indexOfSelectedBitmap == -1) {
-                    Toast.makeText(instance.getApplicationContext(), "You don't have converted image to save", Toast.LENGTH_SHORT).show();
+                if(indexOfSelectedBitmap == 0) {
+                    Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
                 } else {
-                    // kvoli uvolneniu pamete
-                    pixelDataOriginal = null;
                     System.gc();
                     writeImage(indexOfSelectedBitmap);
                 }
@@ -219,8 +213,10 @@ public class ConvertedPhotos extends AppCompatActivity {
                 if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
                     selectedWhite.recycle();
                 }
-
                 finish();
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainActivityIntent);
+                /*
                 Intent upIntent = NavUtils.getParentActivityIntent(this);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
                     TaskStackBuilder.create(this)
@@ -229,7 +225,9 @@ public class ConvertedPhotos extends AppCompatActivity {
                 } else {
                     NavUtils.navigateUpTo(this, upIntent);
                 }
+                */
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -242,12 +240,14 @@ public class ConvertedPhotos extends AppCompatActivity {
         sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
                 + Environment.getExternalStorageDirectory())));
                 */
+        /*
+        InputStream in = null;
+        ByteArrayOutputStream out = null;
         try {
             File file = new File(imagePath);
-            InputStream in = null;
             in = new BufferedInputStream(new FileInputStream(file));
             Bitmap original = BitmapFactory.decodeStream(in);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            out = new ByteArrayOutputStream();
             Log.e("original before", Integer.toString(original.getRowBytes() * original.getHeight()));
             original.compress(Bitmap.CompressFormat.JPEG, 50, out);
             Log.e("original after", Integer.toString(original.getRowBytes() * original.getHeight()));
@@ -255,9 +255,25 @@ public class ConvertedPhotos extends AppCompatActivity {
             int memoryClass = am.getMemoryClass();
             Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
         } catch(IOException e) {
-
+            e.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
+            */
+/*
             Date date = new Date();
             String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
 
@@ -271,7 +287,11 @@ public class ConvertedPhotos extends AppCompatActivity {
                 fileName = fileNameWithExtension.substring(0, pos);
                 extension = fileNameWithExtension.substring(pos);
             }
-            String destinationFilename = path + File.separatorChar + fileName + sDate + extension;
+            */
+        if(convertedBitmaps[indexOfSelectedBitmap].sameAs(originalBitmap)) {
+            Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+        } else {
+            String destinationFilename = getFilename();
             Log.i("destinationFilename", destinationFilename);
 
             BufferedOutputStream bos = null;
@@ -283,8 +303,8 @@ public class ConvertedPhotos extends AppCompatActivity {
                 Log.e("out after", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
                 sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
                         + Environment.getExternalStorageDirectory())));
-                Toast.makeText(instance.getApplicationContext(), "Saved succesfully", Toast.LENGTH_SHORT).show();
-                convertedBitmaps[indexOfSelectedBitmap].recycle();
+                Toast.makeText(instance.getApplicationContext(),R.string.save_message2, Toast.LENGTH_SHORT).show();
+                //  convertedBitmaps[indexOfSelectedBitmap].recycle();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -296,6 +316,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+        }
 
 
     }
@@ -383,34 +404,49 @@ public class ConvertedPhotos extends AppCompatActivity {
         display.getSize(size);
         int widthDisplay = size.x;
         int heightDisplay = size.y;
+        int widthDisplayDp = pxToDp(widthDisplay);
+        int heightDisplayDp = pxToDp(heightDisplay);
 
-        Log.i(TAG, "display width: " + Integer.toString(widthDisplay));
-        Log.i(TAG, "display height: " + Integer.toString(heightDisplay));
+        Log.i(TAG, "display width in px: " + Integer.toString(widthDisplay));
+        Log.i(TAG, "display height in px: " + Integer.toString(heightDisplay));
+        Log.i(TAG, "display width in dp: " + Integer.toString(widthDisplayDp));
+        Log.i(TAG, "display height in dp: " + Integer.toString(heightDisplayDp));
 
         int widthImage = originalBitmap.getWidth();
+        int widthImageDp = pxToDp(widthImage);
         int heightImage = originalBitmap.getHeight();
+        int heightImageDp = pxToDp(heightImage);
 
-        Log.i(TAG, "bitmap width: " + Integer.toString(widthImage));
-        Log.i(TAG, "bitmap height: " + Integer.toString(heightImage));
 
-        int px = dpToPx(400);
+        Log.i(TAG, "bitmap width in px: " + Integer.toString(widthImage));
+        Log.i(TAG, "bitmap height in px: " + Integer.toString(heightImage));
+        Log.i(TAG, "bitmap width in dp: " + Integer.toString(widthImageDp));
+        Log.i(TAG, "bitmap height in dp: " + Integer.toString(heightImageDp));
 
-        if(heightDisplay - px >= heightImage && widthDisplay >= widthImage) {
+
+        //-200 nepada
+        if(heightDisplay -400 >= heightImage && widthDisplay >= widthImage) {
             scaledHeight = heightImage;
             scaledWidth = widthImage;
         } else {
-            scaledHeight = heightDisplay - px;
+            scaledHeight = heightDisplay - 400;
             double ratio = (double)scaledHeight / (double)heightImage;
             scaledWidth = (int)((double)widthImage * ratio);
         }
         Log.i(TAG, "scaled width: " + Integer.toString(scaledWidth));
-        Log.i(TAG, "scaled height: " + Integer.toString(scaledWidth));
+        Log.i(TAG, "scaled height: " + Integer.toString(scaledHeight));
     }
 
     public int dpToPx(int dp) {
         DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
-        int px = Math.round(dp * (displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        int px = Math.round(dp * (displayMetrics.ydpi / DisplayMetrics.DENSITY_DEFAULT));
         return px;
+    }
+
+    public int pxToDp(int px) {
+        DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        int dp = Math.round(px / (displayMetrics.ydpi / DisplayMetrics.DENSITY_DEFAULT));
+        return dp;
     }
 
     public void setBitmapInButton(int index) {

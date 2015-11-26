@@ -38,8 +38,7 @@
                     android:layout_gravity="center"
                     android:scaleType="fitCenter"
                     android:contentDescription="@string/original_image"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:background="@drawable/icon_on_wp"/>
+                    style="?android:attr/borderlessButtonStyle"/>
 
                 <TextView
                     android:id="@+id/original_image_text"
@@ -169,23 +168,35 @@
         </RelativeLayout>
         </HorizontalScrollView>
 
-    <ImageButton
-        android:id="@+id/selected_image"
+    <RelativeLayout
+        android:id="@+id/selected_image_scaled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:contentDescription="@string/selected_image"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"/>
+        android:layout_above="@id/scroll_view"
+        android:layout_marginBottom="35dp"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal">
+
+    <ImageButton
+            android:id="@+id/selected_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/selected_image"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/text_wp"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:text="@string/text_wp"
-        android:layout_below="@id/selected_image"
+        android:layout_below="@id/selected_image_scaled"
         android:layout_centerInParent="true"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:layout_marginTop="-30dp"/>
 
 </RelativeLayout>

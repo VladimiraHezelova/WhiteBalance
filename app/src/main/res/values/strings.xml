@@ -36,4 +36,7 @@
     <string name="guide6">6. or go back and choose \n another image from your gallery.</string>
     <string name="guide7">Now you can start use \n White Balance application</string>
 
+    <string name="save_message1">"You don't have choosen converted image to save"</string>
+    <string name="save_message2">"Saved succesfully"</string>
+
 </resources>

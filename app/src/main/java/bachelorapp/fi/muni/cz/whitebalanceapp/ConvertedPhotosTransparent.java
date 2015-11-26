@@ -53,8 +53,10 @@ public class ConvertedPhotosTransparent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.converted_photos_layout_transparent);
 
+        MainActivityTransparent.mainActivityTransparent2.finish();
+
         arrow1 = (ImageView) findViewById(R.id.arrow1);
-        arrow1.setImageResource(R.drawable.arrow_image);
+        arrow1.setImageResource(R.drawable.arrow_img);
         arrow1.bringToFront();
       //  arrow2 = (ImageView) findViewById(R.id.arrow2);
 

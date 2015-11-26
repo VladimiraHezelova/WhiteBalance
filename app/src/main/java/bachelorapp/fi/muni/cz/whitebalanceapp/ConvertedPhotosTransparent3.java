@@ -21,10 +21,10 @@ public class ConvertedPhotosTransparent3 extends AppCompatActivity {
         setContentView(R.layout.converted_photos_layout_transparent3);
 
         arrow5 = (ImageView) findViewById(R.id.arrow5);
-        arrow5.setImageResource(R.drawable.arrow_image);
+        arrow5.setImageResource(R.drawable.arrow_img);
         arrow5.bringToFront();
         arrow6 = (ImageView) findViewById(R.id.arrow6);
-        arrow6.setImageResource(R.drawable.arrow_image);
+        arrow6.setImageResource(R.drawable.arrow_img);
         arrow6.bringToFront();
 
         nextButton = (ImageButton) findViewById(R.id.next6);

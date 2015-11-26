@@ -21,7 +21,7 @@ public class ConvertedPhotosTransparent2 extends AppCompatActivity {
         setContentView(R.layout.converted_photos_layout_transparent2);
 
         arrow3 = (ImageView) findViewById(R.id.arrow3);
-        arrow3.setImageResource(R.drawable.arrow_image);
+        arrow3.setImageResource(R.drawable.arrow_img);
         arrow3.bringToFront();
         //  arrow2 = (ImageView) findViewById(R.id.arrow2);
 

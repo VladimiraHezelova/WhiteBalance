@@ -20,10 +20,14 @@ public class MainActivityTransparent extends Activity {
     private String imagePath;
     private Button buttonGalleryB;
 
+    public static Activity mainActivityTransparent2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout_transparent);
+
+        mainActivityTransparent2 = this;
 
         Intent intent = getIntent();
         imagePath = intent.getStringExtra("imagePath");
@@ -36,6 +40,7 @@ public class MainActivityTransparent extends Activity {
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+
             }
         });
 
