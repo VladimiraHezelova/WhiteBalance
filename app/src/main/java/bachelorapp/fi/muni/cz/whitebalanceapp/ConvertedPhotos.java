@@ -13,6 +13,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.ExifInterface;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -301,8 +302,21 @@ public class ConvertedPhotos extends AppCompatActivity {
                 Log.e("out before", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
                 convertedBitmaps[indexOfSelectedBitmap].compress(Bitmap.CompressFormat.JPEG, 50, bos);
                 Log.e("out after", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
-                sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
-                        + Environment.getExternalStorageDirectory())));
+                MediaScannerConnection.scanFile(this, new String[]{
+
+                                destinationFilename},
+
+                        null, new MediaScannerConnection.OnScanCompletedListener() {
+
+                            public void onScanCompleted(String path, Uri uri)
+
+                            {
+
+                                sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
+                                        + Environment.getExternalStorageDirectory())));
+                            }
+
+                        });
                 Toast.makeText(instance.getApplicationContext(),R.string.save_message2, Toast.LENGTH_SHORT).show();
                 //  convertedBitmaps[indexOfSelectedBitmap].recycle();
             } catch (IOException e) {
