@@ -2,10 +2,10 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.whitePatc
 
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import java.util.Arrays;
 
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Convertor;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Linearization1D;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.MatrixMultiplication1D;
 
@@ -15,7 +15,7 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Ma
  * <p/>
  * Image Chromatic Adapatation - White Patch (WP) Method
  */
-public class WhitePatch {
+public class WhitePatch extends Convertor {
 
     private String imagePath;
     private Bitmap selectedWhite;
@@ -31,6 +31,7 @@ public class WhitePatch {
     private float[][] scalingMatrix;
 
     public WhitePatch(String imagePath, Bitmap image, Bitmap selectedWhite) {
+
         this.imagePath = imagePath;
         this.selectedWhite = selectedWhite;
 
@@ -46,35 +47,18 @@ public class WhitePatch {
 
     public void whitePatch() {
         int value;
-        float[] pixelData = new float[3];
+        float[] rgb = new float[3];
 
         setScalingMatrix();
 
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 value = originalBitmap.getPixel(j,i);
-                pixelData[0] = (value >> 16) & 0xff; //red;
-                pixelData[1] = (value >>  8) & 0xff; //green
-                pixelData[2] = (value      ) & 0xff;  //blue
-
-                pixelData = convert(pixelData);
-                convertedBitmap.setPixel(j, i, getValueFromRGB(pixelData));
+                rgb = getRGBFromValue(value, rgb);
+                rgb = convert(rgb);
+                convertedBitmap.setPixel(j, i, getValueFromRGB(rgb));
             }
         }
-    }
-
-    public int getValueFromRGB(float[] pixelData) {
-        int R = (int) pixelData[0];
-        int G = (int) pixelData[1];
-        int B = (int) pixelData[2];
-        return ((R & 0xFF) << 16) | ((G & 0xFF) << 8)  | ((B & 0xFF));
-    }
-
-    public float[] getRGBFromValue(int value, float rgb[]) {
-        rgb[0] = (value >> 16) & 0xff; //red
-        rgb[1] = (value >>  8) & 0xff; //green
-        rgb[2] = (value      ) & 0xff;  //blue
-        return rgb;
     }
 
     public int median(Bitmap img) {

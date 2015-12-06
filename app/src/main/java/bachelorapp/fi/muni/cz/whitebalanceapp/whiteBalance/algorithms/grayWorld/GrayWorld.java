@@ -2,13 +2,14 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld
 
 import android.graphics.Bitmap;
 
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Convertor;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Linearization1D;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.MatrixMultiplication1D;
 
 /**
  * Created by Vladimira Hezelova on 25. 4. 2015.
  */
-public class GrayWorld {
+public class GrayWorld extends Convertor {
 
     private Bitmap originalBitmap;
     private int width;
@@ -48,20 +49,6 @@ public class GrayWorld {
                 convertedBitmap.setPixel(j, i, getValueFromRGB(pixelData));
             }
         }
-    }
-
-    public int getValueFromRGB(float[] pixelData) {
-        int R = (int) pixelData[0];
-        int G = (int) pixelData[1];
-        int B = (int) pixelData[2];
-        return ((R & 0xFF) << 16) | ((G & 0xFF) << 8)  | ((B & 0xFF));
-    }
-
-    public float[] getRGBFromValue(int value, float rgb[]) {
-        rgb[0] = (value >> 16) & 0xff; //red
-        rgb[1] = (value >>  8) & 0xff; //green
-        rgb[2] = (value      ) & 0xff;  //blue
-        return rgb;
     }
 
     public Bitmap getConvertedBitmap() {
