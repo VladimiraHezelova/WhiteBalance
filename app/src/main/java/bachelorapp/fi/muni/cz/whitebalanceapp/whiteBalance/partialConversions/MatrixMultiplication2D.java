@@ -1,9 +1,13 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions;
 
+
 /**
- * Created by Vladimira Hezelova on 5. 12. 2015.
+ * Created by Vladimira Hezelova on 16. 3. 2015.
  */
-public class MatrixMultiplication2 {
+
+
+public class MatrixMultiplication2D {
+
     // matrix for conversion from normalized, linearized RGB to CIE D65 XYZ
     private static final double[][] MATRIX_RGBtoXYZ =
             {{0.4124,0.3576, 0.1805},
@@ -41,15 +45,16 @@ public class MatrixMultiplication2 {
      * pre informaciu pozicie pixelu v obraze(prvy rozmer) a zlozku RGB(druhy rozmer)
      *
      */
-    public double[] multiply(double[][] matrix, double[] uvw) {
+    public double[][] multiply(double[][] matrix, double[][] uvw) {
         double x = 0;
         double y = 0;
         double z = 0;
         double tmp;
+        for(int k = 0; k < uvw.length; k++){
             for(int i = 0; i < 3; i++) {
                 tmp = 0;
                 for(int j = 0; j < 3; j++) {
-                    tmp += matrix[i][j] * uvw[j];
+                    tmp += matrix[i][j] * uvw[k][j];
                 }
                 switch (i) {
                     case 0: x = tmp;
@@ -60,19 +65,19 @@ public class MatrixMultiplication2 {
                         break;
                 }
             }
-            uvw[0] = x;
-            uvw[1] = y;
-            uvw[2] = z;
-
+            uvw[k][0] = x;
+            uvw[k][1] = y;
+            uvw[k][2] = z;
+        }
         return uvw;
     }
 
-    public double[] fromRGBtoLMS(double[] pixelData) {
+    public double[][] fromRGBtoLMS(double[][] pixelData) {
         pixelData = multiply(MATRIX_RGBtoXYZ, pixelData);
         return multiply(MATRIX_XYZtoLMS, pixelData);
     }
 
-    public double[] fromLMStoRGB(double[] pixelData) {
+    public double[][] fromLMStoRGB(double[][] pixelData) {
         pixelData = multiply(MATRIX_LMStoXYZ, pixelData);
         return multiply(MATRIX_XYZtoRGB, pixelData);
     }

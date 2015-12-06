@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 
 import java.util.Random;
 
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Linearization;
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.MatrixMultiplication;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
 
 /**

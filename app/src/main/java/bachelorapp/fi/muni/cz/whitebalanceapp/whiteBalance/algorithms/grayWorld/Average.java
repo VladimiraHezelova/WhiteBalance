@@ -39,10 +39,6 @@ public class Average {
             sumG += pixelData[i][1];
             sumB += pixelData[i][2];
         }
-        Log.e("sumR", Double.toString(sumR));
-        Log.e("sumG", Double.toString(sumG));
-        Log.e("sumB", Double.toString(sumB));
-        Log.e("max double", Double.toString(Double.MAX_VALUE));
         double numberOfPixels = pixelData.length;
         avgR = sumR / numberOfPixels;
         avgG = sumG / numberOfPixels;

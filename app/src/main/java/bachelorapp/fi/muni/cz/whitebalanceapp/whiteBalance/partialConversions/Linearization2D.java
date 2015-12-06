@@ -3,7 +3,7 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions;
 /**
  * Created by Vladimira Hezelova on 15. 3. 2015.
  */
-public class Linearization {
+public class Linearization2D {
 
     public double[][] linearize(double[][] pixelData) {
         for(int i = 0; i < pixelData.length; i++) {
