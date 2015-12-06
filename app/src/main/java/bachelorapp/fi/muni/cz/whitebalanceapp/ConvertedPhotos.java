@@ -232,7 +232,7 @@ public class ConvertedPhotos extends AppCompatActivity {
         // test na ukladanie velkej fotografie WP
         long start = System.currentTimeMillis();
 /*
-        WhitePatch whitePatch = new WhitePatch(imagePath, originalBitmap, selectedWhite);
+        WhitePatch whitePatch = new WhitePatch(originalBitmap, selectedWhite);
         Bitmap convertedBitmap = whitePatch.getConvertedBitmap();
         saveImage(convertedBitmap);
 */
@@ -570,7 +570,7 @@ public class ConvertedPhotos extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
            // pixelDataInstance3 = new PixelData();
-            WhitePatch whitePatch = new WhitePatch(imagePath, scaledBitmap, selectedWhite);
+            WhitePatch whitePatch = new WhitePatch(scaledBitmap, selectedWhite);
             convertedBitmaps[3] = whitePatch.getConvertedBitmap();
             return null;
         }

@@ -12,28 +12,25 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Convertor;
 public class ImprovedWP extends Convertor {
 
     private Bitmap originalBitmap;
-    private int width;
-    private int height;
-    private Bitmap convertedBitmap;
+
+    private float[] illuminationEstimation;
 
     public ImprovedWP(Bitmap image) {
+        super(image);
         this.originalBitmap = image;
-        this.width = originalBitmap.getWidth();
-        this.height = originalBitmap.getHeight();
-        this.convertedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+
         conversion();
     }
 
     public void conversion() {
-
         int n = 50;
         int m = 10;
 
-        float[] illuminationEstimation = performIlluminationEstimation(n, m);
-        removeColorCast(illuminationEstimation);
+        performIlluminationEstimation(n, m);
+        balanceWhite();
     }
 
-    public float[] performIlluminationEstimation(int n, int m) {
+    public void performIlluminationEstimation(int n, int m) {
 
         float[] result = new float[]{0,0,0,0};
         float[] max = new float[]{0,0,0,0};
@@ -52,6 +49,9 @@ public class ImprovedWP extends Convertor {
         float randomfloat1;
         float randomfloat2;
 
+        int width = originalBitmap.getWidth();
+        int height = originalBitmap.getHeight();
+
         for(int i = 0; i < m; i++) {
             max[0] = 0;
             max[1] = 0;
@@ -68,9 +68,7 @@ public class ImprovedWP extends Convertor {
 
                 int value = originalBitmap.getPixel(col, row);
                 float[] pixelData = new float[3];
-                pixelData[0] = (value >> 16) & 0xff; //red;
-                pixelData[1] = (value >>  8) & 0xff; //green
-                pixelData[2] = (value      ) & 0xff;  //blue
+                pixelData = getRGBFromValue(value, pixelData);
 
                 for(int k = 0; k < 3; k++) {
                     if(max[k] < pixelData[k]) {
@@ -92,30 +90,11 @@ public class ImprovedWP extends Convertor {
         result[1] /= sum;
         result[2] /= sum;
 
-        return result;
+        illuminationEstimation = result;
     }
 
-    public void removeColorCast(float[] illuminationEstimation) {
-        int value;
-        float[] pixelData = new float[3];
-
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                value = originalBitmap.getPixel(j,i);
-                pixelData[0] = (value >> 16) & 0xff; //red;
-                pixelData[1] = (value >>  8) & 0xff; //green
-                pixelData[2] = (value      ) & 0xff;  //blue
-
-                pixelData = convert(pixelData, illuminationEstimation);
-                convertedBitmap.setPixel(j, i, getValueFromRGB(pixelData));
-            }
-        }
-    }
-
-
-
-
-    public float[] convert(float[] pixelData, float[] illuminationEstimation){
+    @Override
+    public float[] removeColorCast(float[] pixelData){
 
         for (int k=0;k<3;++k){
             pixelData[k]/=illuminationEstimation[k];
@@ -124,9 +103,5 @@ public class ImprovedWP extends Convertor {
             }
         }
         return pixelData;
-    }
-
-    public Bitmap getConvertedBitmap() {
-        return convertedBitmap;
     }
 }

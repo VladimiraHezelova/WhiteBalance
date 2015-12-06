@@ -25,52 +25,42 @@ public class Average {
         this.height = bitmap.getHeight();
     }
 
-    public float[][] getScalingMatrix(float[][] scalingMatrix) {
-        getAverages();
-        getAvgGray();
-        getScalingCoefficients();
+    public float[][] getScalingMatrix() {
+        findAverages();
+        findAvgGray();
+        findScalingCoefficients();
 
-        scalingMatrix[0][0] = kR;
-        scalingMatrix[1][1] = kG;
-        scalingMatrix[2][2] = kB;
-
+        float[][] scalingMatrix = new float[][]{{kR, 0.0f, 0.0f}, {0.0f, kG, 0.0f}, {0.0f, 0.0f, kB}};
         return scalingMatrix;
     }
 
-    private void getAverages() {
+    private void findAverages() {
         float sumR = 0;
         float sumG = 0;
         float sumB = 0;
         int value;
-        float[] pixelData = new float[3];
 
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 value = bitmap.getPixel(j,i);
-                pixelData[0] = (value >> 16) & 0xff; //red;
-                pixelData[1] = (value >>  8) & 0xff; //green
-                pixelData[2] = (value      ) & 0xff;  //blue
-                sumR += pixelData[0];
-                sumG += pixelData[1];
-                sumB += pixelData[2];
+                sumR += (value >> 16) & 0xff; //red;
+                sumG += (value >>  8) & 0xff; //green
+                sumB += (value      ) & 0xff;  //blue
             }
         }
-        float numberOfPixels = pixelData.length;
+        float numberOfPixels = height*width;
         avgR = sumR / numberOfPixels;
         avgG = sumG / numberOfPixels;
         avgB = sumB / numberOfPixels;
     }
 
-    private void getAvgGray() {
+    private void findAvgGray() {
         avgGray = 0.299f * avgR + 0.587f * avgG + 0.114f * avgB;
     }
 
-    private void getScalingCoefficients() {
+    private void findScalingCoefficients() {
         kR = avgGray / avgR;
         kG = avgGray / avgG;
         kB = avgGray / avgB;
     }
-
-
-
 }
