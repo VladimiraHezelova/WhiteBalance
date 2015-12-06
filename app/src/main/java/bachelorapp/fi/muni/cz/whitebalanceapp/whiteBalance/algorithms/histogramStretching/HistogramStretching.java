@@ -3,31 +3,42 @@ package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogram
 import android.graphics.Bitmap;
 import android.util.SparseIntArray;
 
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Convertor;
 
 /**
  * Created by Vladimira Hezelova on 22. 10. 2015.
  */
-public class HistogramStretching {
+public class HistogramStretching extends Convertor {
 
-    private int low;
-    private int high;
+    private int low[];
+    private int high[];
+    private float min;
+    private float max;
+
+
     private Bitmap originalBitmap;
 
     public HistogramStretching(Bitmap bitmap) {
+        super(bitmap);
         this.originalBitmap = bitmap;
+        this.min = 0;
+        this.max = 255;
+        this.low = new int[3];
+        this.high = new int[3];
+        setScalingCoefficients();
+        balanceWhite();
     }
 
-    public void findBoundary(Bitmap bitmap, int canal) {
-        SparseIntArray histogram = getHistogram(bitmap, canal);
-        int percentil = (int) (bitmap.getWidth()*bitmap.getHeight() * 0.05);
+    public void findBoundary(int canal) {
+        SparseIntArray histogram = getHistogram(canal);
+        int percentil = (int) (originalBitmap.getWidth()*originalBitmap.getHeight() * 0.05);
         int intensity = 0;
         int number = 0;
         while(number < percentil) {
             number += histogram.get(intensity);
             intensity++;
         }
-        low = intensity-1;
+        low[canal] = intensity-1;
 
         intensity = 255;
         number = 0;
@@ -35,11 +46,18 @@ public class HistogramStretching {
             number += histogram.get(intensity);
             intensity--;
         }
-        high = intensity+1;
+        high[canal] = intensity+1;
     }
 
+    public void setScalingCoefficients() {
+        for(int i = 0; i < 3; i++) {
+            findBoundary(i);
+            findBoundary(i);
+        }
+    }
 
-    public Bitmap conversion(int width, int height, double[][] pixelData) {
+/*
+    public Bitmap conversion(int width, int height, float[][] pixelData) {
 
         PixelData pixelDataInstance = new PixelData();
 
@@ -49,16 +67,16 @@ public class HistogramStretching {
 
         return pixelDataInstance.setBitmap(width, height, pixelData);
     }
-
-    public double[][] canalStretching(double[][] pixelData, int canal) {
+    */
+/*
+    public float[][] canalStretching(float[][] pixelData, int canal) {
 
         findBoundary(originalBitmap, canal);
 
-        double min = 0.0;
-        double max = 255;
-        double a = max-min;
-        double b = high - low;
-        double c = a / b;
+
+        float a = max-min;
+        float b = high - low;
+        float c = a / b;
         for(int i = 0; i < pixelData.length; i++) {
             if(pixelData[i][canal] < low) {
                 pixelData[i][canal] = min;
@@ -70,18 +88,18 @@ public class HistogramStretching {
         }
         return pixelData;
     }
+*/
 
-
-    public SparseIntArray getHistogram(Bitmap bitmap, int canal) {
+    public SparseIntArray getHistogram(int canal) {
         SparseIntArray histogram = new SparseIntArray();
         for(int i = 0; i < 256; i++) {
             histogram.put(i,0);
         }
         int value;
         int intensity = 0;
-        for(int i = 0; i < bitmap.getHeight(); i++) {
-            for(int j = 0; j < bitmap.getWidth(); j++) {
-                value = bitmap.getPixel(j,i);
+        for(int i = 0; i < originalBitmap.getHeight(); i++) {
+            for(int j = 0; j < originalBitmap.getWidth(); j++) {
+                value = originalBitmap.getPixel(j,i);
                 switch(canal) {
                     case 0: intensity = (value >> 16) & 0xff; //red
                         break;
@@ -98,7 +116,23 @@ public class HistogramStretching {
             }
         }
         return histogram;
-
     }
 
+    @Override
+    public float[] removeColorCast(float[] pixelData) {
+
+        for(int i = 0; i < 3; i++) {
+            if(pixelData[i] < low[i]) {
+                pixelData[i] = min;
+            } else if(pixelData[i] > high[i]) {
+                pixelData[i] = max;
+            } else {
+                float a = max - min;
+                float b = high[i] - low[i];
+                float c = a / b;
+                pixelData[i] = (pixelData[i] - low[i])*c + min;
+            }
+        }
+        return pixelData;
+    }
 }
