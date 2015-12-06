@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6bdd553-6c24-4c4b-a096-7b8f9065884d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/Convertor.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/Convertor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/GrayWorld.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/GrayWorld.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/improvedWP/ImprovedWP.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/improvedWP/ImprovedWP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WhiteBalanceApp.iws" />
@@ -40,14 +36,14 @@
       <file leaf-file-name="ConvertedPhotos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2222223">
-              <caret line="237" column="2" selection-start-line="237" selection-start-column="2" selection-end-line="237" selection-end-column="2" />
+            <state vertical-scroll-proportion="-4.7555556">
+              <caret line="250" column="89" selection-start-line="250" selection-start-column="89" selection-end-line="250" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6411#6433#0" expanded="true" />
-                <element signature="e#12808#12830#0" expanded="true" />
-                <element signature="e#13348#13349#0" expanded="true" />
-                <element signature="e#13403#13404#0" expanded="true" />
+                <element signature="e#13101#13123#0" expanded="true" />
+                <element signature="e#13641#13642#0" expanded="true" />
+                <element signature="e#13696#13697#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,16 +54,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="4.288889">
               <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Linearization1D.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/Linearization1D.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.3150685">
-              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -87,11 +73,21 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/Convertor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="46" />
               <folding>
                 <element signature="e#1549#1550#0" expanded="true" />
                 <element signature="e#1587#1588#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConvertedPhotosTransparent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="22" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImprovedWP.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImprovedWP.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/improvedWP/ImprovedWP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52034885">
-              <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -126,12 +122,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HistogramStretching.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HistogramStretching.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-              <folding />
+            <state vertical-scroll-proportion="-0.18971062">
+              <caret line="45" column="55" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
+              <folding>
+                <element signature="e#471#472#0" expanded="true" />
+                <element signature="e#515#516#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,7 +138,7 @@
       <file leaf-file-name="Average.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.2054796">
+            <state vertical-scroll-proportion="-6.0136986">
               <caret line="32" column="102" selection-start-line="32" selection-start-column="102" selection-end-line="32" selection-end-column="102" />
               <folding>
                 <element signature="e#1499#1500#0" expanded="true" />
@@ -1441,13 +1440,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/Linearization1D.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/MatrixMultiplication1D.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/ConversionGW.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/Convertor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/GrayWorld.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/improvedWP/ImprovedWP.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
       </list>
     </option>
   </component>
@@ -1469,6 +1468,25 @@
     <option name="y" value="-9" />
     <option name="width" value="1938" />
     <option name="height" value="1048" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android Lint</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AndroidLintUseSparseArrays</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -1958,14 +1976,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5021436" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32964602" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15967366" sideWeight="0.8102894" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23659673" sideWeight="0.8102894" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.49785638" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32750583" sideWeight="0.48913044" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26098606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24169347" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2313,14 +2331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0277777">
-          <caret line="59" column="22" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.5">
@@ -2364,10 +2374,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/MatrixMultiplication1D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3972602">
+          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/improvedWP/ImprovedWP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="22" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -2380,55 +2406,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/partialConversions/MatrixMultiplication1D.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3972602">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state vertical-scroll-proportion="4.288889">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2054796">
-          <caret line="32" column="102" selection-start-line="32" selection-start-column="102" selection-end-line="32" selection-end-column="102" />
-          <folding>
-            <element signature="e#1499#1500#0" expanded="true" />
-            <element signature="e#1570#1571#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/Convertor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="46" />
           <folding>
             <element signature="e#1549#1550#0" expanded="true" />
             <element signature="e#1587#1588#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2222223">
-          <caret line="237" column="2" selection-start-line="237" selection-start-column="2" selection-end-line="237" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6411#6433#0" expanded="true" />
-            <element signature="e#12808#12830#0" expanded="true" />
-            <element signature="e#13348#13349#0" expanded="true" />
-            <element signature="e#13403#13404#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.288889">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2440,11 +2433,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/improvedWP/ImprovedWP.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/grayWorld/Average.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52034885">
-          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-          <folding />
+        <state vertical-scroll-proportion="-6.0136986">
+          <caret line="32" column="102" selection-start-line="32" selection-start-column="102" selection-end-line="32" selection-end-column="102" />
+          <folding>
+            <element signature="e#1499#1500#0" expanded="true" />
+            <element signature="e#1570#1571#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.7555556">
+          <caret line="250" column="89" selection-start-line="250" selection-start-column="89" selection-end-line="250" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6411#6433#0" expanded="true" />
+            <element signature="e#13101#13123#0" expanded="true" />
+            <element signature="e#13641#13642#0" expanded="true" />
+            <element signature="e#13696#13697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.18971062">
+          <caret line="45" column="55" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
+          <folding>
+            <element signature="e#471#472#0" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

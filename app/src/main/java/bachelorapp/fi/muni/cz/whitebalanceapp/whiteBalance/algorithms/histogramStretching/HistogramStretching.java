@@ -1,9 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching;
 
 import android.graphics.Bitmap;
-import android.util.Log;
-
-import java.util.Arrays;
+import android.util.SparseIntArray;
 
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
 
@@ -11,32 +9,51 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Pi
  * Created by Vladimira Hezelova on 22. 10. 2015.
  */
 public class HistogramStretching {
+
+    private int low;
+    private int high;
+    private Bitmap originalBitmap;
+
+    public HistogramStretching(Bitmap bitmap) {
+        this.originalBitmap = bitmap;
+    }
+
+    public void findBoundary(Bitmap bitmap, int canal) {
+        SparseIntArray histogram = getHistogram(bitmap, canal);
+        int percentil = (int) (bitmap.getWidth()*bitmap.getHeight() * 0.05);
+        int intensity = 0;
+        int number = 0;
+        while(number < percentil) {
+            number += histogram.get(intensity);
+            intensity++;
+        }
+        low = intensity-1;
+
+        intensity = 255;
+        number = 0;
+        while(number < percentil) {
+            number += histogram.get(intensity);
+            intensity--;
+        }
+        high = intensity+1;
+    }
+
+
     public Bitmap conversion(int width, int height, double[][] pixelData) {
 
         PixelData pixelDataInstance = new PixelData();
 
-        /** The number of distinct short values. */
-        final int NUM_SHORT_VALUES = 1 << 16;
-        // Use counting sort on huge arrays
-        int[] count = new int[NUM_SHORT_VALUES];
-
-        short[] sortedPixels = new short[pixelData.length];
-        pixelData = canalStretching(pixelData,0, sortedPixels, count); //red
-        Arrays.fill(count, 0);
-
-        pixelData = canalStretching(pixelData,1, sortedPixels, count); //green
-        Arrays.fill(count, 0);
-        pixelData = canalStretching(pixelData,2, sortedPixels, count); //blue
+        pixelData = canalStretching(pixelData,0); //red
+        pixelData = canalStretching(pixelData,1); //green
+        pixelData = canalStretching(pixelData,2); //blue
 
         return pixelDataInstance.setBitmap(width, height, pixelData);
     }
 
-    public double[][] canalStretching(double[][] pixelData, int canal, short[] sortedPixels, int[] count) {
-        int percentil = (int) (pixelData.length * 0.05);
-        sortedPixels = getSortedPixels(pixelData, canal, sortedPixels, count);
+    public double[][] canalStretching(double[][] pixelData, int canal) {
 
-        double low = sortedPixels[percentil];
-        double high = sortedPixels[pixelData.length - percentil];
+        findBoundary(originalBitmap, canal);
+
         double min = 0.0;
         double max = 255;
         double a = max-min;
@@ -54,65 +71,34 @@ public class HistogramStretching {
         return pixelData;
     }
 
-    public short[] getSortedPixels(double[][] pixelData, int canal, short[] sortedPixels, int[] count) {
-        for(int i = 0; i < pixelData.length; i++) {
-            sortedPixels[i] = (short)pixelData[i][canal];
+
+    public SparseIntArray getHistogram(Bitmap bitmap, int canal) {
+        SparseIntArray histogram = new SparseIntArray();
+        for(int i = 0; i < 256; i++) {
+            histogram.put(i,0);
         }
-      //  doSort(sortedPixels, 0, sortedPixels.length - 1);
-        doSort(sortedPixels, 0, sortedPixels.length-1, count);
-        return sortedPixels;
-    }
-
-    /**
-     * Sorts the specified range of the array into ascending order. This
-     * method differs from the public {@code sort} method in that the
-     * {@code right} index is inclusive, and it does no range checking on
-     * {@code left} or {@code right}.
-     *
-     * @param a the array to be sorted
-     * @param left the index of the first element, inclusive, to be sorted
-     * @param right the index of the last element, inclusive, to be sorted
-     */
-    private static void doSort(short[] a, int left, int right, int[] count) {
-        /**
-         * If the length of an array to be sorted is less than this
-         * constant, insertion sort is used in preference to Quicksort.
-         */
-        final int INSERTION_SORT_THRESHOLD = 32;
-        /**
-         * If the length of a short or char array to be sorted is greater
-         * than this constant, counting sort is used in preference to Quicksort.
-         */
-        final int COUNTING_SORT_THRESHOLD_FOR_SHORT_OR_CHAR = 32768;
-
-        // Use insertion sort on tiny arrays
-        if (right - left + 1 < INSERTION_SORT_THRESHOLD) {
-            for (int i = left + 1; i <= right; i++) {
-                short ai = a[i];
-                int j;
-                for (j = i - 1; j >= left && ai < a[j]; j--) {
-                    a[j + 1] = a[j];
+        int value;
+        int intensity = 0;
+        for(int i = 0; i < bitmap.getHeight(); i++) {
+            for(int j = 0; j < bitmap.getWidth(); j++) {
+                value = bitmap.getPixel(j,i);
+                switch(canal) {
+                    case 0: intensity = (value >> 16) & 0xff; //red
+                        break;
+                    case 1: intensity = (value >>  8) & 0xff; //green
+                        break;
+                    case 2: intensity = (value      ) & 0xff;  //blue
+                        break;
                 }
-                a[j + 1] = ai;
+                int number = histogram.get(intensity);
+              //  Log.e("intensity", Integer.toString(intensity));
+              //  Log.e("number", Integer.toString(number));
+                number++;
+                histogram.put(intensity, number);
             }
-        } else if (right-left+1 > COUNTING_SORT_THRESHOLD_FOR_SHORT_OR_CHAR) {
-            // Use counting sort on huge arrays
-         //   int[] count = new int[NUM_SHORT_VALUES];
-
-            for (int i = left; i <= right; i++) {
-                count[a[i] - Short.MIN_VALUE]++;
-            }
-            for (int i = 0, k = left; i < count.length && k <= right; i++) {
-                short value = (short) (i + Short.MIN_VALUE);
-
-                for (int s = count[i]; s > 0; s--) {
-                    a[k++] = value;
-                }
-            }
-        } else { // Use Dual-Pivot Quicksort on large arrays
-            Log.e("dualPivotQuicksort", "dopis");
-          //  dualPivotQuicksort(a, left, right);
         }
+        return histogram;
+
     }
 
 }

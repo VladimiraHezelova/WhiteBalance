@@ -241,9 +241,15 @@ public class ConvertedPhotos extends AppCompatActivity {
         Bitmap convertedBitmap = grayWorld2.getConvertedBitmap();
         saveImage(convertedBitmap);
 */
-
+/*
         ImprovedWP improvedWP2 = new ImprovedWP(originalBitmap);
         Bitmap convertedBitmap = improvedWP2.getConvertedBitmap();
+        saveImage(convertedBitmap);
+
+*/
+
+        HistogramStretching histogramStretching2 = new HistogramStretching(originalBitmap);
+        Bitmap convertedBitmap = histogramStretching.conversion(scaledWidth, scaledHeight, pixelDataInstance1.getPixelData(scaledBitmap, pixelDataOriginal));
         saveImage(convertedBitmap);
 
         end = System.currentTimeMillis();
@@ -369,7 +375,7 @@ public class ConvertedPhotos extends AppCompatActivity {
 
 */
 
-            histogramStretching = new HistogramStretching();
+            histogramStretching = new HistogramStretching(scaledBitmap);
             grayWorld = new GrayWorld(scaledBitmap);
             improvedWP = new ImprovedWP(scaledBitmap);
 
