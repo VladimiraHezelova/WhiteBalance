@@ -13,9 +13,9 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.ExifInterface;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -235,88 +235,44 @@ public class ConvertedPhotos extends AppCompatActivity {
     }
 
     public void writeImage(int indexOfSelectedBitmap) {
-        /*
-        String f = compressImage(imagePath);
-        Log.e("ffffffffffff ", f);
-        sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
-                + Environment.getExternalStorageDirectory())));
-                */
-        /*
-        InputStream in = null;
-        ByteArrayOutputStream out = null;
-        try {
-            File file = new File(imagePath);
-            in = new BufferedInputStream(new FileInputStream(file));
-            Bitmap original = BitmapFactory.decodeStream(in);
-            out = new ByteArrayOutputStream();
-            Log.e("original before", Integer.toString(original.getRowBytes() * original.getHeight()));
-            original.compress(Bitmap.CompressFormat.JPEG, 50, out);
-            Log.e("original after", Integer.toString(original.getRowBytes() * original.getHeight()));
-            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-            int memoryClass = am.getMemoryClass();
-            Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
-        } catch(IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (out != null) {
-                    out.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-            */
-/*
-            Date date = new Date();
-            String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
 
-            String path = new File(imagePath).getParent();
+        // test na ukladanie velkej fotografie WP
 
-            String fileNameWithExtension = new File(imagePath).getName();
-            String fileName = sDate;
-            String extension = "jpeg";
-            int pos = fileNameWithExtension.lastIndexOf(".");
-            if (pos > 0) {
-                fileName = fileNameWithExtension.substring(0, pos);
-                extension = fileNameWithExtension.substring(pos);
-            }
-            */
-        if(convertedBitmaps[indexOfSelectedBitmap].sameAs(originalBitmap)) {
+        Conversion conversion = new Conversion(imagePath, selectedWhite);
+        Bitmap convertedBitmap = conversion.getConvertedBitmap();
+        saveImage(convertedBitmap);
+        /*
+        if((indexOfSelectedBitmap == 3) && convertedBitmaps[indexOfSelectedBitmap] == null) {
+            Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+        } else if(convertedBitmaps[indexOfSelectedBitmap].sameAs(originalBitmap)) {
             Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
         } else {
             String destinationFilename = getFilename();
             Log.i("destinationFilename", destinationFilename);
 
             BufferedOutputStream bos = null;
+            FileOutputStream fos = null;
             try {
-                bos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
+                fos = new FileOutputStream(destinationFilename, false);
+                bos = new BufferedOutputStream(fos);
 
                 Log.e("out before", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
                 convertedBitmaps[indexOfSelectedBitmap].compress(Bitmap.CompressFormat.JPEG, 50, bos);
                 Log.e("out after", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
-                MediaScannerConnection.scanFile(this, new String[]{
 
-                                destinationFilename},
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    Intent mediaScanIntent = new Intent(
+                            Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    Uri contentUri = Uri.fromFile(new File(destinationFilename));
+                    mediaScanIntent.setData(contentUri);
+                    this.sendBroadcast(mediaScanIntent);
+                } else {
+                    sendBroadcast(new Intent(
+                            Intent.ACTION_MEDIA_MOUNTED,
+                            Uri.parse("file://"
+                                    + Environment.getExternalStorageDirectory())));
+                }
 
-                        null, new MediaScannerConnection.OnScanCompletedListener() {
-
-                            public void onScanCompleted(String path, Uri uri)
-
-                            {
-
-                                sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"
-                                        + Environment.getExternalStorageDirectory())));
-                            }
-
-                        });
                 Toast.makeText(instance.getApplicationContext(),R.string.save_message2, Toast.LENGTH_SHORT).show();
                 //  convertedBitmaps[indexOfSelectedBitmap].recycle();
             } catch (IOException e) {
@@ -332,7 +288,51 @@ public class ConvertedPhotos extends AppCompatActivity {
             }
         }
 
+*/
+    }
 
+    public void saveImage(Bitmap convertedBitmap) {
+        String destinationFilename = getFilename();
+        Log.i("destinationFilename", destinationFilename);
+
+        BufferedOutputStream bos = null;
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(destinationFilename, false);
+            bos = new BufferedOutputStream(fos);
+
+            Log.e("out before", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
+            convertedBitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
+            Log.e("out after", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
+
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Intent mediaScanIntent = new Intent(
+                        Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri contentUri = Uri.fromFile(new File(destinationFilename));
+                mediaScanIntent.setData(contentUri);
+                this.sendBroadcast(mediaScanIntent);
+            } else {
+                sendBroadcast(new Intent(
+                        Intent.ACTION_MEDIA_MOUNTED,
+                        Uri.parse("file://"
+                                + Environment.getExternalStorageDirectory())));
+            }
+
+            Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
+            //  convertedBitmaps[indexOfSelectedBitmap].recycle();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private class ProgressTask extends AsyncTask<Void, Void, Void> {
@@ -439,11 +439,11 @@ public class ConvertedPhotos extends AppCompatActivity {
 
 
         //-200 nepada
-        if(heightDisplay -400 >= heightImage && widthDisplay >= widthImage) {
+        if(heightDisplay - 600 >= heightImage && widthDisplay >= widthImage) {
             scaledHeight = heightImage;
             scaledWidth = widthImage;
         } else {
-            scaledHeight = heightDisplay - 400;
+            scaledHeight = heightDisplay - 600;
             double ratio = (double)scaledHeight / (double)heightImage;
             scaledWidth = (int)((double)widthImage * ratio);
         }
@@ -569,8 +569,8 @@ public class ConvertedPhotos extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             pixelDataInstance3 = new PixelData();
-            conversion = new Conversion();
-            convertedBitmaps[3] = conversion.convert(scaledWidth, scaledHeight, selectedWhite, pixelDataInstance3.getPixelData(scaledBitmap, pixelDataOriginal));
+         //   conversion = new Conversion();
+           // convertedBitmaps[3] = conversion.convert(scaledWidth, scaledHeight, selectedWhite, pixelDataInstance3.getPixelData(scaledBitmap, pixelDataOriginal));
 
             return null;
         }
