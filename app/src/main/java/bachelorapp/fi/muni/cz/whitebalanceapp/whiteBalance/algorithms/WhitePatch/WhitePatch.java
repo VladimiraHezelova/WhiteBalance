@@ -25,7 +25,6 @@ public class WhitePatch {
     private int height;
     private Bitmap convertedBitmap;
 
-
     private MatrixMultiplication1D matrixMultiplication1DInstance;
     private Linearization1D linearization1DInstance;
 

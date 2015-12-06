@@ -35,9 +35,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.ConversionGW;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.GrayWorld;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching.HistogramStretching;
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.subsamplingWP.SubsamplingWB;
+import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.improvedWP.ImprovedWP;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.whitePatch.WhitePatch;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.PixelData;
 
@@ -74,9 +74,9 @@ public class ConvertedPhotos extends AppCompatActivity {
     private PixelData pixelDataInstance4;
 
     private HistogramStretching histogramStretching;
-    private ConversionGW conversionGW;
+    private GrayWorld grayWorld;
     private WhitePatch whitePatch;
-    private SubsamplingWB subsamplingWB;
+    private ImprovedWP improvedWP;
 
     private long start;
     private long end;
@@ -231,15 +231,18 @@ public class ConvertedPhotos extends AppCompatActivity {
 
         // test na ukladanie velkej fotografie WP
         long start = System.currentTimeMillis();
-
+/*
         WhitePatch whitePatch = new WhitePatch(imagePath, originalBitmap, selectedWhite);
         Bitmap convertedBitmap = whitePatch.getConvertedBitmap();
         saveImage(convertedBitmap);
-        whitePatch.recycleBitmpas();
+*/
+        GrayWorld grayWorld2 = new GrayWorld(originalBitmap);
+        Bitmap convertedBitmap = grayWorld2.getConvertedBitmap();
+        saveImage(convertedBitmap);
 
         end = System.currentTimeMillis();
         double time = (double) (end - start) / 1000;
-        Log.e(TAG, "time of WP conversion = " + time + "seconds");
+        Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
         // 50% scaled bitmap 27.131 sec
         // 24.2
         //22.022
@@ -361,15 +364,15 @@ public class ConvertedPhotos extends AppCompatActivity {
 */
 
             histogramStretching = new HistogramStretching();
-            conversionGW = new ConversionGW();
-            subsamplingWB = new SubsamplingWB();
+            grayWorld = new GrayWorld(scaledBitmap);
+            improvedWP = new ImprovedWP();
 
             convertedBitmaps = new Bitmap[] {
                     null,
                     histogramStretching.conversion(scaledWidth, scaledHeight, pixelDataInstance1.getPixelData(scaledBitmap, pixelDataOriginal)),
-                    conversionGW.convert(scaledWidth, scaledHeight, pixelDataInstance2.getPixelData(scaledBitmap, pixelDataOriginal)),
+                    grayWorld.getConvertedBitmap(),
                     null,
-                    subsamplingWB.conversion(scaledWidth, scaledHeight, pixelDataInstance4.getPixelData(scaledBitmap, pixelDataOriginal))
+                    improvedWP.conversion(scaledWidth, scaledHeight, pixelDataInstance4.getPixelData(scaledBitmap, pixelDataOriginal))
             };
 
 

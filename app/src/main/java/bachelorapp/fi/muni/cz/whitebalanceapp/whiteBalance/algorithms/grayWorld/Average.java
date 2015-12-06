@@ -1,25 +1,32 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld;
 
-import android.util.Log;
+import android.graphics.Bitmap;
 
 /**
  * Created by Vladimira Hezelova on 25. 4. 2015.
  */
 public class Average {
 
-    private double avgR;
-    private double avgG;
-    private double avgB;
-    private double avgGray;
-    private double kR;
-    private double kG;
-    private double kB;
+    private float avgR;
+    private float avgG;
+    private float avgB;
+    private float avgGray;
+    private float kR;
+    private float kG;
+    private float kB;
 
-    public Average() {
+    private Bitmap bitmap;
+    private int width;
+    private int height;
+
+    public Average(Bitmap bitmap) {
+        this.bitmap = bitmap;
+        this.width = bitmap.getWidth();
+        this.height = bitmap.getHeight();
     }
 
-    public double[][] getScalingMatrix(double[][] pixelData, double[][] scalingMatrix) {
-        getAverages(pixelData);
+    public float[][] getScalingMatrix(float[][] scalingMatrix) {
+        getAverages();
         getAvgGray();
         getScalingCoefficients();
 
@@ -30,23 +37,32 @@ public class Average {
         return scalingMatrix;
     }
 
-    private void getAverages(double[][] pixelData) {
-        double sumR = 0;
-        double sumG = 0;
-        double sumB = 0;
-        for(int i = 0; i < pixelData.length; i++) {
-            sumR += pixelData[i][0];
-            sumG += pixelData[i][1];
-            sumB += pixelData[i][2];
+    private void getAverages() {
+        float sumR = 0;
+        float sumG = 0;
+        float sumB = 0;
+        int value;
+        float[] pixelData = new float[3];
+
+        for(int i = 0; i < height; i++) {
+            for(int j = 0; j < width; j++) {
+                value = bitmap.getPixel(j,i);
+                pixelData[0] = (value >> 16) & 0xff; //red;
+                pixelData[1] = (value >>  8) & 0xff; //green
+                pixelData[2] = (value      ) & 0xff;  //blue
+                sumR += pixelData[0];
+                sumG += pixelData[1];
+                sumB += pixelData[2];
+            }
         }
-        double numberOfPixels = pixelData.length;
+        float numberOfPixels = pixelData.length;
         avgR = sumR / numberOfPixels;
         avgG = sumG / numberOfPixels;
         avgB = sumB / numberOfPixels;
     }
 
     private void getAvgGray() {
-        avgGray = 0.299 * avgR + 0.587 * avgG + 0.114 * avgB;
+        avgGray = 0.299f * avgR + 0.587f * avgG + 0.114f * avgB;
     }
 
     private void getScalingCoefficients() {

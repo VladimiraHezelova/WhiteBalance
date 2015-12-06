@@ -1,4 +1,4 @@
-package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.subsamplingWP;
+package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.improvedWP;
 
 import android.graphics.Bitmap;
 
@@ -9,7 +9,7 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Pi
 /**
 * Created by Vladimira Hezelova on 20. 8. 2015.
         */
-public class SubsamplingWB {
+public class ImprovedWP {
     public Bitmap conversion(int width, int height, double[][] pixelData) {
 
         PixelData pixelDataInstance = new PixelData();
