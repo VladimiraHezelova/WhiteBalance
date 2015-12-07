@@ -13,7 +13,7 @@
         android:layout_height="100dp"
         android:scaleY="-1"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="110dp"
         android:layout_marginTop="-30dp"/>
 
     <TextView

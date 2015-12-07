@@ -38,5 +38,6 @@
 
     <string name="save_message1">"You don't have choosen converted image to save"</string>
     <string name="save_message2">"Saved succesfully"</string>
+    <string name="save_message3">"Saving in the original quality can takes a while."</string>
 
 </resources>

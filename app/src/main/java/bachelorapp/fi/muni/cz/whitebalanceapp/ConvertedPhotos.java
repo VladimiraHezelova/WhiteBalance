@@ -51,7 +51,7 @@ public class ConvertedPhotos extends AppCompatActivity {
     private Filter filter;
     private Context instance;
     private final String TAG = "ConvertedPhotos";
-    private ProgressBar bar;
+    private ProgressBar waitingCircle;
 
     private ImageButton[] imageButtons;
     private ImageButton selectedImage;
@@ -71,7 +71,7 @@ public class ConvertedPhotos extends AppCompatActivity {
     private Bitmap selectedWhite;
 
     private ImageButton iconWP;
-    private boolean setIconWP;
+    private boolean convertedWP;
     private TextView textWP;
 
     final String PREFS_NAME = "MyPrefsFile";
@@ -86,31 +86,17 @@ public class ConvertedPhotos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.converted_photos_layout);
 
-
-        try {
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(true);
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            actionBar.setCustomView(R.layout.actionbar);
-        } catch(NullPointerException e) {
-            e.printStackTrace();
-        }
-
-
         MainActivity.mainActivity.finish();
 
-        boolean writableExternalStorage = isExternalStorageWritable();
-        Log.e("writableExternalStorage", Boolean.toString(writableExternalStorage));
-        filter = Filter.ORIGINAL_IMAGE;
-
-        setIconWP = true;
-        iconWP = (ImageButton) findViewById(R.id.icon_wp);
-        Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.finger_icon);
-        iconWP.setImageBitmap(icon);
-        iconWP.setVisibility(View.GONE);
-        textWP = (TextView) findViewById(R.id.text_wp);
-        textWP.setVisibility(View.GONE);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            actionBar.setCustomView(R.layout.actionbar);
+            actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        waitingCircle = (ProgressBar) findViewById(R.id.progressBar);
 
         imageButtons = new ImageButton[]{
                 (ImageButton) findViewById(R.id.original_image),
@@ -120,45 +106,36 @@ public class ConvertedPhotos extends AppCompatActivity {
                 (ImageButton) findViewById(R.id.converted_image4)
         };
         selectedImage = (ImageButton) findViewById(R.id.selected_image);
-
-        bar = (ProgressBar) findViewById(R.id.progressBar);
-
-        ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        setWPThumbNail();
+        filter = Filter.ORIGINAL_IMAGE;
 
         Intent intent = getIntent();
         imagePath = intent.getStringExtra("imagePath");
+        originalBitmap = BitmapFactory.decodeFile(imagePath);
+        changeDimensions();
+        scaledBitmap = createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, false);
 
         // free memory
         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         int memoryClass = am.getMemoryClass();
         Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
-
-        // BitmapFactory.Options opts=new BitmapFactory.Options();
-
-        originalBitmap = BitmapFactory.decodeFile(imagePath);
-
-        changeDimensions();
-        scaledBitmap = createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, false);
 /*
         if(!originalBitmap.isRecycled() && !originalBitmap.sameAs(scaledBitmap)) {
             originalBitmap.recycle();
         }
 */
         new ProgressTask().execute();
-        /*
-        //prekrytie layoutu navodom
-        Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent.class);
-        intentTransparent.putExtra("convertedBitmap1", convertedBitmap1);
-        startActivity(intentTransparent);
-        */
     }
 
+    private void setWPThumbNail() {
+        convertedWP = false;
+        iconWP = (ImageButton) findViewById(R.id.icon_wp);
+        Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.finger_icon);
+        iconWP.setImageBitmap(icon);
+        iconWP.setVisibility(View.GONE);
+        textWP = (TextView) findViewById(R.id.text_wp);
+        textWP.setVisibility(View.GONE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -172,26 +149,26 @@ public class ConvertedPhotos extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+
             case R.id.action_download:
                 if(filter == Filter.ORIGINAL_IMAGE) {
                     Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
                 } else {
                     System.gc();
-                    writeImage();
+                    new writeImage().execute();
                 }
                 return true;
+
             case android.R.id.home:
-                if(!originalBitmap.isRecycled()) {
+                if((originalBitmap != null) && (!originalBitmap.isRecycled())) {
                     originalBitmap.recycle();
                 }
-                if(!scaledBitmap.isRecycled()) {
+                if((scaledBitmap != null) && (!scaledBitmap.isRecycled())) {
                     scaledBitmap.recycle();
                 }
                 for(int i = 0; i < convertedBitmaps.length; i++) {
-                    if(convertedBitmaps[i] != null) {
-                        if(!convertedBitmaps[i].isRecycled()) {
-                            convertedBitmaps[i].recycle();
-                        }
+                    if((convertedBitmaps[i] != null) && (!convertedBitmaps[i].isRecycled())) {
+                        convertedBitmaps[i].recycle();
                     }
                 }
                 if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
@@ -217,34 +194,46 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
-    public void writeImage() {
 
-        // test na ukladanie velkej fotografie WP
-        long start = System.currentTimeMillis();
-        if(filter == Filter.HISTOGRAM_STRETCHING) {
-            HistogramStretching histogramStretchingS = new HistogramStretching(originalBitmap);
-            Bitmap convertedBitmap =histogramStretchingS.getConvertedBitmap();
-            saveImage(convertedBitmap);
-        } else if(filter == Filter.GRAY_WORLD) {
-            GrayWorld grayWorldS = new GrayWorld(originalBitmap);
-            Bitmap convertedBitmap = grayWorldS.getConvertedBitmap();
-            saveImage(convertedBitmap);
-        } else if(filter == Filter.WHITE_PATCH) {
-            WhitePatch whitePatchS = new WhitePatch(originalBitmap, selectedWhite);
-            Bitmap convertedBitmap = whitePatchS.getConvertedBitmap();
-            saveImage(convertedBitmap);
-        } else if(filter == Filter.IMPROVED_WP) {
-            ImprovedWP improvedWPS = new ImprovedWP(originalBitmap);
-            Bitmap convertedBitmap = improvedWPS.getConvertedBitmap();
-            saveImage(convertedBitmap);
-        } else {
-            Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+    private class writeImage extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            Toast.makeText(getApplicationContext(), R.string.save_message3, Toast.LENGTH_SHORT).show();
+            waitingCircle.setVisibility(View.VISIBLE);
+            waitingCircle.bringToFront();
         }
 
+        @Override
+        protected Void doInBackground(Void... params) {
+            long start = System.currentTimeMillis();
 
-        long end = System.currentTimeMillis();
-        double time = (double) (end - start) / 1000;
-        Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
+            if(isExternalStorageWritable()) {
+                if(filter == Filter.HISTOGRAM_STRETCHING) {
+                    HistogramStretching histogramStretchingS = new HistogramStretching(originalBitmap);
+                    Bitmap convertedBitmap = histogramStretchingS.getConvertedBitmap();
+                    saveImage(convertedBitmap);
+                } else if(filter == Filter.GRAY_WORLD) {
+                    GrayWorld grayWorldS = new GrayWorld(originalBitmap);
+                    Bitmap convertedBitmap = grayWorldS.getConvertedBitmap();
+                    saveImage(convertedBitmap);
+                } else if(filter == Filter.WHITE_PATCH) {
+                    WhitePatch whitePatchS = new WhitePatch(originalBitmap, selectedWhite);
+                    Bitmap convertedBitmap = whitePatchS.getConvertedBitmap();
+                    saveImage(convertedBitmap);
+                } else if(filter == Filter.IMPROVED_WP) {
+                    ImprovedWP improvedWPS = new ImprovedWP(originalBitmap);
+                    Bitmap convertedBitmap = improvedWPS.getConvertedBitmap();
+                    saveImage(convertedBitmap);
+                } else {
+                    Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Log.e(TAG, "External storage is not writable");
+            }
+
+            long end = System.currentTimeMillis();
+            double time = (double) (end - start) / 1000;
+            Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
 
         /*
         if((indexOfSelectedBitmap == 3) && convertedBitmaps[indexOfSelectedBitmap] == null) {
@@ -292,8 +281,15 @@ public class ConvertedPhotos extends AppCompatActivity {
                 }
             }
         }
-
 */
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            waitingCircle.setVisibility(View.GONE);
+            Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void saveImage(Bitmap convertedBitmap) {
@@ -301,16 +297,14 @@ public class ConvertedPhotos extends AppCompatActivity {
         Log.i("destinationFilename", destinationFilename);
 
         BufferedOutputStream bos = null;
-        FileOutputStream fos = null;
+        FileOutputStream fos;
         try {
             fos = new FileOutputStream(destinationFilename, false);
             bos = new BufferedOutputStream(fos);
 
-            Log.e("out before", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
-            convertedBitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
-            Log.e("out after", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
-
-
+            Log.e("out before compress", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
+            convertedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            Log.e("out after compress", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 Intent mediaScanIntent = new Intent(
@@ -324,9 +318,6 @@ public class ConvertedPhotos extends AppCompatActivity {
                         Uri.parse("file://"
                                 + Environment.getExternalStorageDirectory())));
             }
-
-            Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
-            //  convertedBitmaps[indexOfSelectedBitmap].recycle();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -343,7 +334,7 @@ public class ConvertedPhotos extends AppCompatActivity {
     private class ProgressTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute(){
-            bar.setVisibility(View.VISIBLE);
+            waitingCircle.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -369,11 +360,10 @@ public class ConvertedPhotos extends AppCompatActivity {
             return null;
         }
 
-
         @Override
         protected void onPostExecute(Void result) {
 
-            bar.setVisibility(View.GONE);
+            waitingCircle.setVisibility(View.GONE);
 
             setBitmapInButton(Filter.ORIGINAL_IMAGE, scaledBitmap);
             setBitmapInButton(Filter.HISTOGRAM_STRETCHING);
@@ -383,16 +373,13 @@ public class ConvertedPhotos extends AppCompatActivity {
 
             selectedImage.setImageBitmap(scaledBitmap);
 
+            // find out if app is starting first time
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
             if(settings.getBoolean("my_first_time", true)) {
-                //the app is being launched for first time, do something
-                Log.d("Comments", "First time");
-
+                Log.i(TAG, "First time start of app");
                 Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent.class);
                 startActivity(intentTransparent);
-
-                // record the fact that the app has been started at least once
-                   settings.edit().putBoolean("my_first_time", false).commit();
+                settings.edit().putBoolean("my_first_time", false).commit();
             }
         }
     }
@@ -417,12 +404,10 @@ public class ConvertedPhotos extends AppCompatActivity {
         int heightImage = originalBitmap.getHeight();
         int heightImageDp = pxToDp(heightImage);
 
-
         Log.i(TAG, "bitmap width in px: " + Integer.toString(widthImage));
         Log.i(TAG, "bitmap height in px: " + Integer.toString(heightImage));
         Log.i(TAG, "bitmap width in dp: " + Integer.toString(widthImageDp));
         Log.i(TAG, "bitmap height in dp: " + Integer.toString(heightImageDp));
-
 
         //-200 nepada
         if(heightDisplay - 600 >= heightImage && widthDisplay >= widthImage) {
@@ -456,42 +441,46 @@ public class ConvertedPhotos extends AppCompatActivity {
     public void setBitmapInButton(final Filter selectedFilter, final Bitmap bitmap) {
         imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
 
-
-        if(setIconWP && selectedFilter == Filter.WHITE_PATCH) {
-            iconWP.setVisibility(View.VISIBLE);
+        if(selectedFilter == Filter.WHITE_PATCH) {
+            selectedImage.setImageBitmap(bitmap);
+            if(!convertedWP) {
+                iconWP.setVisibility(View.VISIBLE);
+            }
             iconWP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     filter = selectedFilter;
-                    selectedImage.setImageBitmap(bitmap);
-                    if(setIconWP) {
+                    if(!convertedWP) {
                         textWP.setVisibility(View.VISIBLE);
-                        if (selectedFilter == Filter.WHITE_PATCH) {
-                            selectWhite();
-                        }
+                        selectWhite();
+                    } else {
+                        selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
                     }
-
+                }
+            });
+            imageButtons[Filter.WHITE_PATCH.ordinal()].setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      filter = selectedFilter;
+                      if(!convertedWP) {
+                          textWP.setVisibility(View.VISIBLE);
+                          selectWhite();
+                      } else {
+                          selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                      }
+                  }
+            });
+        } else {
+            imageButtons[selectedFilter.ordinal()].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    textWP.setVisibility(View.GONE);
+                    filter = selectedFilter;
+                    selectedImage.setImageBitmap(bitmap);
+                    selectedImage.setOnTouchListener(null);
                 }
             });
         }
-        imageButtons[selectedFilter.ordinal()].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    filter = selectedFilter;
-                    selectedImage.setImageBitmap(bitmap);
-                    if (selectedFilter == Filter.WHITE_PATCH) {
-                        filter = selectedFilter;
-                        selectedImage.setImageBitmap(bitmap);
-                        if (setIconWP) {
-                            textWP.setVisibility(View.VISIBLE);
-                            selectWhite();
-                        }
-                    } else {
-                        selectedImage.setOnTouchListener(null);
-                        textWP.setVisibility(View.GONE);
-                    }
-                }
-            });
     }
 
     public void selectWhite() {
@@ -501,7 +490,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     iconWP.setVisibility(View.GONE);
                     textWP.setVisibility(View.GONE);
-                    setIconWP = false;
+                    convertedWP = true;
 
                     // selected pixel of White
                     int selectedPixelX = (int) event.getX();
@@ -538,8 +527,8 @@ public class ConvertedPhotos extends AppCompatActivity {
     private class ProgressTask2 extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            bar.setVisibility(View.VISIBLE);
-            bar.bringToFront();
+            waitingCircle.setVisibility(View.VISIBLE);
+            waitingCircle.bringToFront();
         }
 
         @Override
@@ -551,7 +540,7 @@ public class ConvertedPhotos extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            bar.setVisibility(View.GONE);
+            waitingCircle.setVisibility(View.GONE);
             selectedImage.setImageBitmap(convertedBitmaps[3]);
             setBitmapInButton(Filter.WHITE_PATCH);
         }
