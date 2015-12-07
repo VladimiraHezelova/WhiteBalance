@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">White Balance</string>
+    <string name="app_name">Color Balance</string>
     <string name="action_settings">Settings</string>
     <string name="action_download">Download</string>
 
@@ -7,6 +7,7 @@
 
     <string name="converted_photos_fragment">converted photos fragment</string>
     <string name="white_balance">White Balance</string>
+    <string name="color_balnce">Color Balance</string>
     <string name="save">save</string>
     <string name="selected_image">selected image</string>
     <string name="original_image">original image</string>

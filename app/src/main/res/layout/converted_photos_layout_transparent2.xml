@@ -4,7 +4,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#80000000"
-    tools:context=".ConvertedPhotos">
+    tools:context=".ConvertedPhotos"
+    android:id="@+id/converted_photos_transparent2">
 
     <ImageView
         android:id="@+id/arrow3"
@@ -40,16 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/guide4"
-            android:background="@drawable/round_background"
-            android:gravity="center_horizontal"/>
-        <ImageButton
-            android:id="@+id/next4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/guide4"
-            android:layout_toEndOf="@id/guide4"
-            android:layout_centerInParent="true"
-            android:gravity="center_vertical"/>
+            android:background="@drawable/round_background"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

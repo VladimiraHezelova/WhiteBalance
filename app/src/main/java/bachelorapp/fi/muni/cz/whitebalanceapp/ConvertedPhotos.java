@@ -381,7 +381,7 @@ public class ConvertedPhotos extends AppCompatActivity {
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
             if(settings.getBoolean("my_first_time", true)) {
                 Log.i(TAG, "First time start of app");
-                Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent.class);
+                Intent intentTransparent = new Intent(getApplicationContext(), ConvertedPhotosTransparent1.class);
                 startActivity(intentTransparent);
                 settings.edit().putBoolean("my_first_time", false).commit();
             }

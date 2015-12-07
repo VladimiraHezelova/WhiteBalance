@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,14 +19,17 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
-    private Button buttonGallery;
+    private ImageView buttonGallery;
+    private TextView textGallery;
     private String imagePath;
 
 
@@ -39,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+
+        buttonGallery = (ImageView) findViewById(R.id.button_gallery);
+        Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_photo_library_black_48dp);
+        buttonGallery.setImageBitmap(icon);
+        textGallery = (TextView) findViewById(R.id.button_text);
 
         mainActivity = this;
 
@@ -71,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
         // final String picturePath = intent.getStringExtra("picturePath");
         imagePath = intent.getStringExtra("imagePath");
 
-        buttonGallery = (Button) findViewById(R.id.button_gallery);
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
 
-        buttonGallery.setOnClickListener(new View.OnClickListener() {
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
                     Intent i = new Intent(

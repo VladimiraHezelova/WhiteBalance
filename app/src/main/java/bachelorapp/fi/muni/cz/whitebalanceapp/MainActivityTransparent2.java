@@ -8,31 +8,32 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Vladimira Hezelova on 22. 10. 2015.
  */
-public class MainActivityTransparent extends Activity {
+public class MainActivityTransparent2 extends Activity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 
     private String imagePath;
-    private Button buttonGalleryB;
 
     public static Activity mainActivityTransparent2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity_layout_transparent);
+        setContentView(R.layout.main_activity_layout_transparent2);
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_activity_transparent2);
 
         mainActivityTransparent2 = this;
 
         Intent intent = getIntent();
         imagePath = intent.getStringExtra("imagePath");
-        buttonGalleryB = (Button) findViewById(R.id.button_galleryB);
-        buttonGalleryB.setOnClickListener(new View.OnClickListener() {
+
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(

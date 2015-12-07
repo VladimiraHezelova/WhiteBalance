@@ -5,7 +5,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#80000000"
-    tools:context=".ConvertedPhotos">
+    tools:context=".ConvertedPhotos"
+    android:id="@+id/converted_photos_transparent1">
 
     <ImageView
         android:id="@+id/arrow1"
@@ -41,14 +42,6 @@
             android:text="@string/guide2"
             android:background="@drawable/round_background"
             android:gravity="center_horizontal"/>
-        <ImageButton
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/guide2"
-            android:layout_toEndOf="@id/guide2"
-            android:layout_centerInParent="true"
-            android:gravity="center_vertical"/>
     </RelativeLayout>
 
 
