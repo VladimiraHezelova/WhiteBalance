@@ -25,10 +25,12 @@ public abstract class Convertor {
 
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
-                value = originalBitmap.getPixel(j,i);
-                rgb = getRGBFromValue(value, rgb);
-                rgb = removeColorCast(rgb);
-                convertedBitmap.setPixel(j, i, getValueFromRGB(rgb));
+                if(originalBitmap != null && !originalBitmap.isRecycled()) {
+                    value = originalBitmap.getPixel(j,i);
+                    rgb = getRGBFromValue(value, rgb);
+                    rgb = removeColorCast(rgb);
+                    convertedBitmap.setPixel(j, i, getValueFromRGB(rgb));
+                }
             }
         }
     }

@@ -160,23 +160,10 @@ public class ConvertedPhotos extends AppCompatActivity {
                 return true;
 
             case android.R.id.home:
-                if((originalBitmap != null) && (!originalBitmap.isRecycled())) {
-                    originalBitmap.recycle();
-                }
-                if((scaledBitmap != null) && (!scaledBitmap.isRecycled())) {
-                    scaledBitmap.recycle();
-                }
-                for(int i = 0; i < convertedBitmaps.length; i++) {
-                    if((convertedBitmaps[i] != null) && (!convertedBitmaps[i].isRecycled())) {
-                        convertedBitmaps[i].recycle();
-                    }
-                }
-                if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
-                    selectedWhite.recycle();
-                }
                 finish();
                 Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivityIntent);
+                recycleBitmaps();
                 /*
                 Intent upIntent = NavUtils.getParentActivityIntent(this);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
@@ -191,6 +178,23 @@ public class ConvertedPhotos extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void recycleBitmaps() {
+        if((originalBitmap != null) && (!originalBitmap.isRecycled())) {
+            originalBitmap.recycle();
+        }
+        if((scaledBitmap != null) && (!scaledBitmap.isRecycled())) {
+            scaledBitmap.recycle();
+        }
+        for(int i = 0; i < convertedBitmaps.length; i++) {
+            if((convertedBitmaps[i] != null) && (!convertedBitmaps[i].isRecycled())) {
+                convertedBitmaps[i].recycle();
+            }
+        }
+        if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
+            selectedWhite.recycle();
         }
     }
 
