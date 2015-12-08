@@ -8,32 +8,30 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 /**
- * Created by Vladimira Hezelova on 25. 11. 2015.
+ * Created by Vladimira Hezelova on 8. 12. 2015.
  */
-public class ConvertedPhotosTransparent2 extends AppCompatActivity {
-
-    private ImageView arrow3;
+public class ConvertedPhotosTransparent2b extends AppCompatActivity {
+    private ImageView arrow2b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.converted_photos_layout_transparent2);
+        setContentView(R.layout.converted_photos_layout_transparent2b);
 
-        arrow3 = (ImageView) findViewById(R.id.arrow3);
-        arrow3.setImageResource(R.drawable.arrow_img);
-        arrow3.bringToFront();
+        arrow2b = (ImageView) findViewById(R.id.arrow2b);
+        arrow2b.setImageResource(R.drawable.arrow_img);
+        arrow2b.bringToFront();
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.converted_photos_transparent2);
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.converted_photos_transparent2b);
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intentTransparent3 = new Intent(getApplicationContext(), ConvertedPhotosTransparent2b.class);
+                Intent intentTransparent3 = new Intent(getApplicationContext(), ConvertedPhotosTransparent3.class);
                 startActivity(intentTransparent3);
             }
         });
 
     }
-
 }

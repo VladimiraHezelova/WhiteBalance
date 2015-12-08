@@ -7,8 +7,8 @@
     <string name="gallery">GALLERY</string>
 
     <string name="converted_photos_fragment">converted photos fragment</string>
-    <string name="white_balance">White Balance</string>
-    <string name="color_balnce">Color Balance</string>
+    <string name="white_balance">Color Balance</string>
+    <string name="color_balance">Color Balance</string>
     <string name="save">save</string>
     <string name="selected_image">selected image</string>
     <string name="original_image">original image</string>
@@ -34,14 +34,16 @@
     <string name="guide2">2. Than you will see \n enlarge image here.</string>
     <string name="guide3">3. If you choose White Patch filter,</string>
     <string name="guide4">4. tap on white area \n in image view for converting</string>
-    <string name="guide5">5. You can save image from view \n with this button</string>
-    <string name="guide6">6. or go back and choose \n another image from your gallery.</string>
+    <string name="guide2b">5. To select new white array \n in White Patch filter. \n Old one will be deleted.</string>
+    <string name="guide5">6. You can save image from view \n with this button</string>
+    <string name="guide6">7. or go back and choose \n another image from your gallery.</string>
     <string name="guide7">Now you can start use \n White Balance application</string>
 
     <string name="save_message1">"You don't have choosen converted image to save"</string>
     <string name="save_message2">"Saved succesfully"</string>
     <string name="save_message3">"Saving in the original quality can takes a while"</string>
 
-    <string name="new_selected_white">"You can select new white area in image"</string>
+    <string name="WP_icon_after_first_conversion">"You can select new white area in image"</string>
+    <string name="WP_icon_before_first_conversion">"You can select white area in image"</string>
 
 </resources>
