@@ -80,7 +80,9 @@ public class WhitePatch extends Convertor {
 
         for(int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                m[i * width + j] = img.getPixel(j, i);
+                if(img != null && !img.isRecycled()) {
+                    m[i * width + j] = img.getPixel(j, i);
+                }
             }
         }
         Arrays.sort(m);

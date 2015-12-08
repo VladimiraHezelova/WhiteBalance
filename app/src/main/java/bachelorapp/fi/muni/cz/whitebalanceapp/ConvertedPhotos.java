@@ -150,6 +150,54 @@ public class ConvertedPhotos extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
 
+            case R.id.action_WP:
+                if(convertedWP) {
+                    Toast.makeText(instance.getApplicationContext(), R.string.new_selected_white, Toast.LENGTH_SHORT).show();
+
+                    filter = Filter.WHITE_PATCH;
+                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                    iconWP.setVisibility(View.VISIBLE);
+                    textWP.setVisibility(View.VISIBLE);
+
+                    selectedImage.setImageBitmap(scaledBitmap);
+                    convertedWP = false;
+                    selectedImage.setClickable(true);
+                    iconWP.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            filter = Filter.WHITE_PATCH;
+                            if(!convertedWP) {
+                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                                textWP.setVisibility(View.VISIBLE);
+                                selectedImage.setImageBitmap(scaledBitmap);
+                                selectedImage.setClickable(true);
+                            } else {
+                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                            }
+                        }
+                    });
+                    imageButtons[Filter.WHITE_PATCH.ordinal()].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            filter = Filter.WHITE_PATCH;
+                            if(!convertedWP) {
+                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                                textWP.setVisibility(View.VISIBLE);
+                                selectedImage.setImageBitmap(scaledBitmap);
+                                selectedImage.setClickable(true);
+                            } else {
+                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                            }
+                        }
+                    });
+
+                } else {
+                    selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                }
+                return true;
+
             case R.id.action_download:
                 if(filter == Filter.ORIGINAL_IMAGE) {
                     Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
@@ -455,6 +503,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                 public void onClick(View v) {
                     filter = selectedFilter;
                     if(!convertedWP) {
+                        imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
                         textWP.setVisibility(View.VISIBLE);
                         selectWhite();
                     } else {
@@ -467,6 +516,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                   public void onClick(View v) {
                       filter = selectedFilter;
                       if(!convertedWP) {
+                          imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
                           textWP.setVisibility(View.VISIBLE);
                           selectWhite();
                       } else {
@@ -481,7 +531,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                     textWP.setVisibility(View.GONE);
                     filter = selectedFilter;
                     selectedImage.setImageBitmap(bitmap);
-                    selectedImage.setOnTouchListener(null);
+                    selectedImage.setClickable(false);
                 }
             });
         }
@@ -519,7 +569,8 @@ public class ConvertedPhotos extends AppCompatActivity {
                         shiftedY = scaledBitmap.getHeight() - 10;
                     }
                     selectedWhite = Bitmap.createBitmap(scaledBitmap, shiftedX, shiftedY, size, size);
-                    selectedImage.setOnTouchListener(null);
+                //    selectedImage.setOnTouchListener(null);
+                    selectedImage.setClickable(false);
                     new ProgressTask2().execute();
                     return true;
                 } else

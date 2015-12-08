@@ -42,10 +42,12 @@ public class Average {
 
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
-                value = bitmap.getPixel(j,i);
-                sumR += (value >> 16) & 0xff; //red;
-                sumG += (value >>  8) & 0xff; //green
-                sumB += (value      ) & 0xff;  //blue
+                if(bitmap != null && !bitmap.isRecycled()) {
+                    value = bitmap.getPixel(j,i);
+                    sumR += (value >> 16) & 0xff; //red;
+                    sumG += (value >>  8) & 0xff; //green
+                    sumB += (value      ) & 0xff;  //blue
+                }
             }
         }
         float numberOfPixels = height*width;

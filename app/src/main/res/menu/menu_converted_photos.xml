@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<item android:id="@+id/action_WP"
+        android:icon="@drawable/finger_icon"
+        android:title="@string/action_WP"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+
 <item android:id="@+id/action_download"
     android:icon="@drawable/ic_get_app_black_24dp"
     android:title="@string/action_download"

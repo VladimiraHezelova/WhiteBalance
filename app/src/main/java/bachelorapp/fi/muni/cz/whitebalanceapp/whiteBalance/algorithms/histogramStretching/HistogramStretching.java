@@ -99,20 +99,22 @@ public class HistogramStretching extends Convertor {
         int intensity = 0;
         for(int i = 0; i < originalBitmap.getHeight(); i++) {
             for(int j = 0; j < originalBitmap.getWidth(); j++) {
-                value = originalBitmap.getPixel(j,i);
-                switch(canal) {
-                    case 0: intensity = (value >> 16) & 0xff; //red
-                        break;
-                    case 1: intensity = (value >>  8) & 0xff; //green
-                        break;
-                    case 2: intensity = (value      ) & 0xff;  //blue
-                        break;
+                if(originalBitmap != null && !originalBitmap.isRecycled()) {
+                    value = originalBitmap.getPixel(j,i);
+                    switch(canal) {
+                        case 0: intensity = (value >> 16) & 0xff; //red
+                            break;
+                        case 1: intensity = (value >>  8) & 0xff; //green
+                            break;
+                        case 2: intensity = (value      ) & 0xff;  //blue
+                            break;
+                    }
+                    int number = histogram.get(intensity);
+                    //  Log.e("intensity", Integer.toString(intensity));
+                    //  Log.e("number", Integer.toString(number));
+                    number++;
+                    histogram.put(intensity, number);
                 }
-                int number = histogram.get(intensity);
-              //  Log.e("intensity", Integer.toString(intensity));
-              //  Log.e("number", Integer.toString(number));
-                number++;
-                histogram.put(intensity, number);
             }
         }
         return histogram;

@@ -66,13 +66,14 @@ public class ImprovedWP extends Convertor {
                 row=(int)((height-1)*p1);
                 col=(int)((width-1)*p2);
 
-                int value = originalBitmap.getPixel(col, row);
-                float[] pixelData = new float[3];
-                pixelData = getRGBFromValue(value, pixelData);
-
-                for(int k = 0; k < 3; k++) {
-                    if(max[k] < pixelData[k]) {
-                        max[k] = pixelData[k];
+                if(originalBitmap != null && !originalBitmap.isRecycled()) {
+                    int value = originalBitmap.getPixel(col, row);
+                    float[] pixelData = new float[3];
+                    pixelData = getRGBFromValue(value, pixelData);
+                    for(int k = 0; k < 3; k++) {
+                        if(max[k] < pixelData[k]) {
+                            max[k] = pixelData[k];
+                        }
                     }
                 }
             }

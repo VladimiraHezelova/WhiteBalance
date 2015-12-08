@@ -2,6 +2,7 @@
     <string name="app_name">Color Balance</string>
     <string name="action_settings">Settings</string>
     <string name="action_download">Download</string>
+    <string name="action_WP">White Patch</string>
 
     <string name="gallery">GALLERY</string>
 
@@ -39,6 +40,8 @@
 
     <string name="save_message1">"You don't have choosen converted image to save"</string>
     <string name="save_message2">"Saved succesfully"</string>
-    <string name="save_message3">"Saving in the original quality can takes a while."</string>
+    <string name="save_message3">"Saving in the original quality can takes a while"</string>
+
+    <string name="new_selected_white">"You can select new white area in image"</string>
 
 </resources>
