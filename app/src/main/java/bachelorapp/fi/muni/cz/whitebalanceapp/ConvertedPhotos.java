@@ -513,6 +513,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                 public void onClick(View v) {
                     filter = selectedFilter;
                     if(!convertedWP) {
+                        selectedImage.setImageBitmap(bitmap);
                         imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
                         textWP.setVisibility(View.VISIBLE);
                         selectedImage.setClickable(true);
@@ -527,6 +528,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                   public void onClick(View v) {
                       filter = selectedFilter;
                       if(!convertedWP) {
+                          selectedImage.setImageBitmap(bitmap);
                           imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
                           textWP.setVisibility(View.VISIBLE);
                           selectedImage.setClickable(true);

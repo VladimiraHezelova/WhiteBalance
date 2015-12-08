@@ -24,27 +24,27 @@
     <string name="converted_image4_text">Improved\nWP</string>
 
     <string name="icon_wp">icon_wp</string>
-    <string name="text_wp">Tap on white area in image above</string>
+    <string name="text_wp">Tap on white area in the picture above</string>
     
     // guide
     <string name="next">NEXT</string>
-    <string name="guideA">Welcome! \n This fast guidebook will show you \n how to use this application.</string>
-    <string name="guideB">At the first, pick up image \n from your gallery, in which \n you want to balance white.</string>
-    <string name="guide1">1. You can choose \n any of converted image \n from this progress bar.</string>
-    <string name="guide2">2. Than you will see \n enlarge image here.</string>
+    <string name="guideA">Welcome! \n This fast guide will show you \n how to use this application.</string>
+    <string name="guideB">Pick up a picture \n from your gallery, which \n you want to balance its color.</string>
+    <string name="guide1">1. You can choose \n any filter for your picture \n from the bar.</string>
+    <string name="guide2">2. Then, you will have \n an enlarge view of your picture here.</string>
     <string name="guide3">3. If you choose White Patch filter,</string>
-    <string name="guide4">4. tap on white area \n in image view for converting</string>
-    <string name="guide2b">5. To select new white array \n in White Patch filter. \n Old one will be deleted.</string>
-    <string name="guide5">6. You can save image from view \n with this button</string>
-    <string name="guide6">7. or go back and choose \n another image from your gallery.</string>
-    <string name="guide7">Now you can start use \n White Balance application</string>
+    <string name="guide4">4. tap on white area \n in the picture view for filter change</string>
+    <string name="guide2b">5. To select a new white area \n press the button. \n and the old one will be deleted.</string>
+    <string name="guide5">6. You can save the picture from view \n with this button</string>
+    <string name="guide6">7. or go back and choose \n another picture from your gallery.</string>
+    <string name="guide7">Now you can start using \n Color Balance application</string>
 
-    <string name="save_message1">"You don't have choosen converted image to save"</string>
-    <string name="save_message2">"Saved succesfully"</string>
-    <string name="save_message3">"Saving in the original quality can takes a while"</string>
+    <string name="save_message1">"You don't have chosen converted picture to save"</string>
+    <string name="save_message2">"Saved successfully"</string>
+    <string name="save_message3">"Saving in the original quality can take a while"</string>
 
-    <string name="WP_icon_after_first_conversion">"You can select new white area in image"</string>
-    <string name="WP_icon_before_first_conversion">"You can select white area in image"</string>
+    <string name="WP_icon_after_first_conversion">"You can select new white area in the picture"</string>
+    <string name="WP_icon_before_first_conversion">"You can select white area in the picture"</string>
 
     <string name="wait">"Images are loading"</string>
 
