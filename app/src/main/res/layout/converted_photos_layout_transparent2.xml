@@ -41,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/guide4"
-            android:background="@drawable/round_background"/>
+            android:background="@drawable/round_background"
+            android:gravity="center_horizontal"/>
 
     </RelativeLayout>
 

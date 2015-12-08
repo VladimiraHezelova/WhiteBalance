@@ -29,13 +29,13 @@
     // guide
     <string name="next">NEXT</string>
     <string name="guideA">Welcome! \n This fast guide will show you \n how to use this application.</string>
-    <string name="guideB">Pick up a picture \n from your gallery, which \n you want to balance its color.</string>
+    <string name="guideB">Pick up a picture from your gallery, \n which you want to balance its color.</string>
     <string name="guide1">1. You can choose \n any filter for your picture \n from the bar.</string>
-    <string name="guide2">2. Then, you will have \n an enlarge view of your picture here.</string>
+    <string name="guide2">2. Then, you will have \n an enlarge view \n of your picture here.</string>
     <string name="guide3">3. If you choose White Patch filter,</string>
-    <string name="guide4">4. tap on white area \n in the picture view for filter change</string>
-    <string name="guide2b">5. To select a new white area \n press the button. \n and the old one will be deleted.</string>
-    <string name="guide5">6. You can save the picture from view \n with this button</string>
+    <string name="guide4">4. tap on white area \n in the picture view \n for filter change.</string>
+    <string name="guide2b">5. To select a new white area \n press the button. \n The old one will be deleted.</string>
+    <string name="guide5">6. You can save the picture \n from view with this button</string>
     <string name="guide6">7. or go back and choose \n another picture from your gallery.</string>
     <string name="guide7">Now you can start using \n Color Balance application</string>
 
@@ -46,6 +46,6 @@
     <string name="WP_icon_after_first_conversion">"You can select new white area in the picture"</string>
     <string name="WP_icon_before_first_conversion">"You can select white area in the picture"</string>
 
-    <string name="wait">"Images are loading"</string>
+    <string name="wait">"Pictures are loading"</string>
 
 </resources>
