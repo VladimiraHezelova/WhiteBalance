@@ -32,8 +32,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Filter;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.GrayWorld;
@@ -75,6 +73,8 @@ public class ConvertedPhotos extends AppCompatActivity {
     private TextView textWP;
 
     final String PREFS_NAME = "MyPrefsFile";
+
+    private Menu this_menu;
 
     public ConvertedPhotos() {
         instance = this;
@@ -142,6 +142,7 @@ public class ConvertedPhotos extends AppCompatActivity {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_converted_photos, menu);
+        this_menu = menu;
         return true;
     }
 
@@ -151,95 +152,109 @@ public class ConvertedPhotos extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_WP:
-                if(convertedWP) {
-                    Toast.makeText(instance.getApplicationContext(), R.string.WP_icon_after_first_conversion, Toast.LENGTH_SHORT).show();
+                // musi byt nacitana aj bitmapa z posledne prevedeneho algoritmu
+                if(convertedBitmaps != null &&
+                        convertedBitmaps[Filter.HISTOGRAM_STRETCHING.ordinal()] != null &&
+                        convertedBitmaps[Filter.GRAY_WORLD.ordinal()] != null &&
+                        convertedBitmaps[Filter.IMPROVED_WP.ordinal()] != null) {
+                    if(convertedWP) {
+                        Toast.makeText(instance.getApplicationContext(), R.string.WP_icon_after_first_conversion, Toast.LENGTH_SHORT).show();
 
-                    filter = Filter.WHITE_PATCH;
-                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
-                    iconWP.setVisibility(View.VISIBLE);
-                    textWP.setVisibility(View.VISIBLE);
+                        filter = Filter.WHITE_PATCH;
+                        imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                        iconWP.setVisibility(View.VISIBLE);
+                        textWP.setVisibility(View.VISIBLE);
 
-                    selectedImage.setImageBitmap(scaledBitmap);
-                    convertedWP = false;
-                    selectedImage.setClickable(true);
-                    iconWP.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            filter = Filter.WHITE_PATCH;
-                            if(!convertedWP) {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
-                                textWP.setVisibility(View.VISIBLE);
-                                selectedImage.setImageBitmap(scaledBitmap);
-                                selectedImage.setClickable(true);
-                            } else {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
-                                selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                        selectedImage.setImageBitmap(scaledBitmap);
+                        convertedWP = false;
+                        selectedImage.setClickable(true);
+                        iconWP.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                filter = Filter.WHITE_PATCH;
+                                if(!convertedWP) {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                                    textWP.setVisibility(View.VISIBLE);
+                                    selectedImage.setImageBitmap(scaledBitmap);
+                                    selectedImage.setClickable(true);
+                                } else {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                    selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                }
                             }
-                        }
-                    });
-                    imageButtons[Filter.WHITE_PATCH.ordinal()].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            filter = Filter.WHITE_PATCH;
-                            if(!convertedWP) {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
-                                textWP.setVisibility(View.VISIBLE);
-                                selectedImage.setImageBitmap(scaledBitmap);
-                                selectedImage.setClickable(true);
-                            } else {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
-                                selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                        });
+                        imageButtons[Filter.WHITE_PATCH.ordinal()].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                filter = Filter.WHITE_PATCH;
+                                if(!convertedWP) {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                                    textWP.setVisibility(View.VISIBLE);
+                                    selectedImage.setImageBitmap(scaledBitmap);
+                                    selectedImage.setClickable(true);
+                                } else {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                    selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                }
                             }
-                        }
-                    });
+                        });
 
+                    } else {
+                        Toast.makeText(instance.getApplicationContext(), R.string.WP_icon_before_first_conversion, Toast.LENGTH_SHORT).show();
+
+                        filter = Filter.WHITE_PATCH;
+                        imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                        iconWP.setVisibility(View.VISIBLE);
+                        textWP.setVisibility(View.VISIBLE);
+
+                        selectedImage.setImageBitmap(scaledBitmap);
+                        convertedWP = false;
+                        selectedImage.setClickable(true);
+                        selectWhite();
+                        iconWP.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                filter = Filter.WHITE_PATCH;
+                                if(!convertedWP) {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                                    textWP.setVisibility(View.VISIBLE);
+                                    selectedImage.setImageBitmap(scaledBitmap);
+                                    selectWhite();
+                                } else {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                    selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                }
+                            }
+                        });
+                        imageButtons[Filter.WHITE_PATCH.ordinal()].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                filter = Filter.WHITE_PATCH;
+                                if (!convertedWP) {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
+                                    textWP.setVisibility(View.VISIBLE);
+                                    selectedImage.setImageBitmap(scaledBitmap);
+                                    selectWhite();
+                                } else {
+                                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                    selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
+                                }
+                            }
+                        });
+
+                    }
                 } else {
-                    Toast.makeText(instance.getApplicationContext(), R.string.WP_icon_before_first_conversion, Toast.LENGTH_SHORT).show();
-
-                    filter = Filter.WHITE_PATCH;
-                    imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
-                    iconWP.setVisibility(View.VISIBLE);
-                    textWP.setVisibility(View.VISIBLE);
-
-                    selectedImage.setImageBitmap(scaledBitmap);
-                    convertedWP = false;
-                    selectWhite();
-                    iconWP.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            filter = Filter.WHITE_PATCH;
-                            if(!convertedWP) {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
-                                textWP.setVisibility(View.VISIBLE);
-                                selectedImage.setImageBitmap(scaledBitmap);
-                                selectWhite();
-                            } else {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
-                                selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
-                            }
-                        }
-                    });
-                    imageButtons[Filter.WHITE_PATCH.ordinal()].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            filter = Filter.WHITE_PATCH;
-                            if (!convertedWP) {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(scaledBitmap);
-                                textWP.setVisibility(View.VISIBLE);
-                                selectedImage.setImageBitmap(scaledBitmap);
-                                selectWhite();
-                            } else {
-                                imageButtons[Filter.WHITE_PATCH.ordinal()].setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
-                                selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
-                            }
-                        }
-                    });
-
+                    Toast.makeText(instance.getApplicationContext(), R.string.wait, Toast.LENGTH_SHORT).show();
                 }
+
                 return true;
 
             case R.id.action_download:
-                if(filter == Filter.ORIGINAL_IMAGE) {
+                if(convertedBitmaps == null || convertedBitmaps[filter.ordinal()] == null) {
+                    Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+                } else if(filter == Filter.ORIGINAL_IMAGE) {
+                    Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+                } else if(filter == Filter.WHITE_PATCH && !convertedWP) {
                     Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
                 } else {
                     System.gc();
@@ -252,16 +267,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                 Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivityIntent);
                 recycleBitmaps();
-                /*
-                Intent upIntent = NavUtils.getParentActivityIntent(this);
-                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                    TaskStackBuilder.create(this)
-                            .addNextIntentWithParentStack(upIntent)
-                            .startActivities();
-                } else {
-                    NavUtils.navigateUpTo(this, upIntent);
-                }
-                */
+
                 return true;
 
             default:
@@ -276,11 +282,14 @@ public class ConvertedPhotos extends AppCompatActivity {
         if((scaledBitmap != null) && (!scaledBitmap.isRecycled())) {
             scaledBitmap.recycle();
         }
-        for(int i = 0; i < convertedBitmaps.length; i++) {
-            if((convertedBitmaps[i] != null) && (!convertedBitmaps[i].isRecycled())) {
-                convertedBitmaps[i].recycle();
+        if(convertedBitmaps != null) {
+            for(int i = 0; i < convertedBitmaps.length; i++) {
+                if((convertedBitmaps[i] != null) && (!convertedBitmaps[i].isRecycled())) {
+                    convertedBitmaps[i].recycle();
+                }
             }
         }
+
         if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
             selectedWhite.recycle();
         }
@@ -327,65 +336,21 @@ public class ConvertedPhotos extends AppCompatActivity {
             double time = (double) (end - start) / 1000;
             Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
 
-        /*
-        if((indexOfSelectedBitmap == 3) && convertedBitmaps[indexOfSelectedBitmap] == null) {
-            Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
-        } else if(convertedBitmaps[indexOfSelectedBitmap].sameAs(originalBitmap)) {
-            Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
-        } else {
-            String destinationFilename = getFilename();
-            Log.i("destinationFilename", destinationFilename);
-
-            BufferedOutputStream bos = null;
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(destinationFilename, false);
-                bos = new BufferedOutputStream(fos);
-
-                Log.e("out before", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
-                convertedBitmaps[indexOfSelectedBitmap].compress(Bitmap.CompressFormat.JPEG, 50, bos);
-                Log.e("out after", Integer.toString(convertedBitmaps[indexOfSelectedBitmap].getRowBytes() * convertedBitmaps[indexOfSelectedBitmap].getHeight()));
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    Intent mediaScanIntent = new Intent(
-                            Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    Uri contentUri = Uri.fromFile(new File(destinationFilename));
-                    mediaScanIntent.setData(contentUri);
-                    this.sendBroadcast(mediaScanIntent);
-                } else {
-                    sendBroadcast(new Intent(
-                            Intent.ACTION_MEDIA_MOUNTED,
-                            Uri.parse("file://"
-                                    + Environment.getExternalStorageDirectory())));
-                }
-
-                Toast.makeText(instance.getApplicationContext(),R.string.save_message2, Toast.LENGTH_SHORT).show();
-                //  convertedBitmaps[indexOfSelectedBitmap].recycle();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (bos != null) {
-                        bos.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-*/
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             waitingCircle.setVisibility(View.GONE);
+            FileName fileName = new FileName(imagePath);
             Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), fileName.getNewFilename(), Toast.LENGTH_SHORT).show();
         }
     }
 
     public void saveImage(Bitmap convertedBitmap) {
-        String destinationFilename = getFilename();
+        FileName fileName = new FileName(imagePath);
+        String destinationFilename = fileName.getDestinationFilename();
         Log.i("destinationFilename", destinationFilename);
 
         BufferedOutputStream bos = null;
@@ -427,10 +392,12 @@ public class ConvertedPhotos extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             waitingCircle.setVisibility(View.VISIBLE);
+
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
+
             long start = System.currentTimeMillis();
 
             HistogramStretching histogramStretching = new HistogramStretching(scaledBitmap);
@@ -464,6 +431,8 @@ public class ConvertedPhotos extends AppCompatActivity {
             setBitmapInButton(Filter.IMPROVED_WP);
 
             selectedImage.setImageBitmap(scaledBitmap);
+
+
 
             // find out if app is starting first time
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -537,6 +506,7 @@ public class ConvertedPhotos extends AppCompatActivity {
             selectedImage.setImageBitmap(bitmap);
             if(!convertedWP) {
                 iconWP.setVisibility(View.VISIBLE);
+                selectedImage.setClickable(true);
             }
             iconWP.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -545,6 +515,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                     if(!convertedWP) {
                         imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
                         textWP.setVisibility(View.VISIBLE);
+                        selectedImage.setClickable(true);
                         selectWhite();
                     } else {
                         selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
@@ -558,6 +529,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                       if(!convertedWP) {
                           imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
                           textWP.setVisibility(View.VISIBLE);
+                          selectedImage.setClickable(true);
                           selectWhite();
                       } else {
                           selectedImage.setImageBitmap(convertedBitmaps[Filter.WHITE_PATCH.ordinal()]);
@@ -609,7 +581,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                         shiftedY = scaledBitmap.getHeight() - 10;
                     }
                     selectedWhite = Bitmap.createBitmap(scaledBitmap, shiftedX, shiftedY, size, size);
-                //    selectedImage.setOnTouchListener(null);
+                    //    selectedImage.setOnTouchListener(null);
                     selectedImage.setClickable(false);
                     new ProgressTask2().execute();
                     return true;
@@ -624,6 +596,11 @@ public class ConvertedPhotos extends AppCompatActivity {
         protected void onPreExecute() {
             waitingCircle.setVisibility(View.VISIBLE);
             waitingCircle.bringToFront();
+
+            MenuItem itemWP = this_menu.findItem(R.id.action_WP);
+            MenuItem itemSave = this_menu.findItem(R.id.action_download);
+            itemWP.setEnabled(false);
+            itemSave.setEnabled(false);
         }
 
         @Override
@@ -638,28 +615,14 @@ public class ConvertedPhotos extends AppCompatActivity {
             waitingCircle.setVisibility(View.GONE);
             selectedImage.setImageBitmap(convertedBitmaps[3]);
             setBitmapInButton(Filter.WHITE_PATCH);
+
+            MenuItem itemWP = this_menu.findItem(R.id.action_WP);
+            MenuItem itemSave = this_menu.findItem(R.id.action_download);
+            itemWP.setEnabled(true);
+            itemSave.setEnabled(true);
         }
     }
 
-    public String getFilename() {
-        Date date = new Date();
-        String sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
-
-        String path = new File(imagePath).getParent();
-
-        String fileNameWithExtension = new File(imagePath).getName();
-        String fileName = sDate;
-        String extension = "jpeg";
-        int pos = fileNameWithExtension.lastIndexOf(".");
-        if (pos > 0) {
-            fileName = fileNameWithExtension.substring(0, pos);
-            extension = fileNameWithExtension.substring(pos);
-        }
-        String destinationFilename = path + File.separatorChar + fileName + sDate + extension;
-        Log.i("destinationFilename", destinationFilename);
-        return destinationFilename;
-
-    }
 
     /* Checks if external storage is available for read and write */
     public boolean isExternalStorageWritable() {

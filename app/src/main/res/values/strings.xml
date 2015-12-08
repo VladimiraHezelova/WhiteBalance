@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Color Balance</string>
     <string name="action_settings">Settings</string>
-    <string name="action_download">Download</string>
+    <string name="action_download">Save</string>
     <string name="action_WP">White Patch</string>
 
     <string name="gallery">GALLERY</string>
@@ -45,5 +45,7 @@
 
     <string name="WP_icon_after_first_conversion">"You can select new white area in image"</string>
     <string name="WP_icon_before_first_conversion">"You can select white area in image"</string>
+
+    <string name="wait">"Images are loading"</string>
 
 </resources>

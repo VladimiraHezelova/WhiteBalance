@@ -10,11 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6bdd553-6c24-4c4b-a096-7b8f9065884d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent2b.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent2b.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/FileName.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent2.java" afterPath="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -40,16 +38,51 @@
       <file leaf-file-name="ConvertedPhotos.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8590523">
-              <caret line="229" column="46" selection-start-line="229" selection-start-column="46" selection-end-line="229" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.8873874">
+              <caret line="531" column="59" selection-start-line="531" selection-start-column="59" selection-end-line="531" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5436#5475#0" expanded="true" />
-                <element signature="e#7947#7987#0" expanded="true" />
-                <element signature="e#10519#10541#0" expanded="true" />
-                <element signature="e#12338#12360#0" expanded="true" />
-                <element signature="e#13862#13884#0" expanded="true" />
-                <element signature="e#16852#16874#0" expanded="true" />
+                <element signature="e#5823#5862#0" expanded="true" />
+                <element signature="e#8490#8530#0" expanded="true" />
+                <element signature="e#11174#11187#0" expanded="true" />
+                <element signature="e#11467#11489#0" expanded="true" />
+                <element signature="e#11649#11671#0" expanded="true" />
+                <element signature="e#11844#11866#0" expanded="true" />
+                <element signature="e#13285#13307#0" expanded="true" />
+                <element signature="e#14809#14831#0" expanded="true" />
+                <element signature="e#15434#15456#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WhitePatch.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gradient_background.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileName.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/FileName.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,8 +104,8 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.928571">
-              <caret line="45" column="48" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="48" />
+            <state vertical-scroll-proportion="-0.94285715">
+              <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -83,32 +116,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="31" column="108" selection-start-line="31" selection-start-column="80" selection-end-line="31" selection-end-column="108" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="converted_photos_layout_transparent2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent2.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.058824">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="4" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="converted_photos_layout_transparent4.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent4.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7941177">
-              <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -149,21 +156,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="67" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="converted_photos_layout_transparent3.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent3.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.529412">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="31" selection-end-column="45" />
-              <folding>
-                <element signature="e#1020#1036#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1463,7 +1455,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent1.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent3.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent4.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main_activity_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/histogramStretching/HistogramStretching.java" />
@@ -1476,6 +1467,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotosTransparent2b.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/converted_photos_layout_transparent2b.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/FileName.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java" />
       </list>
@@ -1617,6 +1610,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WhiteBalanceApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2066,7 +2077,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5021436" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32964602" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0023310024" sideWeight="0.8102894" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14335664" sideWeight="0.8102894" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.49785638" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32750583" sideWeight="0.48913044" order="2" side_tool="false" content_ui="tabs" />
@@ -2074,7 +2085,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16505896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23472668" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2107,13 +2118,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/click_effect_button.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/finger_icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2397,14 +2401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8823528">
-          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/MainActivityTransparent1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2443,14 +2439,6 @@
             <element signature="e#717#735#0" expanded="true" />
             <element signature="e#933#950#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335">
-          <caret line="83" column="49" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2611,26 +2599,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/FileName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient_background.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.928571">
-          <caret line="45" column="48" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="48" />
+        <state vertical-scroll-proportion="-0.94285715">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/whiteBalance/algorithms/whitePatch/WhitePatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/bachelorapp/fi/muni/cz/whitebalanceapp/ConvertedPhotos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8590523">
-          <caret line="229" column="46" selection-start-line="229" selection-start-column="46" selection-end-line="229" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.8873874">
+          <caret line="531" column="59" selection-start-line="531" selection-start-column="59" selection-end-line="531" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5436#5475#0" expanded="true" />
-            <element signature="e#7947#7987#0" expanded="true" />
-            <element signature="e#10519#10541#0" expanded="true" />
-            <element signature="e#12338#12360#0" expanded="true" />
-            <element signature="e#13862#13884#0" expanded="true" />
-            <element signature="e#16852#16874#0" expanded="true" />
+            <element signature="e#5823#5862#0" expanded="true" />
+            <element signature="e#8490#8530#0" expanded="true" />
+            <element signature="e#11174#11187#0" expanded="true" />
+            <element signature="e#11467#11489#0" expanded="true" />
+            <element signature="e#11649#11671#0" expanded="true" />
+            <element signature="e#11844#11866#0" expanded="true" />
+            <element signature="e#13285#13307#0" expanded="true" />
+            <element signature="e#14809#14831#0" expanded="true" />
+            <element signature="e#15434#15456#0" expanded="true" />
           </folding>
         </state>
       </provider>
