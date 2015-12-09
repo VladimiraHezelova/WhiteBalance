@@ -302,6 +302,10 @@ public class ConvertedPhotos extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), R.string.save_message3, Toast.LENGTH_SHORT).show();
             waitingCircle.setVisibility(View.VISIBLE);
             waitingCircle.bringToFront();
+            MenuItem itemWP = this_menu.findItem(R.id.action_WP);
+            MenuItem itemSave = this_menu.findItem(R.id.action_download);
+            itemWP.setEnabled(false);
+            itemSave.setEnabled(false);
         }
 
         @Override
@@ -345,6 +349,10 @@ public class ConvertedPhotos extends AppCompatActivity {
             FileName fileName = new FileName(imagePath);
             Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), fileName.getNewFilename(), Toast.LENGTH_SHORT).show();
+            MenuItem itemWP = this_menu.findItem(R.id.action_WP);
+            MenuItem itemSave = this_menu.findItem(R.id.action_download);
+            itemWP.setEnabled(true);
+            itemSave.setEnabled(true);
         }
     }
 
