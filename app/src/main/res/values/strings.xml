@@ -29,7 +29,7 @@
     // guide
     <string name="next">NEXT</string>
     <string name="guideA">Welcome! \n This fast guide will show you \n how to use this application.</string>
-    <string name="guideB">Pick up a picture from your gallery, \n which you want to balance its color.</string>
+    <string name="guideB">Choose a picture from your gallery, \n which you want to color balance.</string>
     <string name="guide1">1. You can choose \n any filter for your picture \n from the bar.</string>
     <string name="guide2">2. Then, you will have \n an enlarge view \n of your picture here.</string>
     <string name="guide3">3. If you choose White Patch filter,</string>
@@ -47,5 +47,6 @@
     <string name="WP_icon_before_first_conversion">"You can select white area in the picture"</string>
 
     <string name="wait">"Pictures are loading"</string>
+    <string name="too_large_image">"Picture is too large, choose smaller one"</string>
 
 </resources>

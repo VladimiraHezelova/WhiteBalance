@@ -86,7 +86,9 @@ public class ConvertedPhotos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.converted_photos_layout);
 
-        MainActivity.mainActivity.finish();
+        if(MainActivity.mainActivity != null) {
+            MainActivity.mainActivity.finish();
+        }
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

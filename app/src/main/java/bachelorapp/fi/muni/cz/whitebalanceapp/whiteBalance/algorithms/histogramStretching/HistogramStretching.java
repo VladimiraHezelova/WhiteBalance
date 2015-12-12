@@ -1,7 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching;
 
 import android.graphics.Bitmap;
-import android.util.SparseIntArray;
+import android.util.Log;
 
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Convertor;
 
@@ -29,94 +29,87 @@ public class HistogramStretching extends Convertor {
         balanceWhite();
     }
 
-    public void findBoundary(int canal) {
-        SparseIntArray histogram = getHistogram(canal);
+    public void findBoundary() {
+        int[][] histogram = getHistogram();
+
+        long start = System.currentTimeMillis();
+
         int percentil = (int) (originalBitmap.getWidth()*originalBitmap.getHeight() * 0.05);
         int intensity = 0;
         int number = 0;
-        while(number < percentil) {
-            number += histogram.get(intensity);
-            intensity++;
-        }
-        low[canal] = intensity-1;
 
-        intensity = 255;
-        number = 0;
-        while(number < percentil) {
-            number += histogram.get(intensity);
-            intensity--;
+        for(int canal = 0; canal < 3; canal++) {
+            while(number < percentil) {
+                number += histogram[canal][intensity];
+                intensity++;
+            }
+            low[canal] = intensity-1;
+
+            intensity = 255;
+            number = 0;
+
+            while(number < percentil) {
+                number += histogram[canal][intensity];
+                intensity--;
+            }
+            high[canal] = intensity+1;
+
+            intensity = 0;
+            number = 0;
         }
-        high[canal] = intensity+1;
+
+
+        long end = System.currentTimeMillis();
+        double time = (double) (end - start) / 1000;
+        Log.i("Find boundary", "time of conversions = " + time + "seconds");
     }
 
     public void setScalingCoefficients() {
-        for(int i = 0; i < 3; i++) {
-            findBoundary(i);
-            findBoundary(i);
-        }
+
+        long start = System.currentTimeMillis();
+
+
+        findBoundary();
+
+        long end = System.currentTimeMillis();
+        double time = (double) (end - start) / 1000;
+        Log.i("setScalingCoefficients", "time of conversions = " + time + "seconds");
     }
 
-/*
-    public Bitmap conversion(int width, int height, float[][] pixelData) {
+    public int[][] getHistogram() {
+        long start = System.currentTimeMillis();
 
-        PixelData pixelDataInstance = new PixelData();
+        int[][] histogram = new int[3][256];
 
-        pixelData = canalStretching(pixelData,0); //red
-        pixelData = canalStretching(pixelData,1); //green
-        pixelData = canalStretching(pixelData,2); //blue
-
-        return pixelDataInstance.setBitmap(width, height, pixelData);
-    }
-    */
-/*
-    public float[][] canalStretching(float[][] pixelData, int canal) {
-
-        findBoundary(originalBitmap, canal);
-
-
-        float a = max-min;
-        float b = high - low;
-        float c = a / b;
-        for(int i = 0; i < pixelData.length; i++) {
-            if(pixelData[i][canal] < low) {
-                pixelData[i][canal] = min;
-            } else if(pixelData[i][canal] > high) {
-                pixelData[i][canal] = max;
-            } else {
-                pixelData[i][canal] = (pixelData[i][canal] - low)*c + min;
-            }
-        }
-        return pixelData;
-    }
-*/
-
-    public SparseIntArray getHistogram(int canal) {
-        SparseIntArray histogram = new SparseIntArray();
-        for(int i = 0; i < 256; i++) {
-            histogram.put(i,0);
-        }
         int value;
-        int intensity = 0;
-        for(int i = 0; i < originalBitmap.getHeight(); i++) {
-            for(int j = 0; j < originalBitmap.getWidth(); j++) {
+        int intensity[] = new int[3];
+        int height = originalBitmap.getHeight();
+        int width = originalBitmap.getWidth();
+
+        for(int i = 0; i < height; i++) {
+            for(int j = 0; j < width; j++) {
                 if(originalBitmap != null && !originalBitmap.isRecycled()) {
                     value = originalBitmap.getPixel(j,i);
-                    switch(canal) {
-                        case 0: intensity = (value >> 16) & 0xff; //red
-                            break;
-                        case 1: intensity = (value >>  8) & 0xff; //green
-                            break;
-                        case 2: intensity = (value      ) & 0xff;  //blue
-                            break;
-                    }
-                    int number = histogram.get(intensity);
+
+                    intensity[0] = (value >> 16) & 0xff; //red
+                    intensity[1] = (value >>  8) & 0xff; //green
+                    intensity[2] = (value      ) & 0xff;  //blue
+
+                    histogram[0][intensity[0]]++;
+                    histogram[1][intensity[1]]++;
+                    histogram[2][intensity[2]]++;
+
                     //  Log.e("intensity", Integer.toString(intensity));
                     //  Log.e("number", Integer.toString(number));
-                    number++;
-                    histogram.put(intensity, number);
+
                 }
             }
         }
+
+        long end = System.currentTimeMillis();
+        double time = (double) (end - start) / 1000;
+        Log.i("getHistogran", "time of conversions = " + time + "seconds");
+
         return histogram;
     }
 
@@ -129,10 +122,7 @@ public class HistogramStretching extends Convertor {
             } else if(pixelData[i] > high[i]) {
                 pixelData[i] = max;
             } else {
-                float a = max - min;
-                float b = high[i] - low[i];
-                float c = a / b;
-                pixelData[i] = (pixelData[i] - low[i])*c + min;
+                pixelData[i] = (pixelData[i] - low[i]) * (max - min) / (high[i] - low[i]) + min;
             }
         }
         return pixelData;

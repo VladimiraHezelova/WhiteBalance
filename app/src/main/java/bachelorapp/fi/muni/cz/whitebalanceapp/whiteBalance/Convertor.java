@@ -1,6 +1,7 @@
 package bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 /**
  * Created by Vladimira Hezelova on 6. 12. 2015.
@@ -20,11 +21,13 @@ public abstract class Convertor {
     }
 
     public void balanceWhite() {
-        int value;
+        int value, i, j;
         float[] rgb = new float[3];
+        long start = System.currentTimeMillis();
 
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
+
+        for(i = 0; i < height; i++) {
+            for(j = 0; j < width; j++) {
                 if(originalBitmap != null && !originalBitmap.isRecycled()) {
                     value = originalBitmap.getPixel(j,i);
                     rgb = getRGBFromValue(value, rgb);
@@ -33,6 +36,10 @@ public abstract class Convertor {
                 }
             }
         }
+
+        long end = System.currentTimeMillis();
+        double time = (double) (end - start) / 1000;
+        Log.i("balanceWhite", "time of conversions = " + time + "seconds");
     }
 
     public abstract float[] removeColorCast(float[] pixelData);
