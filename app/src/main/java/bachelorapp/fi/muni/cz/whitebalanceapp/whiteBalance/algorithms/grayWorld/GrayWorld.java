@@ -35,7 +35,7 @@ public class GrayWorld extends Convertor {
     }
 
     @Override
-    public float[] removeColorCast(float[] pixelData) {
+    public float[] removeColorCast(float[] pixelData, float[] outRGB) {
 
         pixelData = linearization1DInstance.normalize(pixelData);
         pixelData = matrixMultiplication1DInstance.multiply(scalingMatrix, pixelData);

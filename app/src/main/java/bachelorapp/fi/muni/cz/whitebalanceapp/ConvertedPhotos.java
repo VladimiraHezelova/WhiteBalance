@@ -481,11 +481,11 @@ public class ConvertedPhotos extends AppCompatActivity {
         Log.i(TAG, "bitmap height in dp: " + Integer.toString(heightImageDp));
 
         //-200 nepada
-        if(heightDisplay - 600 >= heightImage && widthDisplay >= widthImage) {
+        if(heightDisplay - 300 >= heightImage && widthDisplay >= widthImage) {
             scaledHeight = heightImage;
             scaledWidth = widthImage;
         } else {
-            scaledHeight = heightDisplay - 600;
+            scaledHeight = heightDisplay - 300;
             double ratio = (double)scaledHeight / (double)heightImage;
             scaledWidth = (int)((double)widthImage * ratio);
         }

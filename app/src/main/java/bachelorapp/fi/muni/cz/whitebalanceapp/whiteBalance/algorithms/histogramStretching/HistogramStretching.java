@@ -114,7 +114,7 @@ public class HistogramStretching extends Convertor {
     }
 
     @Override
-    public float[] removeColorCast(float[] pixelData) {
+    public float[] removeColorCast(float[] pixelData, float[] outRGB) {
 
         for(int i = 0; i < 3; i++) {
             if(pixelData[i] < low[i]) {

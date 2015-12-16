@@ -95,7 +95,7 @@ public class ImprovedWP extends Convertor {
     }
 
     @Override
-    public float[] removeColorCast(float[] pixelData){
+    public float[] removeColorCast(float[] pixelData, float[] outRGB){
 
         for (int k=0;k<3;++k){
             pixelData[k]/=illuminationEstimation[k];

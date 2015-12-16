@@ -12,12 +12,14 @@ public abstract class Convertor {
     private int width;
     private int height;
     private Bitmap convertedBitmap;
+    private float[] outRGB;
 
     public Convertor(Bitmap bitmap) {
         this.originalBitmap = bitmap;
         this.width = originalBitmap.getWidth();
         this.height = originalBitmap.getHeight();
         this.convertedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        this.outRGB = new float[3];
     }
 
     public void balanceWhite() {
@@ -31,7 +33,7 @@ public abstract class Convertor {
                 if(originalBitmap != null && !originalBitmap.isRecycled()) {
                     value = originalBitmap.getPixel(j,i);
                     rgb = getRGBFromValue(value, rgb);
-                    rgb = removeColorCast(rgb);
+                    rgb = removeColorCast(rgb, outRGB);
                     convertedBitmap.setPixel(j, i, getValueFromRGB(rgb));
                 }
             }
@@ -42,7 +44,7 @@ public abstract class Convertor {
         Log.i("balanceWhite", "time of conversions = " + time + "seconds");
     }
 
-    public abstract float[] removeColorCast(float[] pixelData);
+    public abstract float[] removeColorCast(float[] pixelData, float[] outRGB);
 
 
     public int getValueFromRGB(float[] rgb) {
