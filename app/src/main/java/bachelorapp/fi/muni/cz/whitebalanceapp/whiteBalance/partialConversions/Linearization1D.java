@@ -57,7 +57,7 @@ public class Linearization1D {
         pixelData[0] = pixelData[0] * 255;
         pixelData[1] = pixelData[1] * 255;
         pixelData[2] = pixelData[2] * 255;
-                //lebo su hodnoty cervenej zaporne
+        //lebo su hodnoty cervenej zaporne
         if(pixelData[0] < 0) {
             pixelData[0] *= -1.0;
         }
@@ -76,7 +76,6 @@ public class Linearization1D {
         if(pixelData[2] > 255) {
             pixelData[2] = 255;
         }
-
         return pixelData;
     }
 }

@@ -12,7 +12,6 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.partialConversions.Ma
 public class GrayWorld extends Convertor {
 
     private Bitmap originalBitmap;
-    private Bitmap convertedBitmap;
 
     private MatrixMultiplication1D matrixMultiplication1DInstance;
     private Linearization1D linearization1DInstance;
@@ -36,13 +35,9 @@ public class GrayWorld extends Convertor {
 
     @Override
     public float[] removeColorCast(float[] pixelData, float[] outRGB) {
-
         pixelData = linearization1DInstance.normalize(pixelData);
         pixelData = matrixMultiplication1DInstance.multiply(scalingMatrix, pixelData);
         pixelData = linearization1DInstance.nonNormalize(pixelData);
-
         return pixelData;
     }
-
-
 }

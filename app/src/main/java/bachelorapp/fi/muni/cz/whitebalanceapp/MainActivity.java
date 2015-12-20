@@ -29,6 +29,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+
+import bachelorapp.fi.muni.cz.whitebalanceapp.mainActivityTransparent.MainActivityTransparent1;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -185,17 +188,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean isImageTooLarge() {
 
         try {
-            /*
+
             camera = Camera.open(0);
             android.hardware.Camera.Parameters parameters = camera.getParameters();
             List<Camera.Size> params = parameters.getSupportedPictureSizes();
             Camera.Size a = params.get(0);
-            */
-          //  cameraWidth = a.width;
-          //  cameraHeight = a.height;
-            cameraWidth = 1000000;
-            cameraHeight = 100000;
-          //  camera.release();
+
+            cameraWidth = a.width;
+            cameraHeight = a.height;
+            camera.release();
         } catch (RuntimeException e) {
             e.printStackTrace();
         }

@@ -10,11 +10,11 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Convertor;
  */
 public class HistogramStretching extends Convertor {
 
-    private int low[];
-    private int high[];
+    private int[] low;
+    private int[] high;
     private float min;
     private float max;
-
+    private float[] ratio;
 
     private Bitmap originalBitmap;
 
@@ -25,6 +25,7 @@ public class HistogramStretching extends Convertor {
         this.max = 255;
         this.low = new int[3];
         this.high = new int[3];
+        this.ratio = new float[3];
         setScalingCoefficients();
         balanceWhite();
     }
@@ -56,6 +57,7 @@ public class HistogramStretching extends Convertor {
 
             intensity = 0;
             number = 0;
+            ratio[canal] = (max - min) / (high[canal] - low[canal]);
         }
 
 
@@ -65,9 +67,7 @@ public class HistogramStretching extends Convertor {
     }
 
     public void setScalingCoefficients() {
-
         long start = System.currentTimeMillis();
-
 
         findBoundary();
 
@@ -99,9 +99,6 @@ public class HistogramStretching extends Convertor {
                     histogram[1][intensity[1]]++;
                     histogram[2][intensity[2]]++;
 
-                    //  Log.e("intensity", Integer.toString(intensity));
-                    //  Log.e("number", Integer.toString(number));
-
                 }
             }
         }
@@ -122,7 +119,7 @@ public class HistogramStretching extends Convertor {
             } else if(pixelData[i] > high[i]) {
                 pixelData[i] = max;
             } else {
-                pixelData[i] = (pixelData[i] - low[i]) * (max - min) / (high[i] - low[i]) + min;
+                pixelData[i] = (pixelData[i] - low[i]) * ratio[i] + min;
             }
         }
         return pixelData;

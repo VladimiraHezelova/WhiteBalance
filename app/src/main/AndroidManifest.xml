@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivityTransparent1"
+            android:name=".mainActivityTransparent.MainActivityTransparent1"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
@@ -38,7 +38,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivityTransparent2"
+            android:name=".mainActivityTransparent.MainActivityTransparent2"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:name=".ConvertedPhotosTransparent1"
+            android:name=".convertedPhotosTransparent.ConvertedPhotosTransparent1"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
@@ -72,7 +72,7 @@
         </activity>
 
         <activity
-            android:name=".ConvertedPhotosTransparent2"
+            android:name=".convertedPhotosTransparent.ConvertedPhotosTransparent2"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
@@ -83,7 +83,7 @@
         </activity>
 
         <activity
-            android:name=".ConvertedPhotosTransparent2b"
+            android:name=".convertedPhotosTransparent.ConvertedPhotosTransparent2b"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
@@ -94,7 +94,7 @@
         </activity>
 
         <activity
-            android:name=".ConvertedPhotosTransparent3"
+            android:name=".convertedPhotosTransparent.ConvertedPhotosTransparent3"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>
@@ -105,7 +105,7 @@
         </activity>
 
         <activity
-            android:name=".ConvertedPhotosTransparent4"
+            android:name=".convertedPhotosTransparent.ConvertedPhotosTransparent4"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.NoTitle.Translucent">
             <intent-filter>

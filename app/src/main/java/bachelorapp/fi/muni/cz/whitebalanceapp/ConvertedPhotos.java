@@ -33,7 +33,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.Filter;
+import bachelorapp.fi.muni.cz.whitebalanceapp.convertedPhotosTransparent.ConvertedPhotosTransparent1;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.grayWorld.GrayWorld;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.histogramStretching.HistogramStretching;
 import bachelorapp.fi.muni.cz.whitebalanceapp.whiteBalance.algorithms.improvedWP.ImprovedWP;
@@ -75,6 +75,8 @@ public class ConvertedPhotos extends AppCompatActivity {
     final String PREFS_NAME = "MyPrefsFile";
 
     private Menu this_menu;
+
+    private long startForTime = 0;
 
     public ConvertedPhotos() {
         instance = this;
@@ -121,11 +123,7 @@ public class ConvertedPhotos extends AppCompatActivity {
         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         int memoryClass = am.getMemoryClass();
         Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
-/*
-        if(!originalBitmap.isRecycled() && !originalBitmap.sameAs(scaledBitmap)) {
-            originalBitmap.recycle();
-        }
-*/
+
         new ProgressTask().execute();
     }
 
@@ -308,6 +306,7 @@ public class ConvertedPhotos extends AppCompatActivity {
             MenuItem itemSave = this_menu.findItem(R.id.action_download);
             itemWP.setEnabled(false);
             itemSave.setEnabled(false);
+            startForTime = System.currentTimeMillis();
         }
 
         @Override
@@ -332,7 +331,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                     Bitmap convertedBitmap = improvedWPS.getConvertedBitmap();
                     saveImage(convertedBitmap);
                 } else {
-                    Toast.makeText(instance.getApplicationContext(), R.string.save_message1, Toast.LENGTH_SHORT).show();
+                // na disk sa neda zapisovat
                 }
             } else {
                 Log.e(TAG, "External storage is not writable");
@@ -355,6 +354,11 @@ public class ConvertedPhotos extends AppCompatActivity {
             MenuItem itemSave = this_menu.findItem(R.id.action_download);
             itemWP.setEnabled(true);
             itemSave.setEnabled(true);
+            long end = System.currentTimeMillis();
+            double time = (double) (end - startForTime) / 1000;
+            Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
+
+            Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -402,17 +406,17 @@ public class ConvertedPhotos extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             waitingCircle.setVisibility(View.VISIBLE);
+            startForTime = System.currentTimeMillis();
 
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
 
-            long start = System.currentTimeMillis();
-
             HistogramStretching histogramStretching = new HistogramStretching(scaledBitmap);
             GrayWorld grayWorld = new GrayWorld(scaledBitmap);
             ImprovedWP improvedWP = new ImprovedWP(scaledBitmap);
+
 
             convertedBitmaps = new Bitmap[] {
                     null,
@@ -421,10 +425,6 @@ public class ConvertedPhotos extends AppCompatActivity {
                     null,
                     improvedWP.getConvertedBitmap()
             };
-
-            long end = System.currentTimeMillis();
-            double time = (double) (end - start) / 1000;
-            Log.i(TAG, "time of conversions = " + time + "seconds");
 
             return null;
         }
@@ -452,6 +452,12 @@ public class ConvertedPhotos extends AppCompatActivity {
                 startActivity(intentTransparent);
                 settings.edit().putBoolean("my_first_time", false).commit();
             }
+
+            long end = System.currentTimeMillis();
+            double time = (double) (end - startForTime) / 1000;
+            Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "time of conversions = " + time + "seconds");
+
         }
     }
 
@@ -613,6 +619,7 @@ public class ConvertedPhotos extends AppCompatActivity {
             MenuItem itemSave = this_menu.findItem(R.id.action_download);
             itemWP.setEnabled(false);
             itemSave.setEnabled(false);
+            startForTime = System.currentTimeMillis();
         }
 
         @Override
@@ -632,6 +639,10 @@ public class ConvertedPhotos extends AppCompatActivity {
             MenuItem itemSave = this_menu.findItem(R.id.action_download);
             itemWP.setEnabled(true);
             itemSave.setEnabled(true);
+
+            long end = System.currentTimeMillis();
+            double time = (double) (end - startForTime) / 1000;
+            Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
         }
     }
 

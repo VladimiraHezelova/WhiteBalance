@@ -27,7 +27,6 @@ public abstract class Convertor {
         float[] rgb = new float[3];
         long start = System.currentTimeMillis();
 
-
         for(i = 0; i < height; i++) {
             for(j = 0; j < width; j++) {
                 if(originalBitmap != null && !originalBitmap.isRecycled()) {

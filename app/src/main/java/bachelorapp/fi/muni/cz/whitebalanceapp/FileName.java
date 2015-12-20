@@ -10,7 +10,6 @@ import java.util.Date;
  * Created by Vladimira Hezelova on 8. 12. 2015.
  */
 public class FileName {
-    private String imagePath;
     private String fileName;
     private String sDate;
     private String path;
@@ -18,8 +17,6 @@ public class FileName {
 
 
     public FileName(String imagePath) {
-        this.imagePath = imagePath;
-
         Date date = new Date();
         sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
 
