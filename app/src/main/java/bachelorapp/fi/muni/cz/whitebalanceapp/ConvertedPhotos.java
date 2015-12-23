@@ -78,6 +78,8 @@ public class ConvertedPhotos extends AppCompatActivity {
 
     private long startForTime = 0;
 
+    private boolean savedSuccessfully = false;
+
     public ConvertedPhotos() {
         instance = this;
         Log.i(TAG,"constructor");
@@ -100,6 +102,7 @@ public class ConvertedPhotos extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
         waitingCircle = (ProgressBar) findViewById(R.id.progressBar);
 
         imageButtons = new ImageButton[]{
@@ -124,7 +127,12 @@ public class ConvertedPhotos extends AppCompatActivity {
         int memoryClass = am.getMemoryClass();
         Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
 
-        new ProgressTask().execute();
+        try {
+            new ProgressTask().execute();
+        } catch (Exception e){
+            Log.e("Error","too large picture, too less memory");
+            Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setWPThumbNail() {
@@ -153,10 +161,10 @@ public class ConvertedPhotos extends AppCompatActivity {
 
             case R.id.action_WP:
                 // musi byt nacitana aj bitmapa z posledne prevedeneho algoritmu
-                if(convertedBitmaps != null &&
-                        convertedBitmaps[Filter.HISTOGRAM_STRETCHING.ordinal()] != null &&
-                        convertedBitmaps[Filter.GRAY_WORLD.ordinal()] != null &&
-                        convertedBitmaps[Filter.IMPROVED_WP.ordinal()] != null) {
+                if((convertedBitmaps != null) &&
+                        (convertedBitmaps[Filter.HISTOGRAM_STRETCHING.ordinal()] != null) &&
+                        (convertedBitmaps[Filter.GRAY_WORLD.ordinal()] != null) &&
+                        (convertedBitmaps[Filter.IMPROVED_WP.ordinal()] != null)) {
                     if(convertedWP) {
                         Toast.makeText(instance.getApplicationContext(), R.string.WP_icon_after_first_conversion, Toast.LENGTH_SHORT).show();
 
@@ -314,24 +322,34 @@ public class ConvertedPhotos extends AppCompatActivity {
             long start = System.currentTimeMillis();
 
             if(isExternalStorageWritable()) {
-                if(filter == Filter.HISTOGRAM_STRETCHING) {
-                    HistogramStretching histogramStretchingS = new HistogramStretching(originalBitmap);
-                    Bitmap convertedBitmap = histogramStretchingS.getConvertedBitmap();
-                    saveImage(convertedBitmap);
-                } else if(filter == Filter.GRAY_WORLD) {
-                    GrayWorld grayWorldS = new GrayWorld(originalBitmap);
-                    Bitmap convertedBitmap = grayWorldS.getConvertedBitmap();
-                    saveImage(convertedBitmap);
-                } else if(filter == Filter.WHITE_PATCH) {
-                    WhitePatch whitePatchS = new WhitePatch(originalBitmap, selectedWhite);
-                    Bitmap convertedBitmap = whitePatchS.getConvertedBitmap();
-                    saveImage(convertedBitmap);
-                } else if(filter == Filter.IMPROVED_WP) {
-                    ImprovedWP improvedWPS = new ImprovedWP(originalBitmap);
-                    Bitmap convertedBitmap = improvedWPS.getConvertedBitmap();
-                    saveImage(convertedBitmap);
-                } else {
-                // na disk sa neda zapisovat
+                try {
+                    if(filter == Filter.HISTOGRAM_STRETCHING) {
+                        HistogramStretching histogramStretchingS = new HistogramStretching(originalBitmap);
+                        Bitmap convertedBitmap = histogramStretchingS.getConvertedBitmap();
+                        saveImage(convertedBitmap);
+                    } else if(filter == Filter.GRAY_WORLD) {
+                        GrayWorld grayWorldS = new GrayWorld(originalBitmap);
+                        Bitmap convertedBitmap = grayWorldS.getConvertedBitmap();
+                        saveImage(convertedBitmap);
+                    } else if(filter == Filter.WHITE_PATCH) {
+                        WhitePatch whitePatchS = new WhitePatch(originalBitmap, selectedWhite);
+                        Bitmap convertedBitmap = whitePatchS.getConvertedBitmap();
+                        saveImage(convertedBitmap);
+                    } else if(filter == Filter.IMPROVED_WP) {
+                        ImprovedWP improvedWPS = new ImprovedWP(originalBitmap);
+                        Bitmap convertedBitmap = improvedWPS.getConvertedBitmap();
+                        saveImage(convertedBitmap);
+                    } else {
+                        // na disk sa neda zapisovat
+                    }
+                } catch (Exception e){
+                Log.e("Error", "too large picture, too less memory");
+                //  Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
+                finish();
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainActivityIntent.putExtra("tooLargePicture", "tooLargePicture");
+                startActivity(mainActivityIntent);
+                recycleBitmaps();
                 }
             } else {
                 Log.e(TAG, "External storage is not writable");
@@ -348,17 +366,19 @@ public class ConvertedPhotos extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             waitingCircle.setVisibility(View.GONE);
             FileName fileName = new FileName(imagePath);
-            Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), fileName.getNewFilename(), Toast.LENGTH_SHORT).show();
-            MenuItem itemWP = this_menu.findItem(R.id.action_WP);
-            MenuItem itemSave = this_menu.findItem(R.id.action_download);
-            itemWP.setEnabled(true);
-            itemSave.setEnabled(true);
-            long end = System.currentTimeMillis();
-            double time = (double) (end - startForTime) / 1000;
-            Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
+            if(savedSuccessfully == true) {
+                Toast.makeText(getApplicationContext(), R.string.save_message2, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), fileName.getNewFilename(), Toast.LENGTH_SHORT).show();
+                MenuItem itemWP = this_menu.findItem(R.id.action_WP);
+                MenuItem itemSave = this_menu.findItem(R.id.action_download);
+                itemWP.setEnabled(true);
+                itemSave.setEnabled(true);
+                long end = System.currentTimeMillis();
+                double time = (double) (end - startForTime) / 1000;
+                Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
 
-            Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
+                Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -374,7 +394,10 @@ public class ConvertedPhotos extends AppCompatActivity {
             bos = new BufferedOutputStream(fos);
 
             Log.e("out before compress", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
-            convertedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            if(convertedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos) == true) {
+                savedSuccessfully = true;
+            }
+
             Log.e("out after compress", Integer.toString(convertedBitmap.getRowBytes() * convertedBitmap.getHeight()));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -413,36 +436,46 @@ public class ConvertedPhotos extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0) {
 
-            HistogramStretching histogramStretching = new HistogramStretching(scaledBitmap);
-            GrayWorld grayWorld = new GrayWorld(scaledBitmap);
-            ImprovedWP improvedWP = new ImprovedWP(scaledBitmap);
+            try {
+                HistogramStretching histogramStretching = new HistogramStretching(scaledBitmap);
+                GrayWorld grayWorld = new GrayWorld(scaledBitmap);
+                ImprovedWP improvedWP = new ImprovedWP(scaledBitmap);
 
-
-            convertedBitmaps = new Bitmap[] {
-                    null,
-                    histogramStretching.getConvertedBitmap(),
-                    grayWorld.getConvertedBitmap(),
-                    null,
-                    improvedWP.getConvertedBitmap()
-            };
-
+                convertedBitmaps = new Bitmap[] {
+                        null,
+                        histogramStretching.getConvertedBitmap(),
+                        grayWorld.getConvertedBitmap(),
+                        null,
+                        improvedWP.getConvertedBitmap()
+                };
+            } catch (Exception e){
+                Log.e("Error", "too large picture, too less memory");
+              //  Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
+                finish();
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainActivityIntent.putExtra("tooLargePicture", "tooLargePicture");
+                startActivity(mainActivityIntent);
+                recycleBitmaps();
+            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-
             waitingCircle.setVisibility(View.GONE);
 
-            setBitmapInButton(Filter.ORIGINAL_IMAGE, scaledBitmap);
-            setBitmapInButton(Filter.HISTOGRAM_STRETCHING);
-            setBitmapInButton(Filter.GRAY_WORLD);
-            setBitmapInButton(Filter.WHITE_PATCH, scaledBitmap);
-            setBitmapInButton(Filter.IMPROVED_WP);
+            if((convertedBitmaps != null) &&
+                    (convertedBitmaps[Filter.HISTOGRAM_STRETCHING.ordinal()] != null) &&
+                    (convertedBitmaps[Filter.GRAY_WORLD.ordinal()] != null) &&
+                    (convertedBitmaps[Filter.IMPROVED_WP.ordinal()] != null)) {
+                setBitmapInButton(Filter.ORIGINAL_IMAGE, scaledBitmap);
+                setBitmapInButton(Filter.HISTOGRAM_STRETCHING);
+                setBitmapInButton(Filter.GRAY_WORLD);
+                setBitmapInButton(Filter.WHITE_PATCH, scaledBitmap);
+                setBitmapInButton(Filter.IMPROVED_WP);
 
-            selectedImage.setImageBitmap(scaledBitmap);
-
-
+                selectedImage.setImageBitmap(scaledBitmap);
+            }
 
             // find out if app is starting first time
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -457,7 +490,6 @@ public class ConvertedPhotos extends AppCompatActivity {
             double time = (double) (end - startForTime) / 1000;
             Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
             Log.i(TAG, "time of conversions = " + time + "seconds");
-
         }
     }
 
@@ -486,7 +518,6 @@ public class ConvertedPhotos extends AppCompatActivity {
         Log.i(TAG, "bitmap width in dp: " + Integer.toString(widthImageDp));
         Log.i(TAG, "bitmap height in dp: " + Integer.toString(heightImageDp));
 
-        //-200 nepada
         if(heightDisplay - 300 >= heightImage && widthDisplay >= widthImage) {
             scaledHeight = heightImage;
             scaledWidth = widthImage;

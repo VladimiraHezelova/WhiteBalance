@@ -10,5 +10,5 @@
         android:layout_gravity="center"
         android:text="@string/white_balance"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 </LinearLayout>

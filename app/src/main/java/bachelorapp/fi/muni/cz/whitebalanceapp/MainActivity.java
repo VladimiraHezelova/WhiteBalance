@@ -25,12 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import bachelorapp.fi.muni.cz.whitebalanceapp.mainActivityTransparent.MainActivityTransparent1;
 
 
@@ -57,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+
+        Intent intent = getIntent();
+        try {
+            if(intent.getStringExtra("tooLargePicture").equals("tooLargePicture")) {
+                Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
+            }
+        } catch (NullPointerException e) {
+            Log.i("MainActivity","Intent doesnt have extra string tooLargePicture, because its not about to fall");
+        }
+
+
 
 
         buttonGallery = (ImageView) findViewById(R.id.button_gallery);
@@ -91,9 +96,6 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        Intent intent = getIntent();
-        // final String picturePath = intent.getStringExtra("picturePath");
-        imagePath = intent.getStringExtra("imagePath");
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
 
@@ -166,74 +168,15 @@ public class MainActivity extends AppCompatActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             imagePath = cursor.getString(columnIndex);
             cursor.close();
-            if(isImageTooLarge()) {
-                Log.e("IAMGE", "TOO LARGE");
-                Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
 
-            } else {
-                Log.e("IAMGE", "has fine size");
+            Intent intent = new Intent(getApplicationContext(), ConvertedPhotos.class);
+            intent.putExtra("imagePath", imagePath);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
-                Log.e("path of sourceUri", selectedImage.getPath());
-
-                Intent intent = new Intent(getApplicationContext(), ConvertedPhotos.class);
-                intent.putExtra("imagePath", imagePath);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-            }
 
         }
 
-    }
-
-    public boolean isImageTooLarge() {
-
-        try {
-
-            camera = Camera.open(0);
-            android.hardware.Camera.Parameters parameters = camera.getParameters();
-            List<Camera.Size> params = parameters.getSupportedPictureSizes();
-            Camera.Size a = params.get(0);
-
-            cameraWidth = a.width;
-            cameraHeight = a.height;
-            camera.release();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
-
-
-        Log.e("height for CAMERA", Integer.toString(cameraHeight));
-        Log.e("width for CAMERA", Integer.toString(cameraWidth));
-
-        int imageWidth;
-        int imageHeight;
-        try {
-            BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-            bitmapOptions.inJustDecodeBounds = true;
-            InputStream inputStream = new FileInputStream(imagePath);
-            BitmapFactory.decodeStream(inputStream, null, bitmapOptions);
-            imageWidth = bitmapOptions.outWidth;
-            imageHeight = bitmapOptions.outHeight;
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return true;
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return true;
-        }
-
-
-        if(cameraWidth*cameraHeight >= (imageWidth*imageHeight - 100)) {
-            Log.e("MainAcitivty","IMAGE has good size");
-            return false;
-        } else {
-            Log.e("MainAcitivty","TOO LARGE IMAGE");
-            return true;
-        }
     }
 
     @Override
