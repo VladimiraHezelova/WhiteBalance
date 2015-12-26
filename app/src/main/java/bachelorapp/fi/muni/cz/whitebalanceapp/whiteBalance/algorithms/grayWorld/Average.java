@@ -25,6 +25,10 @@ public class Average {
         this.height = bitmap.getHeight();
     }
 
+    /**
+     * Vola metody pre vypocet skalovacej matice a nasledne ju vrati v navratovej hodnote
+     * @return vracia skalovaciu maticu (scalingMatrix)
+     */
     public float[][] getScalingMatrix() {
         findAverages();
         findAvgGray();
@@ -34,6 +38,9 @@ public class Average {
         return scalingMatrix;
     }
 
+    /**
+     * Vypocita priemernu hodnotu kazdeho kanalu avgR, avgG, avgB
+     */
     private void findAverages() {
         float sumR = 0;
         float sumG = 0;
@@ -56,10 +63,16 @@ public class Average {
         avgB = sumB / numberOfPixels;
     }
 
+    /**
+     * Vypocita priemernu sedu
+     */
     private void findAvgGray() {
         avgGray = 0.299f * avgR + 0.587f * avgG + 0.114f * avgB;
     }
 
+    /**
+     * Vypocita skalovacie koeficienty
+     */
     private void findScalingCoefficients() {
         kR = avgGray / avgR;
         kG = avgGray / avgG;

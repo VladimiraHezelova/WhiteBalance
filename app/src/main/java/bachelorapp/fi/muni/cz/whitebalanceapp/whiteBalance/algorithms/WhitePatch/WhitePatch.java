@@ -24,6 +24,11 @@ public class WhitePatch extends Convertor {
 
     private float[][] scalingMatrix;
 
+    /**
+     * Konsturktor WhitePatch
+     * @param image bitmapa povodneho obrazku
+     * @param selectedWhite bitmapa vybranej bielej oblasti v obrazku
+     */
     public WhitePatch(Bitmap image, Bitmap selectedWhite) {
         super(image);
         this.selectedWhite = selectedWhite;
@@ -34,6 +39,10 @@ public class WhitePatch extends Convertor {
         balanceWhite();
     }
 
+    /**
+     * Nastavi sa skalovacia matica (scalingMatrix) podielom idealnej bielej [255,255,255]
+     * a medianom z vybranej bielej uzivatelom
+     */
     public void setScalingMatrix() {
         int median = median(selectedWhite);
 
@@ -51,7 +60,13 @@ public class WhitePatch extends Convertor {
         scalingMatrix = new float[][]{{kL, 0.0f, 0.0f}, {0.0f, kM, 0.0f}, {0.0f, 0.0f, kS}};
     }
 
-
+    /**
+     * Odstranenie neprirodzeneho odtiena: konveriza medzi priestormi
+     * a pouzitie skalovacej matice
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @param outRGB pole s troma hodnotami(kanalmi) pouzite, aby sa neprepisovali hodnoty
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     @Override
     public float[] removeColorCast(float[] pixelData, float[] outRGB){
         pixelData = conversionsToXYZ(pixelData);
@@ -62,22 +77,45 @@ public class WhitePatch extends Convertor {
         return pixelData;
     }
 
+    /**
+     * Konveriza z priestoru RGB do XYZ
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     private float[] conversionsToXYZ(float[] pixelData) {
         pixelData = linearization1DInstance.normalize(pixelData);
         pixelData = linearization1DInstance.linearize(pixelData);
         pixelData = matrixMultiplication1DInstance.multiply(MatrixMultiplication1D.MATRIX_RGBtoXYZ, pixelData);
         return pixelData;
     }
+
+    /**
+     * Konverzia z priestoru XYZ do LMS
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @param outRGB pole s troma hodnotami(kanalmi)
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     private float[] conversionsToLMS(float[] pixelData, float[] outRGB) {
         pixelData = matrixMultiplication1DInstance.multiply(MatrixMultiplication1D.MATRIX_XYZtoLMS, pixelData, outRGB);
         return pixelData;
     }
 
+    /**
+     * Konverzia z priestoru LMS do XYZ
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     private float[] conversionsToXYZ2(float[] pixelData) {
         pixelData = matrixMultiplication1DInstance.multiply(MatrixMultiplication1D.MATRIX_LMStoXYZ, pixelData);
         return pixelData;
     }
 
+    /**
+     * Konverzia z priestoru XYZ do RGB
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @param outRGB pole s troma hodnotami(kanalmi) pouzite, aby sa neprepisovali hodnoty
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     private float[] conversionToRGB(float[] pixelData, float[] outRGB) {
         pixelData = matrixMultiplication1DInstance.multiply(MatrixMultiplication1D.MATRIX_XYZtoRGB, pixelData, outRGB);
         pixelData = linearization1DInstance.nonLinearize(pixelData);
@@ -85,10 +123,16 @@ public class WhitePatch extends Convertor {
         return pixelData;
     }
 
+    /**
+     * Pocita median intenzit pixelov zo vstupnej bitmapy (vybrana oblast bielej),
+     * cielom tejto metody je vyhnut sa nekorektnym vysledkom vyvaznia bielej zapricinenych
+     * vyberom len jedneho pixelu, ktory by mohol byt zasumeny, ci inak degenerovany
+     * @param img vstupna bitmapa (vybrana oblast bielej)
+     * @return median intenzit pixelov zo vstupnej bitmapy
+     */
     private int median(Bitmap img) {
         int height = img.getHeight();
         int width = img.getWidth();
-
         int[] m = new int[height*width];
 
         for(int i = 0; i < height; i++) {

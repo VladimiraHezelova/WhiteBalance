@@ -12,6 +12,9 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.R;
  */
 public class ConvertedPhotosTransparent4 extends AppCompatActivity {
 
+    /**
+     * Priehladny navod zobrazeny pri prvom spusteni aplikacie
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

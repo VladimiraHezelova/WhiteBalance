@@ -13,6 +13,9 @@ import bachelorapp.fi.muni.cz.whitebalanceapp.R;
  */
 public class MainActivityTransparent1 extends Activity {
 
+    /**
+     * Priehladny navod zobrazeny pri prvom spusteni aplikacie
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

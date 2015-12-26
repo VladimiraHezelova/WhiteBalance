@@ -22,6 +22,9 @@ public class MainActivityTransparent2 extends Activity {
     private String imagePath;
     public static Activity mainActivityTransparent2;
 
+    /**
+     * Priehladny navod zobrazeny pri prvom spusteni aplikacie
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

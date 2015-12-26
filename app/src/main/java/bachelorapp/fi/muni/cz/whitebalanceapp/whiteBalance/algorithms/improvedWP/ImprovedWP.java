@@ -15,21 +15,35 @@ public class ImprovedWP extends Convertor {
 
     private float[] illuminationEstimation;
 
+    /**
+     * Konsturktor ImprovedWP
+     * @param image bitmapa povodneho obrazku
+     */
     public ImprovedWP(Bitmap image) {
         super(image);
         this.originalBitmap = image;
-
         conversion();
     }
 
+    /**
+     * Vyvzanie bielej algoritmom ImprovedWP (Improved White Patch)
+     * n: nahodna vzorka n pixelov
+     * m: pouzije sa m takychto vzoriek
+     * performIlluminationEstimation: zisti sa Illuminant
+     * balanceWhite: ostrani sa neprirodzeny odtien(vyvazi biela)
+     */
     public void conversion() {
         int n = 50;
         int m = 10;
-
         performIlluminationEstimation(n, m);
         balanceWhite();
     }
 
+    /**
+     * Pocita Illuminant(farbu zdroja osvetlenia)
+     * @param n pocet pixelov nahodnej vzorky
+     * @param m pocet nahodnych vzoriek
+     */
     public void performIlluminationEstimation(int n, int m) {
 
         float[] result = new float[]{0,0,0,0};
@@ -94,6 +108,12 @@ public class ImprovedWP extends Convertor {
         illuminationEstimation = result;
     }
 
+    /**
+     * Odstranenie neprirodzeneho odtiena pomocou vypocitaneho Illumianntu
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @param outRGB
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     @Override
     public float[] removeColorCast(float[] pixelData, float[] outRGB){
 

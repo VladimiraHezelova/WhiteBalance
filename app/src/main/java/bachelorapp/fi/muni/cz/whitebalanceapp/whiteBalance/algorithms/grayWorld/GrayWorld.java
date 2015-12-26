@@ -18,6 +18,10 @@ public class GrayWorld extends Convertor {
 
     private float[][] scalingMatrix;
 
+    /**
+     * Konstruktor GrayWorld
+     * @param image bitmapa povodneho obrazku
+     */
     public GrayWorld(Bitmap image) {
         super(image);
         this.originalBitmap = image;
@@ -28,11 +32,21 @@ public class GrayWorld extends Convertor {
         balanceWhite();
     }
 
+    /**
+     * Nastavi sa skalovacia matica (scalingMatrix)
+     */
     public void setScalingMatrix() {
         Average average = new Average(originalBitmap);
         scalingMatrix = average.getScalingMatrix();
     }
 
+    /**
+     * Odstranenie neprirodzeneho odtiena: normalizaciou, pouzitim skalovacej matice
+     * a navratom z normalizacie
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @param outRGB
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     @Override
     public float[] removeColorCast(float[] pixelData, float[] outRGB) {
         pixelData = linearization1DInstance.normalize(pixelData);

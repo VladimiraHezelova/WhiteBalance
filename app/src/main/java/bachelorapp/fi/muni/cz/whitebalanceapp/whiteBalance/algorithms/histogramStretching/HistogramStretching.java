@@ -18,6 +18,10 @@ public class HistogramStretching extends Convertor {
 
     private Bitmap originalBitmap;
 
+    /**
+     * Konsturktor HistogramStretching
+     * @param bitmap bitmapa povodneho obrazku
+     */
     public HistogramStretching(Bitmap bitmap) {
         super(bitmap);
         this.originalBitmap = bitmap;
@@ -30,6 +34,11 @@ public class HistogramStretching extends Convertor {
         balanceWhite();
     }
 
+    /**
+     * Zisti sa low(najnizsia) a high(najvyssia) intenzita kazdeho kanalu,
+     * vypocita sa pomer ratio[canal] = (max - min) / (high[canal] - low[canal]),
+     * kde max je 255 a min je 0
+     */
     public void findBoundary() {
         int[][] histogram = getHistogram();
 
@@ -60,12 +69,14 @@ public class HistogramStretching extends Convertor {
             ratio[canal] = (max - min) / (high[canal] - low[canal]);
         }
 
-
         long end = System.currentTimeMillis();
         double time = (double) (end - start) / 1000;
         Log.i("Find boundary", "time of conversions = " + time + "seconds");
     }
 
+    /**
+     * Nastavia sa skalovacie koeficienty
+     */
     public void setScalingCoefficients() {
         long start = System.currentTimeMillis();
 
@@ -76,6 +87,10 @@ public class HistogramStretching extends Convertor {
         Log.i("setScalingCoefficients", "time of conversions = " + time + "seconds");
     }
 
+    /**
+     * Pocita histogram intenzit pixelov v obrazku
+     * @return pole histogram[kanal][intenzita<0,255>]=pocet pixelov
+     */
     public int[][] getHistogram() {
         long start = System.currentTimeMillis();
 
@@ -98,11 +113,9 @@ public class HistogramStretching extends Convertor {
                     histogram[0][intensity[0]]++;
                     histogram[1][intensity[1]]++;
                     histogram[2][intensity[2]]++;
-
                 }
             }
         }
-
         long end = System.currentTimeMillis();
         double time = (double) (end - start) / 1000;
         Log.i("getHistogran", "time of conversions = " + time + "seconds");
@@ -110,6 +123,12 @@ public class HistogramStretching extends Convertor {
         return histogram;
     }
 
+    /**
+     * Odstranenie neprirodzeneho odtiena algoritmom HistogramStretching (percentilovy)
+     * @param pixelData pole s troma hodnotami(kanalmi)
+     * @param outRGB
+     * @return konvertovany pixel zlozeny z troch kanalov
+     */
     @Override
     public float[] removeColorCast(float[] pixelData, float[] outRGB) {
 

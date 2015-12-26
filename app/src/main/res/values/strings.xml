@@ -37,7 +37,7 @@
     <string name="guide2b">5. To select a new white area \n press the button. \n The old one will be deleted.</string>
     <string name="guide5">6. You can save the picture \n from view with this button</string>
     <string name="guide6">7. or go back and choose \n another picture from your gallery.</string>
-    <string name="guide7">Now you can start using \n Color Balance application</string>
+    <string name="guide7">Now you can start using \n White Balance application</string>
 
     <string name="save_message1">"You don't have chosen converted picture to save"</string>
     <string name="save_message2">"Saved successfully"</string>

@@ -15,7 +15,10 @@ public class FileName {
     private String path;
     private String extension;
 
-
+    /**
+     * Konsturktor FileName
+     * @param imagePath cesta k obrazku vybranemu uzivatelom pre vyvazenie bielej
+     */
     public FileName(String imagePath) {
         Date date = new Date();
         sDate = new SimpleDateFormat("yyyyMMdd_hhmmss").format(date);
@@ -31,11 +34,22 @@ public class FileName {
             extension = fileNameWithExtension.substring(pos);
         }
     }
+
+    /**
+     * Vracia absolutnu cestu s novym nazvom obrazku,
+     * tj. cesta k povodnemu obrazku + nazov obrazku + datum a cas + typ formatu
+     * @return destinationFilename
+     */
     public String getDestinationFilename() {
         String destinationFilename = path + File.separatorChar + fileName + sDate + extension;
         Log.i("destinationFilename", destinationFilename);
         return destinationFilename;
     }
+
+    /**
+     * Vracia nazov noveho obrazku, tj. nazov povodneho obrazku + datum a cas
+     * @return
+     */
     public String getNewFilename() {
         String newFilename = fileName + sDate;
         Log.i("newFilename", newFilename);

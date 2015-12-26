@@ -33,32 +33,36 @@ public class MatrixMultiplication1D {
     private float[] array = new float[3];
 
     /**
-     * |x| |a b c||u|
-     * |y|=|d e f||v|
-     * |z| |g h i||w|
-     * Z dvojrozmerneho pola uvw vsetky hodnoty prekonvertuje vynasobenim  matrix maticou 3x3
-     * a vrati ziskane dvojrozmerne pole. Pozicie v poli sa zachovavaju
-     * pre informaciu pozicie pixelu v obraze(prvy rozmer) a zlozku RGB(druhy rozmer)
+     * |array[0]| |a b c||uvw[0]|
+     * |array[1]|=|d e f||uvw[1]|
+     * |array[2]| |g h i||uvw[2]|
      *
+     * @param matrix vstupna matica 3x3
+     * @param uvw jednorozmerne pole s troma hodnotami
+     * @return pole array[3], ktore je vysledkom vynaboenia matice matrix[3][3] s polom uvw[3]
      */
     public float[] multiply(float[][] matrix, float[] uvw) {
-
         array[0] = matrix[0][0] * uvw[0] + matrix[0][1] * uvw[1] + matrix[0][2] * uvw[2];
         array[1] = matrix[1][0] * uvw[0] + matrix[1][1] * uvw[1] + matrix[1][2] * uvw[2];
         array[2] = matrix[2][0] * uvw[0] + matrix[2][1] * uvw[1] + matrix[2][2] * uvw[2];
-
         return array;
     }
 
+    /**
+     * |outRGB[0]| |a b c||uvw[0]|
+     * |outRGB[1]|=|d e f||uvw[1]|
+     * |outRGB[2]| |g h i||uvw[2]|
+     *
+     * @param matrix vstupna matica 3x3
+     * @param uvw jednorozmerne pole s troma hodnotami
+     * @param outRGB vlozia sa donho vysledky vynasobenia matice matrix[3][3] s polom uvw[3],
+     *               predava sa ako vstupny parameter, aby sa neprepisovali hodnoty
+     * @return pole outRGB[3]
+     */
     public float[] multiply(float[][] matrix, float[] uvw, float[] outRGB) {
-
         outRGB[0] = matrix[0][0] * uvw[0] + matrix[0][1] * uvw[1] + matrix[0][2] * uvw[2];
         outRGB[1] = matrix[1][0] * uvw[0] + matrix[1][1] * uvw[1] + matrix[1][2] * uvw[2];
         outRGB[2] = matrix[2][0] * uvw[0] + matrix[2][1] * uvw[1] + matrix[2][2] * uvw[2];
-
         return outRGB;
     }
-
-
-
 }

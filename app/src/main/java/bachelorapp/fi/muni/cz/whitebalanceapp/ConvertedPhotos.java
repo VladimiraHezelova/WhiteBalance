@@ -118,23 +118,35 @@ public class ConvertedPhotos extends AppCompatActivity {
 
         Intent intent = getIntent();
         imagePath = intent.getStringExtra("imagePath");
-        originalBitmap = BitmapFactory.decodeFile(imagePath);
-        changeDimensions();
-        scaledBitmap = createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, false);
-
-        // free memory
-        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        int memoryClass = am.getMemoryClass();
-        Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
-
         try {
-            new ProgressTask().execute();
-        } catch (Exception e){
-            Log.e("Error","too large picture, too less memory");
-            Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
+            originalBitmap = BitmapFactory.decodeFile(imagePath);
+            changeDimensions();
+            scaledBitmap = createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, false);
+
+            // free memory
+            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            int memoryClass = am.getMemoryClass();
+            Log.i(TAG, "free memory = " + Integer.toString(memoryClass));
+
+            try {
+                new ProgressTask().execute();
+            } catch (Exception e){
+                Log.e("Error","too large picture, too less memory");
+                Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
+            }
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            Log.e("Error", "too large picture, too less memory");
+            finish();
+            Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+            mainActivityIntent.putExtra("tooLargePicture", "tooLargePicture");
+            startActivity(mainActivityIntent);
+            recycleBitmaps();
         }
     }
 
+    // iconWP: nastavenie ikony na zmenseny nahlad filtru WhitePatch, ked este nie je prekonvertovany
+    // textWP: nastavi tiez text pod zvacseny nahlad, ktory uzivatelovi hovori, aby vybral vo fotografii oblast bielej
     private void setWPThumbNail() {
         convertedWP = false;
         iconWP = (ImageButton) findViewById(R.id.icon_wp);
@@ -145,6 +157,12 @@ public class ConvertedPhotos extends AppCompatActivity {
         textWP.setVisibility(View.GONE);
     }
 
+    /**
+     * Vklada do this_menu menu, aby sa dalo pristupovt k jednotlivym zlozkam menu a v istych pripadoch,
+     * ako pri loadovani, sa dali nastavit neklikatelnymi
+     * @param menu menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -154,6 +172,9 @@ public class ConvertedPhotos extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Nastavi akcie ikon menu: opatovne vybranie bilej vo WhitePatch; ulozenie obrazku; navrat na uvodnu obrazovku
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
@@ -283,6 +304,9 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
+    /**
+     * Recyklovanie bitmap, aby nenastalo vycerpanie pamate
+     */
     public void recycleBitmaps() {
         if((originalBitmap != null) && (!originalBitmap.isRecycled())) {
             originalBitmap.recycle();
@@ -297,13 +321,14 @@ public class ConvertedPhotos extends AppCompatActivity {
                 }
             }
         }
-
         if((selectedWhite!= null) && (!selectedWhite.isRecycled())) {
             selectedWhite.recycle();
         }
     }
 
-
+    /**
+     * Zapis obrazku po vyvazeni bielej
+     */
     private class writeImage extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -382,6 +407,10 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
+    /**
+     * Ulozenie obrazku po vyvazeni bielej
+     * @param convertedBitmap konvertovany obrazok po vyvazeni bielej
+     */
     public void saveImage(Bitmap convertedBitmap) {
         FileName fileName = new FileName(imagePath);
         String destinationFilename = fileName.getDestinationFilename();
@@ -425,6 +454,11 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
+    /**
+     * Vytvorenie instancii jednotlivych algoritmov v ktorych sa prevedie vyvazovanie bielej vybraneho obrazku.
+     * V tejto metode sa prevadza vyvazovanie bielej na zmensenych nahladoch, konverzia v povodnej velkosti
+     * nastane az pri ulozeni urciteho vyrbraneho filtru.
+     */
     private class ProgressTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute(){
@@ -450,7 +484,6 @@ public class ConvertedPhotos extends AppCompatActivity {
                 };
             } catch (Exception e){
                 Log.e("Error", "too large picture, too less memory");
-              //  Toast.makeText(getApplicationContext(), R.string.too_large_image, Toast.LENGTH_SHORT).show();
                 finish();
                 Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                 mainActivityIntent.putExtra("tooLargePicture", "tooLargePicture");
@@ -493,6 +526,9 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
+    /**
+     * Zmena dimenzii povodneho obrazku pre zmensene nahlady a rychelejsiu konverziu
+     */
     public void changeDimensions() {
         // dimensions of display
         Display display = getWindowManager().getDefaultDisplay();
@@ -536,16 +572,30 @@ public class ConvertedPhotos extends AppCompatActivity {
         return px;
     }
 
+    /**
+     * Konverzia poctu pixelov na pocet dp
+     * @param px poxet pixelov
+     * @return dp
+     */
     public int pxToDp(int px) {
         DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
         int dp = Math.round(px / (displayMetrics.ydpi / DisplayMetrics.DENSITY_DEFAULT));
         return dp;
     }
 
+    /**
+     * Nastavi bitmapu do tlacidla (zmenseneho nahladu)
+     * @param selectedFilter vybrany filter (algoritmus vyvazovania bielej)
+     */
     public void setBitmapInButton(Filter selectedFilter) {
         setBitmapInButton(selectedFilter, convertedBitmaps[selectedFilter.ordinal()]);
     }
 
+    /**
+     * Nastavi bitmapu do tlacidla (zmenseneho nahladu)
+     * @param selectedFilter vybrany filter (algoritmus vyvazovania bielej)
+     * @param bitmap bitmapa, ktora sa ma nastavit do tlacidla (zmenseneho nahladu)
+     */
     public void setBitmapInButton(final Filter selectedFilter, final Bitmap bitmap) {
         imageButtons[selectedFilter.ordinal()].setImageBitmap(bitmap);
 
@@ -598,6 +648,11 @@ public class ConvertedPhotos extends AppCompatActivity {
         }
     }
 
+    /**
+     * Metoda pre vyber bielej oblasti uzivatelom v algoritme WhitePatch.
+     * Jeden pixel dotyku (vyrbana biela uzivatelom) sa zvacsi na oblast 9x9,
+     * aby sa vyhlo nekorektnemu vyvazeniu bielej sposobeneho sumom
+     */
     public void selectWhite() {
         selectedImage.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -640,6 +695,9 @@ public class ConvertedPhotos extends AppCompatActivity {
         });
     }
 
+    /**
+     * Konverzia algroitmu WhitePatch v pozadi
+     */
     private class ProgressTask2 extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -678,7 +736,9 @@ public class ConvertedPhotos extends AppCompatActivity {
     }
 
 
-    /* Checks if external storage is available for read and write */
+    /**
+     *  Checks if external storage is available for read and write
+     */
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
