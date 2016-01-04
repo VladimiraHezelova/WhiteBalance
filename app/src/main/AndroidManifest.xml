@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bachelorapp.fi.muni.cz.whitebalanceapp" >
 
-    /* Copyright (c) 2015, Vladimira Hezelova */
+    <!--  Copyright (c) 2015, Vladimira Hezelova -->
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED"/>
