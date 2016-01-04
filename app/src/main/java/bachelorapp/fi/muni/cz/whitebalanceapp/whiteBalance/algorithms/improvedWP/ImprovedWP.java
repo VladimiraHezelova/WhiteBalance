@@ -26,7 +26,7 @@ public class ImprovedWP extends Convertor {
     }
 
     /**
-     * Vyvzanie bielej algoritmom ImprovedWP (Improved White Patch)
+     * Vyvazenie bielej algoritmom ImprovedWP (Improved White Patch)
      * n: nahodna vzorka n pixelov
      * m: pouzije sa m takychto vzoriek
      * performIlluminationEstimation: zisti sa Illuminant
