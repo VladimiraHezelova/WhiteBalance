@@ -402,7 +402,7 @@ public class ConvertedPhotos extends AppCompatActivity {
                 double time = (double) (end - startForTime) / 1000;
                 Log.e(TAG, "time of algorithm's conversion = " + time + "seconds");
 
-                Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -521,7 +521,7 @@ public class ConvertedPhotos extends AppCompatActivity {
 
             long end = System.currentTimeMillis();
             double time = (double) (end - startForTime) / 1000;
-            Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
             Log.i(TAG, "time of conversions = " + time + "seconds");
         }
     }
@@ -731,7 +731,7 @@ public class ConvertedPhotos extends AppCompatActivity {
 
             long end = System.currentTimeMillis();
             double time = (double) (end - startForTime) / 1000;
-            Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(instance.getApplicationContext(), Double.toString(time), Toast.LENGTH_SHORT).show();
         }
     }
 
